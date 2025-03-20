@@ -9,25 +9,25 @@
     <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link href="{{ 'frontend/assets/img/logo_sentra.png' }}" rel="icon">
-    <link href="{{ 'frontend/assets/img/logo_sentra.png' }}" rel="apple-touch-icon">
+    <link href="{{ asset('frontend/assets/img/logo_sentra.png') }}" rel="icon">
+    <link href="{{ asset('frontend/assets/img/logo_sentra.png') }}" rel="apple-touch-icon">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com')}}" rel="preconnect">
-    <link href="https://fonts.gstatic.com')}}" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')}}"
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="{{ 'frontend/assets/vendor/bootstrap/css/bootstrap.min.css' }}" rel="stylesheet">
-    <link href="{{ 'frontend/assets/vendor/bootstrap-icons/bootstrap-icons.css' }}" rel="stylesheet">
-    <link href="{{ 'frontend/assets/vendor/aos/aos.css' }}" rel="stylesheet">
-    <link href="{{ 'frontend/assets/vendor/swiper/swiper-bundle.min.css' }}" rel="stylesheet">
-    <link href="{{ 'frontend/assets/vendor/glightbox/css/glightbox.min.css' }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
 
     <!-- Main CSS File -->
-    <link href="{{ 'frontend/assets/css/main.css' }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/css/main.css') }}" rel="stylesheet">
 
     <!-- =======================================================
   * Template Name: Appland
@@ -54,7 +54,7 @@
                     <li><a href="#hero" class="active">Beranda</a></li>
                     <li><a href="#about">Tentang Kami</a></li>
 
-                    <li><a href="#faq">Bantuan?</a></li>
+                    <li><a href="#faq">FAQ</a></li>
 
                     <li><a href="#contact">Kontak</a></li>
                 </ul>
@@ -216,10 +216,8 @@
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
-                <div class="row gy-4">
-                    <div class="col-lg-6">
-                        <div class="row gy-4">
-                            <div class="col-md-6">
+                <div class="row gy-4 text-center">
+                            <div class="col-md-3">
                                 <div class="info-item" data-aos="fade" data-aos-delay="200">
                                     <i class="bi bi-geo-alt"></i>
                                     <h3>Alamat</h3>
@@ -228,7 +226,7 @@
                                 </div>
                             </div><!-- End Info Item -->
 
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="info-item" data-aos="fade" data-aos-delay="300">
                                     <i class="bi bi-telephone"></i>
                                     <h3>Telepon</h3>
@@ -236,7 +234,7 @@
                                 </div>
                             </div><!-- End Info Item -->
 
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="info-item" data-aos="fade" data-aos-delay="400">
                                     <i class="bi bi-envelope"></i>
                                     <h3>Email</h3>
@@ -244,16 +242,14 @@
                                 </div>
                             </div><!-- End Info Item -->
 
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="info-item" data-aos="fade" data-aos-delay="500">
                                     <i class="bi bi-clock"></i>
                                     <h3>JAM BUKA</h3>
-                                    <p>Monday - Friday</p>
+                                    <p>Senin - Jum'at</p>
                                     <p>07:30 AM - 03:30 PM</p>
                                 </div>
                             </div><!-- End Info Item -->
-                        </div>
-                    </div>
                 </div>
             </div>
         </section><!-- /Contact Section -->
@@ -279,20 +275,20 @@
                 <div class="col-lg-2 col-md-3 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#">Beranda</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#">Tentang Kami</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#">FAQ</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#">Kontak</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
                     <h4>Layanan Kami</h4>
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Layanan Pemberdayaan Perempuan</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Layanan Perlindungan Anak</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Layanan Sosial dan Bantuan Kesejahteraan</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Layanan Konsultasi dan Edukasi</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="/layanan/perempuan">Layanan Pemberdayaan Perempuan</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="/layanan/anak">Layanan Perlindungan Anak</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="/layanan/kesejahteraan">Layanan Sosial dan Bantuan Kesejahteraan</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="/layanan/edukasi">Layanan Konsultasi dan Edukasi</a></li>
                     </ul>
                 </div>
 
@@ -300,7 +296,7 @@
                     <h4>Sosial Media</h4>
                     <p>Cek informasi terbaru kami di Sosial Media</p>
                     <div class="social-links d-flex">
-                        <a href=""><i class="bi bi-twitter-x"></i></a>
+                        <a href=""><i class="bi bi-twitter"></i></a>
                         <a href=""><i class="bi bi-facebook"></i></a>
                         <a href=""><i class="bi bi-instagram"></i></a>
                     </div>
@@ -324,14 +320,14 @@
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
-    <script src="{{ 'frontend/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' }}"></script>
-    <script src="{{ 'frontend/assets/vendor/php-email-form/validate.js' }}"></script>
-    <script src="{{ 'frontend/assets/vendor/aos/aos.js' }}"></script>
-    <script src="{{ 'frontend/assets/vendor/swiper/swiper-bundle.min.js' }}"></script>
-    <script src="{{ 'frontend/assets/vendor/glightbox/js/glightbox.min.js' }}"></script>
+    <script src="{{ asset('frontend/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('frontend/assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('frontend/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
 
     <!-- Main JS File -->
-    <script src="{{ 'frontend/assets/js/main.js' }}"></script>
+    <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
 
 </body>
 
