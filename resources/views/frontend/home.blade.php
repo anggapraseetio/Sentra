@@ -1,42 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Home</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-
-    <!-- Favicons -->
-    <link href="{{ asset('frontend/assets/img/logo_sentra.png') }}" rel="icon">
-    <link href="{{ asset('frontend/assets/img/logo_sentra.png') }}" rel="apple-touch-icon">
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')}}"
-        rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="{{ asset('frontend/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/assets/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-
-    <!-- Main CSS File -->
-    <link href="{{ asset('frontend/assets/css/main.css') }}" rel="stylesheet">
-
-    <!-- =======================================================
-  * Template Name: Appland
-  * Template URL: https://bootstrapmade.com/free-bootstrap-app-landing-page-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
+@extends ('frontend.template')
 
 <body class="index-page">
 
@@ -65,8 +27,6 @@
 
         </div>
     </header>
-
-    <main class="main">
 
         <!-- Hero Section -->
         <section id="hero" class="hero section">
@@ -254,8 +214,6 @@
             </div>
         </section><!-- /Contact Section -->
 
-    </main>
-
     <footer id="footer" class="footer">
 
         <div class="container footer-top">
@@ -275,10 +233,10 @@
                 <div class="col-lg-2 col-md-3 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Beranda</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Tentang Kami</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">FAQ</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Kontak</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#hero">Beranda</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#about">Tentang Kami</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#faq">FAQ</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#contact">Kontak</a></li>
                     </ul>
                 </div>
 
@@ -296,9 +254,7 @@
                     <h4>Sosial Media</h4>
                     <p>Cek informasi terbaru kami di Sosial Media</p>
                     <div class="social-links d-flex">
-                        <a href=""><i class="bi bi-twitter"></i></a>
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                        <a href=""><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.instagram.com/dinsosp3anganjuk" target="_blank" class="mx-2"><i class="bi bi-instagram fs-3 text-danger"></i></a>
                     </div>
                 </div>
 
@@ -311,24 +267,6 @@
         </div>
 
     </footer>
-
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
-
-    <!-- Preloader -->
-    <div id="preloader"></div>
-
-    <!-- Vendor JS Files -->
-    <script src="{{ asset('frontend/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/vendor/php-email-form/validate.js') }}"></script>
-    <script src="{{ asset('frontend/assets/vendor/aos/aos.js') }}"></script>
-    <script src="{{ asset('frontend/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-
-    <!-- Main JS File -->
-    <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
-
 </body>
 
 </html>
