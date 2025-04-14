@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 
 Route::get('/home', function () {
     return view('frontend.home');
@@ -18,3 +19,14 @@ Route::get('/layanan/kesejahteraan', function () {
 Route::get('/layanan/edukasi', function () {
     return view('frontend.layanan.edukasi');
 });
+
+Route::get('/dashboard', function () {
+    return view('backend.dashboard');
+});
+
+Route::get('/login', function () {
+    return view('backend.login');
+});
+
+Route::get('/tables', [PageController::class, 'table'])->name('tables');
+
