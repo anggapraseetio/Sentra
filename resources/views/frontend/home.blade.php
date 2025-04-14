@@ -82,7 +82,6 @@
                         <p> Dengan adanya Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak, diharapkan perempuan dan anak dapat hidup
                             dalam lingkungan yang aman, terlindungi, dan memiliki kesempatan yang sama dalam berbagai aspek kehidupan.
                         </p>
-                        <a href="#" class="read-more"><span>Selengkapnya</span><i class="bi bi-arrow-right"></i></a>
                     </div>
 
                 </div>
@@ -220,12 +219,7 @@
                     <a href="index.html" class="d-flex align-items-center">
                         <span class="sitename">SENTRA</span>
                     </a>
-                    <div class="footer-contact pt-3">
-                        <p>Jl Supriyadi No 7, Kauman, Mangundikaran, Mangun Dikaran</p>
-                        <p>Kec. Nganjuk, Kabupaten Nganjuk, Jawa Timur 64412</p>
-                        <p class="mt-3"><strong>Telepon:</strong> <span>(0358) 3550722</span></p>
-                        <p><strong>Email:</strong> <span>dinsospppa@nganjukkab.go.id</span></p>
-                    </div>
+                    <p> Sistem Entitas Pelaporan dan Tanggap Respons Aksi</p>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
@@ -253,6 +247,7 @@
                     <p>Cek informasi terbaru kami di Sosial Media</p>
                     <div class="social-links d-flex">
                         <a href="https://www.instagram.com/dinsosp3anganjuk" target="_blank" class="mx-2"><i class="bi bi-instagram fs-3 text-danger"></i></a>
+                        <a href="https://www.tiktok.com/@dinsosp3a_nganjuk" target="_blank" class="mx-2"><i class="bi bi-tiktok fs-3 text-purple"></i></a>
                     </div>
                 </div>
 
