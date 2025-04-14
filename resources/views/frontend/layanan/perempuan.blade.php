@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <!-- Progra Kepemimpinan Perempuan -->
+        <!-- Program Kepemimpinan Perempuan -->
         <div class="col-md-6 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
