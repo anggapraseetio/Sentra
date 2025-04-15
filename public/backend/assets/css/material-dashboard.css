@@ -3,6 +3,8 @@
 
 :root,
 [data-bs-theme=light] {
+  --bs-palet1: #377E62;
+  --bs-palet2: #52AE77;  
   --bs-blue: #63B3ED;
   --bs-indigo: #596CFF;
   --bs-purple: #6f42c1;
@@ -11091,6 +11093,24 @@ fieldset:disabled .btn {
 }
 
 /* rtl:end:remove */
+.custom-title {
+  color: #52AE77; /* palet 1 ijo muda */
+}
+
+.custom-subtitle {
+  color: #555; /* abu abu */
+}
+
+  .custom-login-btn {
+    background-color: #52AE77 !important;
+    color: white !important;
+    border: none;
+  }
+
+  .custom-login-btn:hover {
+    background-color: #377E62 !important;
+  }
+
 .text-primary {
   color: #e91e63 !important;
 }
@@ -23613,7 +23633,7 @@ body.dark-version {
 
 .input-group.input-group-outline .form-control {
   background: none;
-  border: 1px solid #d2d6da;
+  border: 1px solid #52AE77;
   border-radius: 0.375rem;
   border-top-left-radius: 0.375rem !important;
   border-bottom-left-radius: 0.375rem !important;
@@ -23673,9 +23693,9 @@ body.dark-version {
 
 .input-group.input-group-outline.is-focused .form-label+.form-control,
 .input-group.input-group-outline.is-filled .form-label+.form-control {
-  border-color: #e91e63 !important;
+  border-color: #52AE77 !important;
   border-top-color: transparent !important;
-  box-shadow: inset 1px 0 #e91e63, inset -1px 0 #e91e63, inset 0 -1px #e91e63;
+  box-shadow: inset 1px 0 #52AE77, inset -1px 0 #52AE77, inset 0 -1px #52AE77;
 }
 
 .input-group.input-group-outline.is-focused .form-label,
@@ -23683,7 +23703,7 @@ body.dark-version {
   width: 100%;
   height: 100%;
   font-size: 0.6875rem !important;
-  color: #e91e63;
+  color: #52AE77;
   display: flex;
   line-height: 1.25 !important;
 }
@@ -23699,8 +23719,8 @@ body.dark-version {
 .input-group.input-group-outline.is-focused .form-label:after,
 .input-group.input-group-outline.is-filled .form-label:before,
 .input-group.input-group-outline.is-filled .form-label:after {
-  border-top-color: #e91e63;
-  box-shadow: inset 0 1px #e91e63;
+  border-top-color: #52AE77;
+  box-shadow: inset 0 1px #52AE77;
 }
 
 .input-group.input-group-outline.is-valid .form-control {
