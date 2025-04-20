@@ -6,7 +6,23 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    public function login(){
+        return view('backend.login.login');
+    }
+
+    public function reset_pw(){
+        return view('backend.login.reset_pasword');
+    }
+
+    public function otp(){
+        return view('backend.login.otp');
+    }
+
+    public function new_pw(){
+        return view('backend.login.new_password');
+    }
+
     public function table(){
-        return view('backend.tables');
+        return view('backend.tabel.tables');
     }
 }

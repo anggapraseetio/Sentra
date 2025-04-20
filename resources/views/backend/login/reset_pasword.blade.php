@@ -38,8 +38,8 @@
                         </div>
                         <div class="col-xl-5 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-0">
                             <div class="card-header ms-3">
-                                <h3 class="font-weight-bolder custom-title">Login</h3>
-                                <p class="mb-0 custom-subtitle">Masukkan Email dan Password untuk Login</p>
+                                <h3 class="font-weight-bolder custom-title">Reset Password</h3>
+                                <p class="mb-0 custom-subtitle">Masukkan Email untuk mendapatkan kode OTP</p>
                             </div>
                             <div class="card card-plain">
                                 <div class="card-body">
@@ -48,29 +48,12 @@
                                             <label class="form-label">Email</label>
                                             <input type="email" class="form-control">
                                         </div>
-                                        <div class="input-group input-group-outline mb-3">
-                                            <label class="form-label">Password</label>
-                                            <input type="password" class="form-control" id="passwordInput">
-                                        </div>
-                                        <div class="form-check form-check-info text-start ps-0 mb-3">
-                                            <input class="form-check-input" type="checkbox" id="togglePassword">
-                                            <label class="form-check-label" for="togglePassword">
-                                                Show Password
-                                            </label>
-                                        </div>
                                         <div class="text-center">
-                                            <button type="button"
-                                                class="btn btn-lg custom-login-btn w-100 mt-4 mb-0">Login</button>
-                                        </div>
+                                            <a href="{{ route('inputOTP') }}" class="btn btn-lg custom-login-btn w-100 mt-4 mb-0">
+                                              Kirim OTP
+                                            </a>
+                                          </div>                                          
                                     </form>
-                                </div>
-
-                                <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                                    <p class="mb-2 text-sm mx-auto">
-                                        Lupa password?
-                                        <a href="../pages/sign-in.html"
-                                            class="text-info text-gradient font-weight-bold">Reset password</a>
-                                    </p>
                                 </div>
                             </div>
                         </div>
