@@ -31,9 +31,9 @@ Route::middleware(['guest'])->group(function () {
     });
 });
 
-Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
 //HANYA YANG LOGIN YANG BISA AKSES
 Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
     Route::get('/tables', [PageController::class, 'table'])->name('tables');
 
     Route::post('/logout', function () {

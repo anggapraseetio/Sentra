@@ -14,14 +14,14 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active bg-gradient-dark text-white" href="dashboard">
+                <a class="nav-link active custom-login-btn text-white" href="dashboard">
                     <i class="material-symbols-rounded opacity-5">dashboard</i>
                     <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" href="{{ route('tables') }}">
-                    <i class="material-symbols-rounded opacity-5">table_view</i>
+                    <i class="material-symbols-rounded opacity-5">receipt_long</i>
                     <span class="nav-link-text ms-1">Laporan</span>
                 </a>
             </li>

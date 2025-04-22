@@ -11092,25 +11092,6 @@ fieldset:disabled .btn {
   word-break: break-word !important;
 }
 
-/* rtl:end:remove */
-.custom-title {
-  color: #52AE77; /* palet 1 ijo muda */
-}
-
-.custom-subtitle {
-  color: #555; /* abu abu */
-}
-
-  .custom-login-btn {
-    background-color: #52AE77 !important;
-    color: white !important;
-    border: none;
-  }
-
-  .custom-login-btn:hover {
-    background-color: #377E62 !important;
-  }
-
 .text-primary {
   color: #e91e63 !important;
 }
@@ -29167,6 +29148,40 @@ pre[class*=language-] {
 }
 
 /*CSS CUSTOM*/
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: #000 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.alert-soft-danger {
+    background-color: rgba(255, 0, 0, 0.15);
+    color: #cc0000;
+    border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+.text-black-custom {
+  color: #000000 !important; /*hitam*/
+}
+
+.custom-title {
+  color: #52AE77; /* palet 1 ijo muda */
+}
+
+.custom-subtitle {
+  color: #555; /* abu abu */
+}
+
+  .custom-login-btn {
+    background-color: #52AE77 !important;
+    color: white !important;
+    border: none;
+  }
+
+  .custom-login-btn:hover {
+    background-color: #377E62 !important;
+  }
+
 .otp-input {
   width: 48px;
   height: 55px;
