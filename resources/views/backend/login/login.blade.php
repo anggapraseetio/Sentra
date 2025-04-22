@@ -43,14 +43,15 @@
                             </div>
                             <div class="card card-plain">
                                 <div class="card-body">
-                                    <form role="form">
+                                    <form action="login" method="POST">
+                                        @csrf
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">Email</label>
-                                            <input type="email" class="form-control">
+                                            <input type="email" class="form-control" id="email" name="email">
                                         </div>
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">Password</label>
-                                            <input type="password" class="form-control" id="passwordInput">
+                                            <input type="password" class="form-control" id="passwordInput" name="password">
                                         </div>
                                         <div class="form-check form-check-info text-start ps-0 mb-3">
                                             <input class="form-check-input" type="checkbox" id="togglePassword">
@@ -59,7 +60,7 @@
                                             </label>
                                         </div>
                                         <div class="text-center">
-                                            <button type="button"
+                                            <button type="submit"
                                                 class="btn btn-lg custom-login-btn w-100 mt-4 mb-0">Login</button>
                                         </div>
                                     </form>

@@ -4,11 +4,12 @@
         <i class="fas fa-times p-3 cursor-pointer text-dark opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
         <div class="navbar-brand d-flex flex-column align-items-center justify-content-center px-4 py-3 m-0">
-            <img src="{{ 'backend/assets/img/logo_sentra.png' }}" class="navbar-brand-img mb-1" width="38" height="38" alt="main_logo">
+            <img src="{{ 'backend/assets/img/logo_sentra.png' }}" class="navbar-brand-img mb-1" width="38"
+                height="38" alt="main_logo">
             <span class="text-sm text-dark">Dinas PPPA</span>
         </div>
     </div>
-    
+
     <hr class="horizontal dark mt-0 mb-2">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
@@ -50,7 +51,7 @@
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit" class="btn custom-login-btn w-100">Logout</button>
-            </form>            
+            </form>
         </div>
     </div>
 </aside>

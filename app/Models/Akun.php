@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Akun extends Model
+class Akun extends Authenticatable
 {
     protected $table = 'akun';
     protected $primaryKey = 'id_akun';

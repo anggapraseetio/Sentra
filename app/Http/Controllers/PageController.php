@@ -22,6 +22,10 @@ class PageController extends Controller
         return view('backend.login.new_password');
     }
 
+    public function dashboard(){
+        return view('backend.dashboard.dashboard');
+    }
+    
     public function table(){
         return view('backend.tabel.tables');
     }
