@@ -23,10 +23,10 @@ class PageController extends Controller
     }
 
     public function dashboard(){
-        return view('backend.dashboard.dashboard');
+        return view('backend.layouts.dashboard.dashboard');
     }
     
     public function table(){
-        return view('backend.tabel.tables');
+        return view('backend.layouts.dashboard.tables');
     }
 }
