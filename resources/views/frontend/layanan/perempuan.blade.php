@@ -41,7 +41,7 @@
         <div class="col-md-6 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title"><i class="bi bi-scale text-warning"></i> Perlindungan Hukum dan konseling</h5>
+                    <h5 class="card-title"><i class="bi bi-shield-check text-warning"></i> Perlindungan Hukum dan konseling</h5>
                     <p class="card-text text-muted">Memberikan bantuan hukum dan layanan konseling bagi perempuan yang mengalami kekerasan atau diskriminasi.</p>
                 </div>
             </div>
@@ -59,7 +59,7 @@
     </div>
 
     <div class="text-center mt-4">
-        <a href="/home" class="btn btn-primary btn-lg"><i class="bi bi-arrow-left-circle"></i>Kembali ke Beranda</a>
+        <a href="/index" class="btn btn-primary btn-lg"><i class="bi bi-arrow-left-circle"></i>Kembali ke Beranda</a>
     </div>
 </div>
 @endsection
