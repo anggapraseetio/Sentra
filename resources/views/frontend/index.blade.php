@@ -35,7 +35,7 @@
       <div class="container">
         <div class="row gy-4 justify-content-between">
           <div class="col-lg-4 order-lg-last hero-img" data-aos="zoom-out" data-aos-delay="100">
-            <!-- <img src="{{ asset('landingpage/assets/img/hero-img.png') }}" class="img-fluid animated" alt=""> -->
+            <img src="{{ asset('landingpage/assets/img/hero-img.png') }}" class="img-fluid animated" alt="">
           </div>
 
           <div class="col-lg-6  d-flex flex-column justify-content-center" data-aos="fade-in">
@@ -179,7 +179,7 @@
           </div>
 
           <div class="col-lg-5 order-1 order-lg-2">
-            <img src="{{ asset('landingpage/assets/img/faq.jpg') }}" class="img-fluid" alt="" data-aos="zoom-in" data-aos-delay="100">
+            <img src="{{ asset('landingpage/assets/img/faq.png') }}" class="img-fluid" alt="" data-aos="zoom-in" data-aos-delay="100">
           </div>
         </div>
 
@@ -273,7 +273,6 @@
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
-              <!-- <div class="pic"><img src="{{ asset('landingpage/assets/img/team/team-1.jpg') }}" class="img-fluid" alt=""></div> -->
               <div class="member-info">
                 <h4>Ratna Indah Anggraini</h4>
                 <span>Project Manager</span>
@@ -287,7 +286,6 @@
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="member">
-              <!-- <div class="pic"><img src="{{ asset('landingpage/assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div> -->
               <div class="member-info">
                 <h4>Angga Prasetio</h4>
                 <span>Backend Developer</span>
@@ -301,7 +299,6 @@
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="member">
-              <!-- <div class="pic"><img src="{{ asset('landingpage/assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div> -->
               <div class="member-info">
                 <h4>Aulia Silmi Mardiyanti</h4>
                 <span>Frontend Developer</span>
@@ -315,7 +312,6 @@
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="member">
-              <!-- <div class="pic"><img src="{{ asset('landingpage/assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div> -->
               <div class="member-info">
                 <h4>Muhamad Igviloja Mahendra</h4>
                 <span>Quality Asurance</span>
@@ -329,7 +325,6 @@
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="member">
-              <!-- <div class="pic"><img src="{{ asset('landingpage/assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div> -->
               <div class="member-info">
                 <h4>Nur Rohmatul Laili</h4>
                 <span>Tester</span>
@@ -347,7 +342,7 @@
 
     </section><!-- /Team Section -->
     
-  <footer id="footer" class="footer dark-background">
+<footer id="footer" class="footer dark-background">
 
 <div class="container footer-top">
   <div class="row gy-4">
@@ -393,11 +388,6 @@
 <div class="container copyright text-center mt-4">
   <p>© <span>Copyright</span> <strong class="px-1 sitename">SENTRA</strong> <span>All Rights Reserved</span></p>
   <div class="credits">
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you've purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-    <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
   </div>
 </div>
 
