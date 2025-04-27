@@ -35,7 +35,7 @@
       <div class="container">
         <div class="row gy-4 justify-content-between">
           <div class="col-lg-4 order-lg-last hero-img" data-aos="zoom-out" data-aos-delay="100">
-            <img src="{{ asset('landingpage/assets/img/mobileapp.png') }}" class="img-fluid animated" alt="">
+            <img src="{{ asset('landingpage/assets/img/img-hero.webp') }}" class="img-fluid animated" alt="">
           </div>
 
           <div class="col-lg-6  d-flex flex-column justify-content-center" data-aos="fade-in">
@@ -78,7 +78,7 @@
       <div class="container">
         <div class="row gy-4 align-items-center features-item">
           <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-            <img src="{{ asset('landingpage/assets/img/details-1.png') }}" class="img-fluid" alt="">
+            <img src="{{ asset('landingpage/assets/img/about.png') }}" class="img-fluid" alt="">
           </div>
           <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
             <p class="fst-italic">
