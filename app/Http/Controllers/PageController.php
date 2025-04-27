@@ -21,12 +21,12 @@ class PageController extends Controller
     public function new_pw(){
         return view('backend.login.new_password');
     }
-
-    public function dashboard(){
-        return view('backend.layouts.dashboard.dashboard');
-    }
     
-    public function table(){
-        return view('backend.layouts.dashboard.tables');
+    public function dashboard(){
+        return view('backend.layout.page_admin.dashboard');
+    }
+
+    public function laporan_proses(){
+        return view('backend.layout.page_admin.laporan.proses_laporan');
     }
 }
