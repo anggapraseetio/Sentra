@@ -20,7 +20,6 @@
           <li><a href="#team">Team</a></li>
           <li><a href="#faq">Pertanyaan Umum</a></li>
           <li><a href="#contact">Kontak</a></li>
-          <li><a href="#informasi"> Informasi </a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -36,7 +35,7 @@
       <div class="container">
         <div class="row gy-4 justify-content-between">
           <div class="col-lg-4 order-lg-last hero-img" data-aos="zoom-out" data-aos-delay="100">
-            <!-- <img src="{{ asset('landingpage/assets/img/hero-img.png') }}" class="img-fluid animated" alt=""> -->
+            <img src="{{ asset('landingpage/assets/img/img-hero.webp') }}" class="img-fluid animated" alt="">
           </div>
 
           <div class="col-lg-6  d-flex flex-column justify-content-center" data-aos="fade-in">
@@ -79,7 +78,7 @@
       <div class="container">
         <div class="row gy-4 align-items-center features-item">
           <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-            <img src="{{ asset('landingpage/assets/img/details-1.png') }}" class="img-fluid" alt="">
+            <img src="{{ asset('landingpage/assets/img/about.png') }}" class="img-fluid" alt="">
           </div>
           <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
             <p class="fst-italic">
@@ -102,95 +101,6 @@
         </div>
 
     </section><!-- /About Section -->
-
-    <!-- Team Section -->
-    <section id="team" class="team section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <!-- <h2>Team</h2> -->
-        <div><span class="description-title">Tim Pengembang Website</span></div>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-5">
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="member">
-              <!-- <div class="pic"><img src="{{ asset('landingpage/assets/img/team/team-1.jpg') }}" class="img-fluid" alt=""></div> -->
-              <div class="member-info">
-                <h4>Ratna Indah Anggraini</h4>
-                <span>Project Manager</span>
-                <div class="social">
-                  <a href="https://www.instagram.com/ratnaindah.a"><i class="bi bi-instagram"></i></a>
-                  <a href="https://www.linkedin.com/in/ratna-indah-anggraini-1a23b5354"><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <!-- <div class="pic"><img src="{{ asset('landingpage/assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div> -->
-              <div class="member-info">
-                <h4>Angga Prasetio</h4>
-                <span>Backend Developer</span>
-                <div class="social">
-                  <a href="https://www.instagram.com/anggapraseetio"><i class="bi bi-instagram"></i></a>
-                  <a href="https://www.linkedin.com/in/angga-prasetio-568626361"><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <!-- <div class="pic"><img src="{{ asset('landingpage/assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div> -->
-              <div class="member-info">
-                <h4>Aulia Silmi Mardiyanti</h4>
-                <span>Frontend Developer</span>
-                <div class="social">
-                  <a href="https://www.instagram.com/aaauulliiaa_"><i class="bi bi-instagram"></i></a>
-                  <a href="https://www.linkedin.com/in/aulia-silmi-0262b929b"><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <!-- <div class="pic"><img src="{{ asset('landingpage/assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div> -->
-              <div class="member-info">
-                <h4>Muhamad Igviloja Mahendra</h4>
-                <span>Quality Asurance</span>
-                <div class="social">
-                  <a href="https://www.instagram.com/mixvim.biz"><i class="bi bi-instagram"></i></a>
-                  <a href="http://www.linkedin.com/in/muhamad-igviloja-mahendra-320618361"><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <!-- <div class="pic"><img src="{{ asset('landingpage/assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div> -->
-              <div class="member-info">
-                <h4>Nur Rohmatul Laili</h4>
-                <span>Tester</span>
-                <div class="social">
-                  <a href="https://www.instagram.com/laily_885"><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Team Section -->
 
     <!-- Faq Section -->
     <section id="faq" class="faq section light-background">
@@ -269,7 +179,7 @@
           </div>
 
           <div class="col-lg-5 order-1 order-lg-2">
-            <img src="{{ asset('landingpage/assets/img/faq.jpg') }}" class="img-fluid" alt="" data-aos="zoom-in" data-aos-delay="100">
+            <img src="{{ asset('landingpage/assets/img/faq.png') }}" class="img-fluid" alt="" data-aos="zoom-in" data-aos-delay="100">
           </div>
         </div>
 
@@ -281,7 +191,7 @@
     <section id="contact" class="contact section">
 
       <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
+      <div class="container section-title text-center" data-aos="fade-up">
         <div><span>Cek Kontak</span> <span class="description-title">Kami</span></div>
         <p>Informasi terkait Kontak Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak</p>
       </div><!-- End Section Title -->
@@ -332,21 +242,107 @@
                     <p>Berikut ini adalah informasi maps yang mengarah langsung ke Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak</p>
                 </div>
 
+                <div class="container my-4" style="max-width: 800px;">
                 <div class="responsive-map">
                     <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.8438585054073!2d111.898124!3d-7.6013195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e784b06ef170309%3A0xb23b3f2501c3c28e!2sDinas%20Sosial%20Pemberdayaan%20Perempuan%20dan%20Perlindungan%20Anak!5e0!3m2!1sid!2sid!4v1713866091206!5m2!1sid!2sid"
                     width="100%"
-                    height="400"
+                    height="300"
                     style="border:0;"
                     allowfullscreen=""
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade" >
                     </iframe>
                 </div>
+                </div>
             </div>
     </section><!-- /Contact Section -->
+
     
-  <footer id="footer" class="footer dark-background">
+    <!-- Team Section -->
+    <section id="team" class="team section">
+
+      <!-- Section Title -->
+      <div class="container section-title text-center" data-aos="fade-up">
+        <div><span class="description-title">Tim Pengembang</span></div>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-5">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="member">
+              <div class="member-info">
+                <h4>Ratna Indah Anggraini</h4>
+                <span>Project Manager</span>
+                <div class="social">
+                  <a href="https://www.instagram.com/ratnaindah.a"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/ratna-indah-anggraini-1a23b5354"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <div class="member-info">
+                <h4>Angga Prasetio</h4>
+                <span>Backend Developer</span>
+                <div class="social">
+                  <a href="https://www.instagram.com/anggapraseetio"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/angga-prasetio-568626361"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <div class="member-info">
+                <h4>Aulia Silmi Mardiyanti</h4>
+                <span>Frontend Developer</span>
+                <div class="social">
+                  <a href="https://www.instagram.com/aaauulliiaa_"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/aulia-silmi-0262b929b"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <div class="member-info">
+                <h4>Muhamad Igviloja Mahendra</h4>
+                <span>Quality Asurance</span>
+                <div class="social">
+                  <a href="https://www.instagram.com/mixvim.biz"><i class="bi bi-instagram"></i></a>
+                  <a href="http://www.linkedin.com/in/muhamad-igviloja-mahendra-320618361"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <div class="member-info">
+                <h4>Nur Rohmatul Laili</h4>
+                <span>Tester</span>
+                <div class="social">
+                  <a href="https://www.instagram.com/laily_885"><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Team Section -->
+    
+<footer id="footer" class="footer dark-background">
 
 <div class="container footer-top">
   <div class="row gy-4">
@@ -365,7 +361,6 @@
         <li><a href="#team">Team</a></li>
         <li><a href="#faq">Pertanyaan Umum</a></li>
         <li><a href="#contact">Kontak</a></li>
-        <li><a href="#informasi">Informasi</a></li>
       </ul>
     </div>
 
@@ -393,11 +388,6 @@
 <div class="container copyright text-center mt-4">
   <p>© <span>Copyright</span> <strong class="px-1 sitename">SENTRA</strong> <span>All Rights Reserved</span></p>
   <div class="credits">
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you've purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-    <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
   </div>
 </div>
 
