@@ -12,9 +12,11 @@ class AkunSeeder extends Seeder
     public function run(): void
     {
         Akun::create([
-            'notelp' => null,
+            'notelp' => '087860616270',
             'nama' => 'Admin',
             'email' => 'sentraapplication@gmail.com',
+            'jenis_kelamin' => null,
+            'alamat' => null,
             'password' => Hash::make('admin123'), // password terenkripsi
             'role' => 'admin',
             'emerquest' => null,

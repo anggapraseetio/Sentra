@@ -14,6 +14,8 @@ class Akun extends Authenticatable
         'notelp',
         'nama',
         'email',
+        'jenis_kelamin',
+        'alamat',
         'password',
         'role',
         'emerquest',

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\LaporanController;
 
 
 //HANYA YANG BELUM LOGIN YANG BISA AKSES
@@ -31,10 +32,14 @@ Route::middleware(['guest'])->group(function () {
     });
 });
 
+Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
+Route::get('/laporan', [LaporanController::class, 'proses'])->name('laporan_proses');
+Route::get('/laporan/{id}/edit', [LaporanController::class, 'edit'])->name('laporan.edit');
+Route::put('/laporan/{id}/selesai', [LaporanController::class, 'selesai'])->name('laporan.selesai');
+
+
 //HANYA YANG LOGIN YANG BISA AKSES
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
-    Route::get('/tables', [PageController::class, 'table'])->name('tables');
 
     Route::post('/logout', function () {
         Auth::logout();
