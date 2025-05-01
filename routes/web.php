@@ -3,7 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\RekapanController;
 
 
 //HANYA YANG BELUM LOGIN YANG BISA AKSES
@@ -32,10 +36,15 @@ Route::middleware(['guest'])->group(function () {
     });
 });
 
-Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/laporan', [LaporanController::class, 'proses'])->name('laporan_proses');
-Route::get('/laporan/{id}/edit', [LaporanController::class, 'edit'])->name('laporan.edit');
 Route::put('/laporan/{id}/selesai', [LaporanController::class, 'selesai'])->name('laporan.selesai');
+Route::get('/laporan/{id_laporan}/edit', [LaporanController::class, 'edit'])->name('laporan.edit');
+Route::put('/laporan/{id_laporan}', [LaporanController::class, 'update'])->name('laporan.update');
+
+Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi');
+Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi');
+Route::get('/rekapan', [RekapanController::class, 'index'])->name('rekapan');
 
 
 //HANYA YANG LOGIN YANG BISA AKSES

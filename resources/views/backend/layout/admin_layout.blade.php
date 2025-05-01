@@ -10,9 +10,14 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ 'admin/assets_2/images/favicon.png' }}">
     <link rel="stylesheet" href="{{ 'admin/assets_2/vendor/owl-carousel/css/owl.carousel.min.css' }}">
     <link rel="stylesheet" href="{{ 'admin/assets_2/vendor/owl-carousel/css/owl.theme.default.min.css' }}">
+    <!-- Form step -->
+    <link href="{{ 'admin/assets_2/vendor/jquery-steps/css/jquery.steps.css' }}" rel="stylesheet">
     <link href="{{ 'admin/assets_2/vendor/jqvmap/css/jqvmap.min.css' }}" rel="stylesheet">
     <link href="{{ 'admin/assets_2/css/style.css' }}" rel="stylesheet">
-
+    <!-- Datatable -->
+    <link href="{{ 'admin/assets_2/vendor/datatables/css/jquery.dataTables.min.css' }}" rel="stylesheet">
+    <!-- Styles -->
+    <link href="{{ 'admin/assets/css/lib/themify-icons.css' }}" rel="stylesheet">
 
 </head>
 
@@ -27,6 +32,9 @@
         </div>
         @include('backend.components.footer')
     </div>
+
+    {{-- Font Awesome --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <!-- Required vendors -->
     <script src="{{ 'admin/assets_2/vendor/global/global.min.js' }}"></script>
@@ -58,6 +66,19 @@
 
 
     <script src="{{ 'admin/assets_2/js/dashboard/dashboard-1.js' }}"></script>
+
+    {{-- Form-wizard --}}
+    <script src="{{ 'admin/assets_2/vendor/jquery-steps/build/jquery.steps.min.js' }}"></script>
+    <script src="{{ 'admin/assets_2/vendor/jquery-validation/jquery.validate.min.js' }}"></script>
+    <!-- Form validate init -->
+    <script src="{{ 'admin/assets_2/js/plugins-init/jquery.validate-init.js' }}"></script>
+    <!-- Form step init -->
+    <script src="{{ 'admin/assets_2/js/plugins-init/jquery-steps-init.js' }}"></script>
+
+    <!-- Datatable -->
+    <script src="{{ 'admin/assets_2/vendor/datatables/js/jquery.dataTables.min.js' }}"></script>
+    <script src="{{ 'admin/assets_2/js/plugins-init/datatables.init.js' }}"></script>
+
 
 </body>
 

@@ -66,34 +66,6 @@
 @import url(./../vendor/metismenu/css/metisMenu.min.css);
 
 
-/* =====================CSS CUSTOM ========================*/
-/* Style default */
-.logout-btn {
-  width: 80%;
-  margin: 0 auto;
-  border-radius: 10px !important;
-  height: 37px;
-}
-
-/* Hide text saat sidebar collapse */
-.sidebar-collapsed .logout-text {
-  display: none;
-}
-
-/* Center icon saat sidebar collapse */
-.sidebar-collapsed .logout-btn {
-  width: 45px;
-  height: 37px;
-  padding: 0;
-  justify-content: center;
-}
-
-/* Icon biar tetap rapi */
-.logout-btn i {
-  font-size: 18px;
-}
-
-
 .gradient_one {
   background-image: linear-gradient(to right, rgba(186, 1, 181, 0.85) 0%, rgba(103, 25, 255, 0.85) 100%); }
 
@@ -1370,7 +1342,7 @@ pre {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color: #BDBDC7; }
+  color: #000000; }
   .table th,
   .table td {
     padding: 0.75rem;
@@ -10323,7 +10295,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   margin: 0px 25px 0;
   padding: 1.5625rem 0 10px;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: 1rem;
   letter-spacing: 0.05rem; }
 
 .nav-badge {
@@ -14011,7 +13983,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
         color: #454545; }
       .step-form-horizontal .wizard .steps li.done a .number {
         color: #fff;
-        background: #593bdb;
+        background: #059652;
         border-color: transparent; }
     .step-form-horizontal .wizard .steps li.current a, .step-form-horizontal .wizard .steps li.disabled a {
       background-color: transparent;
@@ -14021,11 +13993,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
         background-color: transparent;
         color: #fff; }
     .step-form-horizontal .wizard .steps li.current a .number {
-      color: #593bdb;
+      color: #059652;
       background: #fff;
-      border: 2px solid #593bdb; }
+      border: 2px solid #059652; }
     .step-form-horizontal .wizard .steps li.disabled a .number {
-      color: #593bdb; }
+      color: #059652; }
     .step-form-horizontal .wizard .steps li a {
       position: relative;
       z-index: 1; }
@@ -14040,7 +14012,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
           padding-top: 0.9375rem; } }
       .step-form-horizontal .wizard .steps li a .number {
         position: absolute;
-        top: -100%;
+        top: -95%;
         left: 50%;
         transform: translateX(-50%);
         background-color: #fff;
@@ -14060,7 +14032,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
         content: "";
         left: 50%;
         top: -2.1rem;
-        background-color: #593bdb;
+        background-color: #059652;
         z-index: -1; }
         @media (max-width: 575.98px) {
           .step-form-horizontal .wizard .steps li:not(:last-child)::after {
@@ -15471,7 +15443,7 @@ button {
   .card-title {
     font-size: 16px;
     font-weight: 500;
-    color: #454545;
+    color: #059652;
     text-transform: capitalize;
     letter-spacing: 0.05em; }
     .card-title--large {
@@ -19435,4 +19407,44 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     [data-theme-version="dark"] .footer .copyright p {
       color: #fff; }
 
-/*# sourceMappingURL=style.css.map */
+      /* =====================CSS CUSTOM ========================*/
+      .logout-btn-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+      }
+      
+      .logout-btn {
+        background-color: transparent;
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        height: 40px;
+        padding: 0 1rem;
+        transition: 0.3s ease;
+        display: flex;
+        align-items: center;
+      }
+      
+      .logout-btn i,
+      .logout-btn .logout-text {
+        color: #fff;
+      }
+      
+      .logout-btn:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      
+      /* Collapse behavior */
+      .sidebar-collapsed .logout-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        justify-content: center;
+      }
+      
+      .sidebar-collapsed .logout-text {
+        display: none;
+      }
+      

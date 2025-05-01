@@ -22,9 +22,6 @@ class PageController extends Controller
         return view('backend.login.new_password');
     }
     
-    public function dashboard(){
-        return view('backend.layout.page_admin.dashboard');
-    }
 
     public function laporan_proses(){
         return view('backend.layout.page_admin.laporan.proses_laporan');

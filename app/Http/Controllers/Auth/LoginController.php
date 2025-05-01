@@ -8,33 +8,35 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    function login(){
+    function login()
+    {
         return view('backend.login.login');
     }
 
-    function store(Request $request){
+    function store(Request $request)
+    {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
- 
+
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            if ($user->role !== 'admin') {
-                Auth::logout();
+
+            // Cek role dan email
+            if ($user->role !== 'admin' || $user->email !== 'sentraapplication@gmail.com') {
+                Auth::logout(); // Logout langsung
                 return back()->withErrors([
-                    'email' => 'Akses hanya untuk admin.',
+                    'login' => 'Akses hanya khusus admin.',
                 ]);
             }
-        
+
             $request->session()->regenerate();
             return redirect()->route('dashboard');
         }
-        
 
         return back()->withErrors([
             'login' => 'Email atau password Anda salah.',
         ]);
     }
-
 }
