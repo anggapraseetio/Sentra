@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Focus - Bootstrap Admin Dashboard </title>
+    <title> Dashboard </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ 'admin/assets_2/images/favicon.png' }}">
     <link rel="stylesheet" href="{{ 'admin/assets_2/vendor/owl-carousel/css/owl.carousel.min.css' }}">
@@ -35,6 +35,7 @@
 
     {{-- Font Awesome --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- Required vendors -->
     <script src="{{ 'admin/assets_2/vendor/global/global.min.js' }}"></script>

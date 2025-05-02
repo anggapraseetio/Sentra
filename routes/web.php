@@ -44,7 +44,10 @@ Route::put('/laporan/{id_laporan}', [LaporanController::class, 'update'])->name(
 
 Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi');
 Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi');
+//Rekapan
 Route::get('/rekapan', [RekapanController::class, 'index'])->name('rekapan');
+//apii untuk datables ajax
+Route::get('/api/rekapan', [RekapanController::class, 'getData'])->name('rekapan.data');
 
 
 //HANYA YANG LOGIN YANG BISA AKSES
