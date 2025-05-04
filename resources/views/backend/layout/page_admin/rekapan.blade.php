@@ -20,13 +20,29 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h4 class="card-title mb-0">Basic Datatable</h4>
-                        <a href="{{ route('rekapan.data') }}" title="Download Excell">
+                        <a href="{{ route('rekapan.export') }}" title="Download Excell">
                             <i class="fas fa-file-excel text-success fs-4"></i>
                         </a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example" class="display" style="min-width: 845px">
+                                @push('scripts')
+                                <script>
+                                    $(document).ready(function() {
+                                        $('#example').DataTable({
+                                            processing: true,
+                                            serverSide: true,
+                                            ajax: "{{ route('rekapan.data') }}", columns: [
+                                                {data: 'id', name: 'id'},
+                                                {data: 'kategori', name: 'kategori'},
+                                                {data: 'nama', name: 'nama'},
+                                                {data: 'nik', name: 'nik'},
+                                                {data: 'tanggal_dibuat', name: 'tanggal_dibuat'},
+                                            ]
+                                        });
+                                    });
+                                </script>
                                 <thead>
                                     <tr>
                                         <th>ID Laporan</th>
