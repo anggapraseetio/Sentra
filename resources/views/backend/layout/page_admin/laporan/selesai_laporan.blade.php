@@ -5,7 +5,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h1 class="card-title">LAPORAN BELUM SELESAI</h1>
+                        <h1 class="card-title">LAPORAN SELESAI</h1>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -32,21 +32,31 @@
                                                     <span class="badge badge-info">DITERIMA</span>
                                                 @elseif($data->status == 'diproses')
                                                     <span class="badge badge-warning">DIPROSES</span>
+                                                @elseif($data->status == 'selesai')
+                                                    <span class="badge badge-success">SELESAI</span>
                                                 @endif
                                             </td>
                                             <td>{{ $data->kategori }}</td>
                                             <td>{{ $data->created_at->format('d-m-Y') }}</td>
                                             <td>
-                                                <a href="{{ route('laporan.edit', $data->id_laporan) }}" class="btn btn-primary btn-sm" title="Edit">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>                                                
-                                                <form action="{{ route('laporan.selesai', $data->id_laporan) }}" method="POST" style="display:inline;" 
-                                                    onsubmit="return confirm('Apakah laporan {{ $data->detail_pelapor->nama ?? 'Tanpa Nama' }} sudah selesai?');">
+                                                <!-- Tombol Preview -->
+                                                <a href="{{ route('laporan.show', $data->id_laporan) }}"
+                                                    class="btn btn-info btn-sm" title="Preview">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+
+                                                <!-- Tombol Hapus -->
+                                                <form action="{{ route('laporan.destroy', $data->id_laporan) }}"
+                                                    method="POST" style="display:inline;"
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus laporan {{ $data->detail_pelapor->nama ?? 'Tanpa Nama' }}?');">
                                                     @csrf
-                                                    @method('PUT')
-                                                    <button type="submit" class="btn btn-hijau btn-sm">Selesai</button>
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="Hapus">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
                                                 </form>
                                             </td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>

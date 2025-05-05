@@ -2013,6 +2013,15 @@ a.btn.disabled,
 fieldset:disabled a.btn {
   pointer-events: none; }
 
+  .btn-hijau {
+    color: #fff;
+    background-color: #059652;
+    border-color: #059652; }
+    .btn-hijau:hover {
+      color: #fff;
+      background-color: #08b665;
+      border-color: #059652;}
+
 .btn-primary {
   color: #fff;
   background-color: #593bdb;
@@ -3874,13 +3883,13 @@ input[type="button"].btn-block {
 
 .badge-warning {
   color: #212529;
-  background-color: #FFAA16; }
+  background-color: #ffe0a6;  }
   a.badge-warning:hover, a.badge-warning:focus {
     color: #212529;
-    background-color: #e29000; }
+    background-color: #ffd180 }
   a.badge-warning:focus, a.badge-warning.focus {
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(255, 170, 22, 0.5); }
+    box-shadow: 0 0 0 0.2rem rgba(255, 208, 128, 0.4);}
 
 .badge-danger {
   color: #fff;
@@ -8099,7 +8108,7 @@ a {
         justify-content: center; } }
   .nav-header .brand-title {
     margin-left: 15px;
-    max-width: 75px; }
+    max-width: 150px; }
     [data-theme-version="dark"] .nav-header .brand-title {
       background-position: 0 120%; }
 
@@ -13533,7 +13542,7 @@ svg text {
 
 .form-control {
   background: #fff;
-  border: 1px solid #eaeaea;
+  border: 1px solid #bbbbbb;
   color: #454545; }
   .form-control:hover, .form-control:focus, .form-control.active {
     box-shadow: none;
@@ -15441,7 +15450,7 @@ button {
   .card-body {
     padding: 1.25rem; }
   .card-title {
-    font-size: 16px;
+    font-size: 19px;
     font-weight: 500;
     color: #059652;
     text-transform: capitalize;
@@ -15458,7 +15467,7 @@ button {
     background: transparent;
     padding: 1.25rem 1.25rem 5px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     border: 0px; }
     [data-theme-version="dark"] .card-header {
