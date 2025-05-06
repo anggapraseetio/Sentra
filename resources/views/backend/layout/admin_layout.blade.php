@@ -20,9 +20,18 @@
     <link href="{{ asset('admin/assets/css/lib/themify-icons.css') }}" rel="stylesheet">
     {{-- Font Awesome --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 
 <body>
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
     <div id="main-wrapper">
         <div class="header"></div>
         @include('backend.components.navbar')
@@ -37,6 +46,10 @@
     <script src="{{ asset('admin/assets_2/vendor/global/global.min.js') }}"></script>
     <script src="{{ asset('admin/assets_2/js/quixnav-init.js') }}"></script>
     <script src="{{ asset('admin/assets_2/js/custom.min.js') }}"></script>
+
+    
+    <!-- Chart ChartJS plugin files -->
+    <script src="{{ asset('admin/assets_2/js/plugins-init/chartjs-init.js') }}"></script>
 
     <!-- Vectormap -->
     <script src="{{ asset('admin/assets_2/vendor/raphael/raphael.min.js') }}"></script>
@@ -72,7 +85,7 @@
     <!-- Datatable -->
     <script src="{{ asset('admin/assets_2/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('admin/assets_2/js/plugins-init/datatables.init.js') }}"></script>
-    
+
 </body>
 
 </html>

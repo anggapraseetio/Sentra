@@ -21,9 +21,28 @@
                         <div class="header-left">
                         </div>
                         <ul class="navbar-nav header-right">
+                            <li class="nav-item dropdown notification_dropdown">
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                    <i class="mdi mdi-bell"></i>
+                                    <div class="pulse-css"></div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <ul class="list-unstyled">
+                                        <li class="media dropdown-item">
+                                            <span class="success"><i class="ti-user"></i></span>
+                                            <div class="media-body">
+                                                <a href="#">
+                                                    <p><strong>Alex</strong> Mengirim Laporan
+                                                    </p>
+                                                </a>
+                                            </div>
+                                            <span class="notify-time">3:20 am</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link d-flex align-items-center" href="#" role="button" data-toggle="dropdown">
-                                    <span class="mr-2 font-weight-bold">Admin</span>
                                     <i class="fas fa-user-circle fa-lg"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
