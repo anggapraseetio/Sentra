@@ -44,10 +44,13 @@ Route::put('/laporan/{id_laporan}', [LaporanController::class, 'update'])->name(
 
 Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi');
 Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi');
+
+
 //Rekapan
 Route::get('/rekapan', [RekapanController::class, 'index'])->name('rekapan');
 Route::get('rekapan/data', [RekapanController::class, 'getData'])->name('rekapan.data');
 Route::get('/rekapan/export', [RekapanController::class, 'export'])->name('rekapan.export');
+
 
 
 //HANYA YANG LOGIN YANG BISA AKSES
