@@ -11,6 +11,13 @@ class InformasiAnak extends Model
 
     protected $table = 'informasi_anak';
     protected $primaryKey = 'id_anak';
+    protected $fillable = [
+        'id_penerima',
+        'nama',
+        'umur',
+        'jenis_kelamin',
+        'pendidikan',
+    ];
 
     public function penerima_manfaat()
     {

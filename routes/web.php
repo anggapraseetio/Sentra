@@ -49,9 +49,8 @@ Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('notifik
 //Rekapan
 Route::get('/rekapan', [RekapanController::class, 'index'])->name('rekapan');
 Route::get('rekapan/data', [RekapanController::class, 'getData'])->name('rekapan.data');
-Route::get('/rekapan/export', [RekapanController::class, 'export'])->name('rekapan.export');
-
-
+Route::post('/rekapan/export', [RekapanController::class, 'handleExport'])->name('rekapan.export');
+Route::post('/rekapan/store', [RekapanController::class, 'store'])->name('rekapan.store');
 
 //HANYA YANG LOGIN YANG BISA AKSES
 Route::middleware(['auth'])->group(function () {

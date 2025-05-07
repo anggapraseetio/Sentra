@@ -12,9 +12,21 @@ class DetailPenerimaManfaat extends Model
     protected $table = 'detail_penerima_manfaat';
     protected $primaryKey = 'id_penerima';
 
-    public function laporan()
+    protected $fillable = [
+        'id_laporan',
+        'id_penerima',
+        'nama',
+        'nik',
+        'alamat',
+        'umur',
+        'jenis_kelamin',
+        'pendidikan',
+        'hubungan_dengan_terlapor',
+    ];
+
+    public function rekapan()
     {
-        return $this->belongsTo(Laporan::class, 'id_laporan', 'id_laporan');
+        return $this->belongsTo(Rekapan::class, 'id_laporan', 'id_laporan');
     }
 
     // Relasi ke informasi anak
