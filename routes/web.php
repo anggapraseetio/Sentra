@@ -38,6 +38,7 @@ Route::middleware(['guest'])->group(function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/laporan', [LaporanController::class, 'proses'])->name('laporan_proses');
+Route::get('/laporan/selesai', [LaporanController::class, 'laporan_selesai'])->name('laporan_selesai');
 Route::put('/laporan/{id}/selesai', [LaporanController::class, 'selesai'])->name('laporan.selesai');
 Route::get('/laporan/{id_laporan}/edit', [LaporanController::class, 'edit'])->name('laporan.edit');
 Route::put('/laporan/{id_laporan}', [LaporanController::class, 'update'])->name('laporan.update');
@@ -48,9 +49,7 @@ Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('notifik
 
 //Rekapan
 Route::get('/rekapan', [RekapanController::class, 'index'])->name('rekapan');
-Route::get('rekapan/data', [RekapanController::class, 'getData'])->name('rekapan.data');
 Route::post('/rekapan/export', [RekapanController::class, 'handleExport'])->name('rekapan.export');
-Route::post('/rekapan/store', [RekapanController::class, 'store'])->name('rekapan.store');
 
 //HANYA YANG LOGIN YANG BISA AKSES
 Route::middleware(['auth'])->group(function () {

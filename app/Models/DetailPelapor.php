@@ -11,6 +11,17 @@ class DetailPelapor extends Model
 
     protected $table = 'detail_pelapor';
     protected $primaryKey = 'id_pelapor';
+    public $timestamps = false;
+
+
+    protected $fillable = [
+        'nik',
+        'nama',
+        'alamat',
+        'hubungan_dengan_korban',
+        'no_telp',
+        'id_laporan',
+    ];
 
     public function laporan()
     {
