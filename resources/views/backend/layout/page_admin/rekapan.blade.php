@@ -11,72 +11,111 @@
         </div>
     </div>
 
-    <!-- Filter Form -->
-    <form method="GET" action="{{ route('rekapan') }}" class="bg-white shadow rounded-lg p-4 mb-6 flex flex-wrap gap-4">
-        <input type="date" name="start_date" value="{{ request('start_date') }}" class="form-input px-4 py-2 rounded border" placeholder="Tanggal Mulai">
-        <input type="date" name="end_date" value="{{ request('end_date') }}" class="form-input px-4 py-2 rounded border" placeholder="Tanggal Akhir">
-        <input type="text" name="search" value="{{ request('search') }}" class="form-input px-4 py-2 rounded border" placeholder="Cari nama/NIK pelapor">
-        <select name="kategori" class="form-select px-4 py-2 rounded border">
-            <option value="">Semua Kategori</option>
-            <option value="pelapor" {{ request('kategori') == 'pelapor' ? 'selected' : '' }}>Pelapor</option>
-            <option value="terlapor" {{ request('kategori') == 'terlapor' ? 'selected' : '' }}>Terlapor</option>
-            <option value="anak" {{ request('kategori') == 'anak' ? 'selected' : '' }}>Anak</option>
-            <option value="penerima" {{ request('kategori') == 'penerima' ? 'selected' : '' }}>Penerima</option>
-            <option value="kasus" {{ request('kategori') == 'kasus' ? 'selected' : '' }}>Kasus</option>
-        </select>
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Filter</button>
-    </form>
+    <!-- Filter & Export Section -->
+    <div class="row mb-4 align-items-center">
+        <!-- Filter Form -->
+        <div class="col-md-3 mb-3 mb-md-0">
+            <label for="searchInput" class="form-label fw-bold">Cari Nama/NIK</label>
+            <input type="text" id="searchInput" class="form-control" placeholder="Contoh: Aulia/351817...">
+        </div>
+        <div class="col-md-2 mb-3 mb-md-0">
+            <label for="startDate" class="form-label fw-bold">Tanggal Awal</label>
+            <input type="date" id="startDate" class="form-control">
+        </div>
+        <div class="col-md-2 mb-3 mb-md-0">
+            <label for="endDate" class="form-label fw-bold">Tanggal Akhir</label>
+            <input type="date" id="endDate" class="form-control">
+        </div>
+        <div class="col-md-2 mb-3 mb-md-0">
+            <label for="kategoriFilter" class="form-label fw-bold">Kategori</label>
+            <select id="kategoriFilter" class="form-select">
+                <option value="">Semua Kategori</option>
+                <option value="Fisik">Fisik</option>
+                <option value="Psikis">Psikis</option>
+            </select>
+        </div>
 
-    <!-- Export Buttons -->
-    <form method="POST" action="{{ route('rekapan.export') }}" class="flex gap-4 mb-6">
-        @csrf
-        <input type="hidden" name="start_date" value="{{ request('start_date') }}">
-        <input type="hidden" name="end_date" value="{{ request('end_date') }}">
-        <input type="hidden" name="search" value="{{ request('search') }}">
-        <input type="hidden" name="kategori" value="{{ request('kategori') }}">
+        <!-- Export Section -->
+        <div class="col-md-3 mb-3 mb-md-0 text-end">
+            <label for="exportType" class="form-label fw-bold">Export Data</label>
+            <form id="exportForm" method="POST" action="{{ route('rekapan.export') }}">
+                @csrf
+                <input type="hidden" name="search" id="exportSearch">
+                <input type="hidden" name="start_date" id="exportStartDate">
+                <input type="hidden" name="end_date" id="exportEndDate">
+                <input type="hidden" name="kategori" id="exportKategori">
 
-        <button type="submit" name="export_type" value="simple" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-            Simple Export
-        </button>
-        <button type="submit" name="export_type" value="multi" class="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">
-            Multi Sheet Export
-        </button>
-    </form>
+                <div class="input-group">
+                    <select name="export_type" id="exportType" class="form-select" required>
+                        <option value="">-- Pilih Jenis Export --</option>
+                        <option value="simple">Satu Sheet (Menyeluruh)</option>
+                        <option value="multi">Multi Sheet (Per Kategori)</option>
+                    </select>
+                    <button type="submit" class="btn btn-success ms-2">
+                        <i class="fas fa-file-excel me-2"></i>Export to Excel
+                    </button>
+                </div>
+                <div id="exportLoading" style="display:none;" class="mt-2 text-end">
+                    <span class="spinner-border text-success" role="status" aria-hidden="true"></span>
+                    <span class="ms-2">Menyiapkan file...</span>
+                </div>
+            </form>
+        </div>
+    </div>
 
-    <!-- Data Table -->
-    <div class="overflow-x-auto bg-white shadow rounded-lg">
-        <table class="min-w-full divide-y divide-gray-200 table-auto text-sm">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="px-4 py-2 text-left">ID</th>
-                    <th class="px-4 py-2 text-left">Nama</th>
-                    <th class="px-4 py-2 text-left">NIK</th>
-                    <th class="px-4 py-2 text-left">Tanggal</th>
-                    <th class="px-4 py-2 text-left">Kategori</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-100">
-                @forelse($dataLaporan as $laporan)
-                    <tr>
-                        <td class="px-4 py-2">{{ $laporan->id_laporan }}</td>
-                        <td class="px-4 py-2">{{ $laporan->nama ?? '-' }}</td>
-                        <td class="px-4 py-2">{{ $laporan->nik ?? '-' }}</td>
-                        <td class="px-4 py-2">{{ $laporan->created_at ? $laporan->created_at->format('Y-m-d') : '-' }}</td>
-                        <td class="px-4 py-2 capitalize">{{ $laporan->kategori }}</td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="px-4 py-4 text-center text-gray-500">Tidak ada data ditemukan.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+    <!-- Reset Filter Button -->
+    <div class="row">
+        <div class="col-12 text-end mb-4">
+            <button type="button" class="btn btn-outline-secondary" id="resetFilter">
+                <i class="fas fa-sync-alt me-1"></i> Reset Filter
+            </button>
+        </div>
+    </div>
+
+    <!-- Data Table Section -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm border-light">
+                <div class="card-body">
+                    <div class="table-responsive mt-3">
+                        <table id="rekapanTable" class="table table-striped table-bordered nowrap" style="width:100%">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID Laporan</th>
+                                    <th>NIK</th>
+                                    <th>Nama</th>
+                                    <th>Tanggal Dibuat</th>
+                                    <th>Kategori</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($dataLaporan as $p)
+                                <tr>
+                                    <td>{{ $p->id_laporan }}</td>
+                                    <td>{{ $p->nik ?? '-' }}</td>
+                                    <td>{{ $p->nama ?? '-' }}</td>
+                                    <td>{{ $p->created_at->format('Y-m-d') }}</td>
+                                    <td>{{ $p->kategori }}</td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="5" class="text-center text-warning">Data Tidak Ditemukan!</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        <p class="mt-3">Total Data Ditampilkan: <span id="dataCount"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 @push('scripts')
 <script>
     $(document).ready(function () {
+        // Initialize DataTable
         const table = $('#rekapanTable').DataTable({
             responsive: true,
             paging: true,
@@ -84,30 +123,34 @@
             info: true
         });
 
+        // Filter pencarian manual
         $('#searchInput').on('keyup', function () {
             table.search(this.value).draw();
         });
 
+        // Update jumlah data
         const updateCount = () => {
             const info = table.page.info();
             $('#dataCount').text(info.recordsDisplay);
         };
-        table.on('draw', updateCount);
+        $('#rekapanTable').on('draw.dt', updateCount);
         updateCount();
 
+        // Reset filter
         $('#resetFilter').on('click', function () {
             $('#searchInput').val('');
             $('#startDate').val('');
             $('#endDate').val('');
             $('#kategoriFilter').val('');
-            $('#statusFilter').val('');
-            table.search('').columns().search('').draw();
+            table.search('').draw();
         });
 
+        // Export form submission handler
         $('#exportForm').on('submit', function (e) {
+            e.preventDefault();
+
             const exportType = $('#exportType').val();
             if (!exportType) {
-                e.preventDefault();
                 Swal.fire({
                     icon: 'warning',
                     title: 'Peringatan',
@@ -117,18 +160,17 @@
                 return;
             }
 
+            // Isi hidden inputs
             $('#exportSearch').val($('#searchInput').val());
             $('#exportStartDate').val($('#startDate').val());
             $('#exportEndDate').val($('#endDate').val());
-            $('#exportKategori').val($('#kategoriFilter').val());
-            $('#exportStatus').val($('#statusFilter').val());
+            $('#exportKategori').val($('#kategoriFilter').length ? $('#kategoriFilter').val() : '');
 
             $('#exportLoading').show();
-            $('#exportButton').prop('disabled', true);
 
             setTimeout(() => {
-                $('#exportForm').off('submit').submit();
-            }, 300);
+                document.getElementById('exportForm').submit();
+            }, 0);
         });
     });
 </script>
