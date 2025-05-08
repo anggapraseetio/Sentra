@@ -15,7 +15,8 @@ class Rekapan extends Model
         'nama',
         'nik',
         'created_at',
-        'kategori'
+        'kategori',
+        'status'
     ];
 
     // Relasi ke detail_pelapor

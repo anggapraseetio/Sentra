@@ -30,8 +30,12 @@
             <label for="kategoriFilter" class="form-label fw-bold">Kategori</label>
             <select id="kategoriFilter" class="form-select">
                 <option value="">Semua Kategori</option>
-                <option value="Fisik">Fisik</option>
-                <option value="Psikis">Psikis</option>
+                <option value="Fisik">Kekerasan Fisik</option>
+                <option value="Psikis">Kekerasan Psikis</option>
+                <option value="Seksual">Kekerasan Seksual</option>
+                <option value="Penelantaran">Penelantaran</option>
+                <option value="Eksploitasi">Eksploitasi</option>
+                <option value="Lainnya">Lainnya</option>
             </select>
         </div>
 
@@ -86,6 +90,7 @@
                                     <th>Nama</th>
                                     <th>Tanggal Dibuat</th>
                                     <th>Kategori</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,6 +101,7 @@
                                     <td>{{ $p->nama ?? '-' }}</td>
                                     <td>{{ $p->created_at->format('Y-m-d') }}</td>
                                     <td>{{ $p->kategori }}</td>
+                                    <td>{{ $p->status }}</td>
                                 </tr>
                                 @empty
                                 <tr>

@@ -36,7 +36,7 @@ class RekapanController extends Controller
         $sheet = $spreadsheet->getActiveSheet();
 
         $headers = [
-            'ID Laporan', 'Kategori', 'Tanggal Dibuat',
+            'ID Laporan', 'Kategori', 'Tanggal Dibuat', 'Status',
             'Nama Anak', 'Umur Anak', 'JK Anak', 'Pendidikan Anak',
             'Nama Pelapor', 'NIK Pelapor', 'Alamat Pelapor', 'Hubungan dgn Korban',
             'Nama Terlapor', 'NIK Terlapor', 'Alamat Terlapor', 'Umur Terlapor', 'JK Terlapor', 'Hubungan dgn Korban',
@@ -52,6 +52,7 @@ class RekapanController extends Controller
                 $p->id_laporan,
                 $p->kategori,
                 optional($p->created_at)->format('Y-m-d'),
+                $p->status,
 
                 $p->penerimaManfaat->informasiAnak->nama ?? '-',
                 $p->penerimaManfaat->informasiAnak->umur ?? '-',
@@ -98,9 +99,9 @@ class RekapanController extends Controller
         $sheets = [
             [
                 'title' => 'Rekapan Umum',
-                'headers' => ['ID Laporan', 'Kategori', 'Tanggal Dibuat'],
+                'headers' => ['ID Laporan', 'Kategori', 'Tanggal Dibuat', 'Status'],
                 'rows' => $dataLaporan->map(fn($d) => [
-                    $d->id_laporan, $d->kategori, optional($d->created_at)->format('Y-m-d')
+                    $d->id_laporan, $d->kategori, optional($d->created_at)->format('Y-m-d'), $d->status,
                 ])->toArray()
             ],
             [
@@ -177,7 +178,9 @@ class RekapanController extends Controller
             ->when($request->filled('end_date'), fn($q) =>
                 $q->whereDate('created_at', '<=', $request->end_date))
             ->when($request->filled('kategori'), fn($q) =>
-                $q->where('kategori', $request->kategori));
+                $q->where('kategori', $request->kategori))
+            ->when($request->filled('status'), fn($q) =>
+                $q->where('status', $request->status));
     }
 
     private function applyStyle($sheet, $columnCount, $lastRow)
@@ -211,23 +214,5 @@ class RekapanController extends Controller
 
         return response()->download($tempFile, $filename)->deleteFileAfterSend(true);
     }
-
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'nik' => 'required|string|digits_between:10,20',
-            'nama' => 'required|string|max:100',
-            'kategori' => 'required|in:pelapor,terlapor,anak,penerima,kasus',
-            'tanggal' => 'required|date',
-        ]);
-
-        Rekapan::create([
-            'nik' => $validated['nik'],
-            'nama' => $validated['nama'],
-            'kategori' => $validated['kategori'],
-            'created_at' => $validated['tanggal'],
-        ]);
-
-        return redirect()->back()->with('success', 'Laporan berhasil ditambahkan.');
-    }
+    
 }
