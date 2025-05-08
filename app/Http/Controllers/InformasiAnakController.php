@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class InformasiAanakController extends Controller
+class InformasiAnakController extends Controller
 {
     public function destroy($id)
 {

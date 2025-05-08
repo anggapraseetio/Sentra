@@ -192,10 +192,6 @@ public function update(Request $request, $id_laporan)
                 $anakIds[] = $anakBaru->id;
             }
         }
-        
-        // Hapus data anak yang tidak ada lagi dalam formulir
-        // (Ini opsional, sesuaikan dengan kebutuhan Anda)
-        // $penerima->informasi_anak()->whereNotIn('id', $anakIds)->delete();
     }
 
     return redirect()->route('laporan_proses')->with('success', 'Laporan berhasil diperbarui.');
@@ -239,7 +235,7 @@ public function destroy($id)
     // Hapus laporan utama
     $laporan->delete();
 
-    return redirect()->route('selesai')->with('success', 'Data laporan dan semua relasi berhasil dihapus.');
+    return redirect()->route('laporan.selesai')->with('success', 'Data laporan dan semua relasi berhasil dihapus.');
 }
 
 

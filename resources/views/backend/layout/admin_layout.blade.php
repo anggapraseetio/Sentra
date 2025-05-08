@@ -2,6 +2,10 @@
 <html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dashboard</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/assets_2/images/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets_2/vendor/owl-carousel/css/owl.carousel.min.css') }}">
@@ -12,6 +16,7 @@
     <link href="{{ asset('admin/assets_2/css/style.css') }}" rel="stylesheet">
     <!-- Datatable -->
     <link href="{{ asset('admin/assets_2/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+
     <!-- DataTables + Bootstrap 5 -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
@@ -21,7 +26,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
 
 <body>
@@ -41,6 +45,7 @@
         </div>
         @include('backend.components.footer')
     </div>
+
     @stack('scripts')
 
     <!-- Required vendors -->
@@ -92,11 +97,11 @@
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @hasSection('chart')
         @yield('chart')
     @endif
-
 
 </body>
 
