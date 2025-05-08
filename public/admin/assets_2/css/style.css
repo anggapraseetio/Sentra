@@ -19421,18 +19421,11 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
       .welcome-text h4 {
         color: #059652; 
     }
-    
 
       .nav-text {
         font-size: 1.1rem;
     }
     
-    .metismenu li a {
-        padding: 10px 15px;
-    }
-    
-    .metismenu li a i {
-        min-width: 25px;
-    }
+ 
   
       
