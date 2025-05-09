@@ -1,11 +1,23 @@
 @extends('backend.layout.admin_layout')
 @section('admin')
     <div class="container-fluid">
+        <div class="row page-titles mx-0">
+            <div class="col-sm-6 p-md-0">
+                <div class="welcome-text">
+                    <h4>LAPORAN SELESAI</h4>
+                </div>
+            </div>
+            <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Laporan</a></li>
+                    <li class="breadcrumb-item active"><a href="{{route('selesai')}}">Selesai</a></li>
+                </ol>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h1 class="card-title">LAPORAN SELESAI</h1>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

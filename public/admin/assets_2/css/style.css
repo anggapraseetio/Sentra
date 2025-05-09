@@ -19426,6 +19426,10 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
         font-size: 1.1rem;
     }
     
- 
+    .table tbody td {
+      color: #047344;
+      font-weight: bold;
+  }
+  
   
       
