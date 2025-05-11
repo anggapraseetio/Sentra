@@ -26,18 +26,6 @@
             <label for="endDate" class="form-label fw-bold">Tanggal Akhir</label>
             <input type="date" id="endDate" class="form-control">
         </div>
-        <div class="col-md-2 mb-3 mb-md-0">
-            <label for="kategoriFilter" class="form-label fw-bold">Kategori</label>
-            <select id="kategoriFilter" class="form-select">
-                <option value="">Semua Kategori</option>
-                <option value="Fisik">Kekerasan Fisik</option>
-                <option value="Psikis">Kekerasan Psikis</option>
-                <option value="Seksual">Kekerasan Seksual</option>
-                <option value="Penelantaran">Penelantaran</option>
-                <option value="Eksploitasi">Eksploitasi</option>
-                <option value="Lainnya">Lainnya</option>
-            </select>
-        </div>
 
         <!-- Export Section -->
         <div class="col-md-3 mb-3 mb-md-0 text-end">
