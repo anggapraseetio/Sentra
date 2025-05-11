@@ -22,7 +22,7 @@ class DetailTerlapor extends Model
         'jenis_kelamin',
         'hubungan_dengan_korban',
         'informasi_tambahan',
-        'id_laporan', // jika relasi laporan diperlukan
+        'id_laporan', 
     ];
 
     public function laporan()

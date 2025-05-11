@@ -11,6 +11,7 @@ class DetailPenerimaManfaat extends Model
 
     protected $table = 'detail_penerima_manfaat';
     protected $primaryKey = 'id_penerima';
+    public $timestamps = false;
 
     protected $fillable = [
         'id_laporan',
@@ -32,6 +33,6 @@ class DetailPenerimaManfaat extends Model
     // Relasi ke informasi anak
     public function informasi_anak()
     {
-        return $this->hasOne(InformasiAnak::class, 'id_penerima', 'id_penerima');
+        return $this->hasMany(InformasiAnak::class, 'id_penerima', 'id_penerima');
     }
 }

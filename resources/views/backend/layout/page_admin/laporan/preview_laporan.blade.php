@@ -1,12 +1,26 @@
 @extends('backend.layout.admin_layout')
 @section('admin')
     <div class="container-fluid">
+        <div class="row page-titles mx-0">
+            <div class="col-sm-6 p-md-0">
+                <div class="welcome-text">
+                    <h4>PRIVIEW LAPORAN</h4>
+                </div>
+            </div>
+            <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('selesai') }}">Laporan</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('selesai') }}">Selesai</a></li>
+                    <li class="breadcrumb-item active"><a href="">Priview</a></li>
+                </ol>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xl-12 col-xxl-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-header">
-                            <h4 class="card-title">-DETAIL LAPORAN-</h4>
+                        <div class="card-header bg-ijo">
+                            <h4 class="card-title">LAPORAN</h4>
                         </div>
                         <br><br>
                         <div>
@@ -21,13 +35,16 @@
                                     <div class="col-lg-12 mb-10">
                                         <div class="form-group">
                                             <label class="font-weight-bold">Kategori Laporan</label>
-                                            <p class="form-control form-control-lg">{{ $laporan->kategori_laporan != 'unset' ? $laporan->kategori_laporan : '-' }}</p>
+                                            <p class="form-control form-control-lg">
+                                                {{ $laporan->kategori_laporan != 'unset' ? $laporan->kategori_laporan : '-' }}
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 mb-10">
                                         <div class="form-group">
                                             <label class="font-weight-bold">Tanggal</label>
-                                            <p class="form-control form-control-lg">{{ $laporan->created_at->format('d-m-Y') }}</p>
+                                            <p class="form-control form-control-lg">
+                                                {{ $laporan->created_at->format('d-m-Y') }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +70,8 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Hubungan dengan Korban</label>
-                                            <p class="form-control">{{ optional($laporan->detail_pelapor)->hubungan_dengan_korban }}</p>
+                                            <p class="form-control">
+                                                {{ optional($laporan->detail_pelapor)->hubungan_dengan_korban }}</p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Nomor Telepon Pelapor</label>
@@ -71,55 +89,69 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">NIK Penerima Manfaat</label>
-                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->nik }}</p>
+                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->nik }}
+                                            </p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Nama</label>
-                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->nama }}</p>
+                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->nama }}
+                                            </p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Tempat Lahir</label>
-                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->tempat_lahir }}</p>
+                                            <p class="form-control">
+                                                {{ optional($laporan->detail_penerima_manfaat)->tempat_lahir }}</p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Tanggal Lahir</label>
-                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->tanggal_lahir }}</p>
+                                            <p class="form-control">
+                                                {{ optional($laporan->detail_penerima_manfaat)->tanggal_lahir }}</p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Umur</label>
-                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->umur }}</p>
+                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->umur }}
+                                            </p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Jenis Kelamin</label>
-                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->jk }}</p>
+                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->jk }}
+                                            </p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Pekerjaan</label>
-                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->pekerjaan }}</p>
+                                            <p class="form-control">
+                                                {{ optional($laporan->detail_penerima_manfaat)->pekerjaan }}</p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Agama</label>
-                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->agama }}</p>
+                                            <p class="form-control">
+                                                {{ optional($laporan->detail_penerima_manfaat)->agama }}</p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Pendidikan</label>
-                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->pendidikan }}</p>
+                                            <p class="form-control">
+                                                {{ optional($laporan->detail_penerima_manfaat)->pendidikan }}</p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Alamat</label>
-                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->alamat }}</p>
+                                            <p class="form-control">
+                                                {{ optional($laporan->detail_penerima_manfaat)->alamat }}</p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Hubungan dengan Terlapor</label>
-                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->hubungan_dengan_terlapor }}</p>
+                                            <p class="form-control">
+                                                {{ optional($laporan->detail_penerima_manfaat)->hubungan_dengan_terlapor }}
+                                            </p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Nomor Telepon</label>
-                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->notelp }}</p>
+                                            <p class="form-control">
+                                                {{ optional($laporan->detail_penerima_manfaat)->notelp }}</p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Informasi Tambahan</label>
-                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->informasi_tambahan }}</p>
+                                            <p class="form-control">
+                                                {{ optional($laporan->detail_penerima_manfaat)->informasi_tambahan }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -198,11 +230,13 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Hubungan dengan Korban</label>
-                                            <p class="form-control">{{ optional($laporan->detail_terlapor)->hubungan_dengan_korban }}</p>
+                                            <p class="form-control">
+                                                {{ optional($laporan->detail_terlapor)->hubungan_dengan_korban }}</p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Informasi Tambahan</label>
-                                            <p class="form-control">{{ optional($laporan->detail_terlapor)->informasi_tambahan }}</p>
+                                            <p class="form-control">
+                                                {{ optional($laporan->detail_terlapor)->informasi_tambahan }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -220,7 +254,8 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Tempat Kejadian</label>
-                                            <p class="form-control">{{ optional($laporan->detail_kasus)->tempat_kejadian }}</p>
+                                            <p class="form-control">
+                                                {{ optional($laporan->detail_kasus)->tempat_kejadian }}</p>
                                         </div>
                                         <div class="col-md-12 mb-3">
                                             <label class="font-weight-bold">Kronologi Kejadian</label>
