@@ -28,7 +28,7 @@ class LaporanController extends Controller
 
     public function proses()
     {
-        $laporan = Laporan::with('detail_pelapor')->where('status', 'diproses')->get();
+        $laporan = Laporan::with('detail_pelapor')->whereIn('status', ['diproses', 'diterima'])->get();
         return view('backend.layout.page_admin.laporan.proses_laporan', compact('laporan'));
     }    
 
@@ -40,6 +40,21 @@ public function selesai($id)
 
     return redirect()->route('laporan_proses')->with('success', 'Laporan diselesaikan!');
 }
+
+public function proseskan($id)
+{
+    $laporan = Laporan::findOrFail($id);
+
+    // Jika status masih 'diterima', ubah menjadi 'diproses'
+    if ($laporan->status === 'diterima') {
+        $laporan->status = 'diproses';
+        $laporan->save();
+    }
+
+    // Arahkan ke halaman edit laporan
+    return redirect()->route('laporan.edit', $id);
+}
+
 
 public function edit($id_laporan)
 {

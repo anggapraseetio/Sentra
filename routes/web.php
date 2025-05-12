@@ -49,6 +49,7 @@ Route::get('/laporan_selesai', [LaporanController::class, 'laporan_selesai'])->n
 Route::get('/laporan/{id}', [LaporanController::class, 'laporan_show'])->name('laporan.show');;
 Route::delete('/laporan/{id}', [LaporanController::class, 'destroy'])->name('laporan.destroy');
 Route::get('/laporan', [LaporanController::class, 'proses'])->name('laporan_proses');
+Route::put('/laporan/proseskan/{id}', [LaporanController::class, 'proseskan'])->name('laporan.proseskan');
 Route::put('/laporan/{id}/selesai', [LaporanController::class, 'selesai'])->name('laporan.selesai');
 Route::get('/laporan/{id_laporan}/edit', [LaporanController::class, 'edit'])->name('laporan.edit');
 Route::put('/laporan/{id_laporan}', [LaporanController::class, 'update'])->name('laporan.update');

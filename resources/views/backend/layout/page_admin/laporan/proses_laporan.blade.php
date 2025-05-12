@@ -10,7 +10,7 @@
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Laporan</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('laporan_proses')}}">Diproses</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('laporan_proses') }}">Diproses</a></li>
                 </ol>
             </div>
         </div>
@@ -49,10 +49,16 @@
                                             <td>{{ $data->kategori }}</td>
                                             <td>{{ $data->created_at->format('d-m-Y') }}</td>
                                             <td>
-                                                <a href="{{ route('laporan.edit', $data->id_laporan) }}" class="btn btn-primary btn-sm" title="Edit">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>                                                
-                                                <form action="{{ route('laporan.selesai', $data->id_laporan) }}" method="POST" style="display:inline;" 
+                                                <form action="{{ route('laporan.proseskan', $data->id_laporan) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button type="submit" class="btn btn-warning btn-sm" title="Proses">
+                                                        <i class="fas fa-cogs"></i> Proses
+                                                    </button>
+                                                </form>
+                                                <form action="{{ route('laporan.selesai', $data->id_laporan) }}"
+                                                    method="POST" style="display:inline;"
                                                     onsubmit="return confirm('Apakah laporan {{ $data->detail_pelapor->nama ?? 'Tanpa Nama' }} sudah selesai?');">
                                                     @csrf
                                                     @method('PUT')
