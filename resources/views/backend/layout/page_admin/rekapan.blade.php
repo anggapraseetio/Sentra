@@ -74,26 +74,42 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th>ID Laporan</th>
-                                    <th>NIK</th>
-                                    <th>Nama</th>
-                                    <th>Tanggal Dibuat</th>
                                     <th>Kategori</th>
                                     <th>Status</th>
+                                    <th>Tanggal</th>
+                                    <th>NIK Pelapor</th>
+                                    <th>Nama Pelapor</th>
+                                    <th>NIK Terlapor</th>
+                                    <th>Nama Terlapor</th>
+                                    <th>NIK Anak</th>
+                                    <th>Nama Anak</th>
+                                    <th>NIK Penerima</th>
+                                    <th>Nama Penerima</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($dataLaporan as $p)
                                 <tr>
                                     <td>{{ $p->id_laporan }}</td>
-                                    <td>{{ $p->nik ?? '-' }}</td>
-                                    <td>{{ $p->nama ?? '-' }}</td>
-                                    <td>{{ $p->created_at->format('Y-m-d') }}</td>
                                     <td>{{ $p->kategori }}</td>
                                     <td>{{ $p->status }}</td>
+                                    <td>{{ optional($p->created_at)->format('Y-m-d') }}</td>
+
+                                    <td>{{ $p->pelapor->nik ?? '-' }}</td>
+                                    <td>{{ $p->pelapor->nama ?? '-' }}</td>
+
+                                    <td>{{ $p->terlapor->nik ?? '-' }}</td>
+                                    <td>{{ $p->terlapor->nama ?? '-' }}</td>
+
+                                    <td>{{ $p->penerimaManfaat->informasiAnak->nik ?? '-' }}</td>
+                                    <td>{{ $p->penerimaManfaat->informasiAnak->nama ?? '-' }}</td>
+
+                                    <td>{{ $p->penerimaManfaat->nik ?? '-' }}</td>
+                                    <td>{{ $p->penerimaManfaat->nama ?? '-' }}</td>
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="5" class="text-center text-warning">Data Tidak Ditemukan!</td>
+                                    <td colspan="12" class="text-center text-warning">Data Tidak Ditemukan!</td>
                                 </tr>
                                 @endforelse
                             </tbody>
