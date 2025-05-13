@@ -55,7 +55,6 @@ Route::get('/laporan/{id_laporan}/edit', [LaporanController::class, 'edit'])->na
 Route::put('/laporan/{id_laporan}', [LaporanController::class, 'update'])->name('laporan.update');
 Route::delete('/anak/{id}', [InformasiAnakController::class, 'destroy'])->name('anak.destroy');
 
-Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi');
 Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi');
 
 
