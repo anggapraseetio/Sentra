@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\InformasiAnakController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\RekapanController;
 
@@ -39,10 +40,12 @@ Route::middleware(['guest'])->group(function () {
 
 //HANYA YANG LOGIN YANG BISA AKSES
 Route::middleware(['auth'])->group(function () {
+    
 //Rekapan
 Route::get('/rekapan', [RekapanController::class, 'index'])->name('rekapan');
 Route::get('rekapan/data', [RekapanController::class, 'getData'])->name('rekapan.data');
 Route::get('/rekapan/export', [RekapanController::class, 'export'])->name('rekapan.export');
+
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/laporan_selesai', [LaporanController::class, 'laporan_selesai'])->name('selesai');

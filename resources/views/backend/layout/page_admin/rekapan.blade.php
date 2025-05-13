@@ -1,13 +1,22 @@
 @extends('backend.layout.admin_layout')
 
 @section('admin')
+
+<title>Rekapan</title>
+
 <div class="container-fluid">
     <!-- Breadcrumb -->
     <div class="row page-titles mx-0">
         <div class="col-sm-6 p-md-0">
             <div class="welcome-text">
-                <h4 class="text-dark">Rekapan Laporan</h4>
+                <h4>REKAPAN</h4>
             </div>
+        </div>
+        <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Menu</a></li>
+                <li class="breadcrumb-item active"><a href="{{route('rekapan')}}">Rekapan</a></li>
+            </ol>
         </div>
     </div>
 
