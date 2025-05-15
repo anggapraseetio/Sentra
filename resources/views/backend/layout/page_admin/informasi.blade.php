@@ -1,5 +1,8 @@
 @extends('backend.layout.admin_layout')
 @section('admin')
+
+<title>Informasi</title>
+
 <div class="container-fluid">
     <div class="row page-titles mx-0">
         <div class="col-sm-6 p-md-0">
