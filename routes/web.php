@@ -1,13 +1,18 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\InformasiController;
-use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\RekapanController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\OtpController;
+use Illuminate\Support\Facades\Mail;
 
 
 //HANYA YANG BELUM LOGIN YANG BISA AKSES
@@ -58,7 +63,14 @@ Route::middleware(['auth'])->group(function () {
     })->name('logout');
 });
 
+Route::middleware('web')->group(function () {
+    // Alur OTP
+    Route::post('/send-otp', [OtpController::class, 'sendOtp'])->name('send.otp');
+    Route::get('/otp', [OtpController::class, 'showOtpForm'])->name('otp.form');
+    Route::post('/otp', [OtpController::class, 'verifyOtp'])->name('otp.verify');
 
-
-
+    // Alur Reset Password (dipisah ke controller baru)
+    Route::get('/new-password', [ResetPasswordController::class, 'showNewPasswordForm'])->name('password.new');
+    Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('otp.reset');
+});
 
