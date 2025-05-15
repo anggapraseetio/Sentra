@@ -10,30 +10,26 @@
         Material Dashboard 3 by Creative Tim
     </title>
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
     <!-- Nucleo Icons -->
     <link href="{{ 'backend/assets/css/nucleo-icons.css' }}" rel="stylesheet" />
     <link href="{{ 'backend/assets/css/nucleo-svg.css' }}" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- Material Icons -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ 'backend/assets/css/material-dashboard.css?v=3.2.0' }}" rel="stylesheet" />
 </head>
 
 <body class="">
-    <main class="main-content  mt-0">
+    <main class="main-content mt-0">
         <section>
             <div class="page-header min-vh-100">
                 <div class="container">
                     <div class="row">
-                        <div
-                            class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
-                            <div class="position-relative bg-gradient-primary h-100 m-1 px-7 border-radius-lg d-flex flex-column justify-content-center"
-                                style="background-image: url('backend/assets/img/illustrations/ilustrasi_sigin.png'); background-size: cover;">
+                        <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+                            <div class="position-relative bg-gradient-primary h-100 m-1 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('backend/assets/img/illustrations/ilustrasi_sigin.png'); background-size: cover;">
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-0">
@@ -43,28 +39,23 @@
                             </div>
                             <div class="card card-plain">
                                 <div class="card-body">
-                                    <form role="form">
-                                        <div class="otp-wrapper d-flex justify-content-between flex-wrap gap-2 mb-3">
-                                            <input type="text" class="form-control otp-input" maxlength="1"
-                                                inputmode="numeric">
-                                            <input type="text" class="form-control otp-input" maxlength="1"
-                                                inputmode="numeric">
-                                            <input type="text" class="form-control otp-input" maxlength="1"
-                                                inputmode="numeric">
-                                            <input type="text" class="form-control otp-input" maxlength="1"
-                                                inputmode="numeric">
-                                            <input type="text" class="form-control otp-input" maxlength="1"
-                                                inputmode="numeric">
-                                            <input type="text" class="form-control otp-input" maxlength="1"
-                                                inputmode="numeric">
-                                        </div>
+                                <form method="POST" action="{{ route('otp.verify') }}">
+    @csrf
+    <!-- Input email tersembunyi -->
+    <input type="hidden" name="email" value="{{ session('email') }}">
 
+    <!-- Input OTP -->
+    <div class="otp-wrapper d-flex justify-content-between flex-wrap gap-2 mb-3">
+        <input type="text" class="form-control otp-input" maxlength="1" name="otp[]" inputmode="numeric" required>
+        <input type="text" class="form-control otp-input" maxlength="1" name="otp[]" inputmode="numeric" required>
+        <input type="text" class="form-control otp-input" maxlength="1" name="otp[]" inputmode="numeric" required>
+        <input type="text" class="form-control otp-input" maxlength="1" name="otp[]" inputmode="numeric" required>
+        <input type="text" class="form-control otp-input" maxlength="1" name="otp[]" inputmode="numeric" required>
+        <input type="text" class="form-control otp-input" maxlength="1" name="otp[]" inputmode="numeric" required>
+    </div>
 
                                         <div class="text-center">
-                                            <a href="{{ route('newpassword') }}"
-                                                class="btn btn-lg custom-login-btn w-100 mt-4 mb-0">
-                                                Lanjut
-                                            </a>
+                                            <button type="submit" class="btn btn-lg custom-login-btn w-100 mt-4 mb-0">Lanjut</button>
                                         </div>
                                     </form>
                                 </div>
@@ -72,8 +63,7 @@
                                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                     <p class="mb-2 text-sm mx-auto">
                                         Kirim ulang kode OTP?
-                                        <a href="{{ route('resetpw') }}"
-                                            class="text-info text-gradient font-weight-bold">Kirim ulang</a>
+                                        <a href="{{ route('resetpw') }}" class="text-info text-gradient font-weight-bold">Kirim ulang</a>
                                     </p>
                                 </div>
                             </div>
@@ -81,6 +71,15 @@
                     </div>
                 </div>
             </div>
+            @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         </section>
     </main>
     <script>
@@ -124,8 +123,7 @@
             input.addEventListener('paste', (e) => {
                 e.preventDefault();
                 const data = (e.clipboardData || window.clipboardData).getData('text');
-                const digits = data.replace(/\D/g, '').split('').slice(0, inputs
-                    .length); // ambil angka saja
+                const digits = data.replace(/\D/g, '').split('').slice(0, inputs.length); // ambil angka saja
 
                 digits.forEach((digit, i) => {
                     if (inputs[i]) {
@@ -178,8 +176,6 @@
             }
         }
     </style>
-
-
 </body>
 
 </html>
