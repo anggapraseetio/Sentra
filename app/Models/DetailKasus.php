@@ -11,6 +11,15 @@ class DetailKasus extends Model
 
     protected $table = 'detail_kasus';
     protected $primaryKey = 'id_kasus';
+    public $timestamps = false;
+
+    protected $fillable = [
+        'tanggal',
+        'tempat_kejadian',
+        'kronologi',
+        'bukti',
+        'id_laporan', // jika relasi laporan diperlukan
+    ];
 
     public function laporan()
     {

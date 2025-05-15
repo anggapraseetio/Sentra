@@ -17,9 +17,9 @@
         <ul>
           <li><a href="#hero" class="active">Beranda</a></li>
           <li><a href="#about">Tentang Kami</a></li>
-          <li><a href="#team">Team</a></li>
           <li><a href="#faq">Pertanyaan Umum</a></li>
           <li><a href="#contact">Kontak</a></li>
+          <li><a href="#team">Team</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -42,7 +42,7 @@
             <h1><span>Selamat Datang di Website Resmi</span></h1>
             <p>Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak</p>
             <div class="d-flex">
-              <a href="#about" class="btn-get-started">Get Started</a>
+              <a href="#about" class="btn-get-started">Download APK</a>
             </div>
           </div>
 

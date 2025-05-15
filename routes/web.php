@@ -7,6 +7,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\RekapanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\InformasiAnakController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -26,7 +27,7 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/index', function () {
         return view('frontend.index');
     });
-    
+
     Route::get('/layanan/perempuan', function () {
         return view('frontend.layanan.perempuan');
     });
@@ -34,27 +35,49 @@ Route::middleware(['guest'])->group(function () {
         return view('frontend.layanan.anak');
     });
     Route::get('/layanan/kesejahteraan', function () {
-        Return view('frontend.layanan.kesejahteraan');
+        return view('frontend.layanan.kesejahteraan');
     });
     Route::get('/layanan/edukasi', function () {
         return view('frontend.layanan.edukasi');
     });
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/laporan', [LaporanController::class, 'proses'])->name('laporan_proses');
-Route::put('/laporan/{id}/selesai', [LaporanController::class, 'selesai'])->name('laporan.selesai');
-Route::get('/laporan/{id_laporan}/edit', [LaporanController::class, 'edit'])->name('laporan.edit');
-Route::put('/laporan/{id_laporan}', [LaporanController::class, 'update'])->name('laporan.update');
-
-Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi');
-Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi');
-Route::get('/rekapan', [RekapanController::class, 'index'])->name('rekapan');
-
 
 //HANYA YANG LOGIN YANG BISA AKSES
 Route::middleware(['auth'])->group(function () {
 
+    Route::controller(InformasiController::class)->group(function () {
+        Route::get('/informasi', 'index')->name('informasi.index');
+        Route::post('/informasi', 'store')->name('informasi.store');
+        Route::get('/informasi/{id}/edit', 'edit')->name('informasi.edit');
+        Route::put('/informasi/{id}', 'update')->name('informasi.update');
+        Route::delete('/informasi/{id}', 'destroy')->name('informasi.destroy');
+    });
+
+    //Rekapan
+    Route::get('/rekapan', [RekapanController::class, 'index'])->name('rekapan');
+    Route::get('rekapan/data', [RekapanController::class, 'getData'])->name('rekapan.data');
+    Route::get('/rekapan/export', [RekapanController::class, 'export'])->name('rekapan.export');
+
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/laporan_selesai', [LaporanController::class, 'laporan_selesai'])->name('selesai');
+    Route::get('/laporan/{id}', [LaporanController::class, 'laporan_show'])->name('laporan.show');
+    ;
+    Route::delete('/laporan/{id}', [LaporanController::class, 'destroy'])->name('laporan.destroy');
+    Route::get('/laporan', [LaporanController::class, 'proses'])->name('laporan_proses');
+    Route::put('/laporan/proseskan/{id}', [LaporanController::class, 'proseskan'])->name('laporan.proseskan');
+    Route::put('/laporan/{id}/selesai', [LaporanController::class, 'selesai'])->name('laporan.selesai');
+    Route::get('/laporan/{id_laporan}/edit', [LaporanController::class, 'edit'])->name('laporan.edit');
+    Route::put('/laporan/{id_laporan}', [LaporanController::class, 'update'])->name('laporan.update');
+    Route::delete('/anak/{id}', [InformasiAnakController::class, 'destroy'])->name('anak.destroy');
+
+    Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi');
+
+
+    //Rekapan
+    Route::get('/rekapan', [RekapanController::class, 'index'])->name('rekapan');
+    Route::post('/rekapan/export', [RekapanController::class, 'handleExport'])->name('rekapan.export');
     Route::post('/logout', function () {
         Auth::logout();
         request()->session()->invalidate();

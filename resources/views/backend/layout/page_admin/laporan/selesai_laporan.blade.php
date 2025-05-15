@@ -4,13 +4,13 @@
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
-                    <h4>LAPORAN BELUM SELESAI</h4>
+                    <h4>LAPORAN SELESAI</h4>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Laporan</a></li>
-                    <li class="breadcrumb-item active"><a href="{{ route('laporan_proses') }}">Diproses</a></li>
+                    <li class="breadcrumb-item active"><a href="{{route('selesai')}}">Selesai</a></li>
                 </ol>
             </div>
         </div>
@@ -44,27 +44,31 @@
                                                     <span class="badge badge-info">DITERIMA</span>
                                                 @elseif($data->status == 'diproses')
                                                     <span class="badge badge-warning">DIPROSES</span>
+                                                @elseif($data->status == 'selesai')
+                                                    <span class="badge badge-success">SELESAI</span>
                                                 @endif
                                             </td>
                                             <td>{{ $data->kategori }}</td>
                                             <td>{{ $data->created_at->format('d-m-Y') }}</td>
                                             <td>
-                                                <form action="{{ route('laporan.proseskan', $data->id_laporan) }}"
-                                                    method="POST" style="display:inline;">
+                                                <!-- Tombol Preview -->
+                                                <a href="{{ route('laporan.show', $data->id_laporan) }}"
+                                                    class="btn btn-info btn-sm" title="Preview">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+
+                                                <!-- Tombol Hapus -->
+                                                <form action="{{ route('laporan.destroy', $data->id_laporan) }}"
+                                                    method="POST" style="display:inline;"
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus laporan {{ $data->detail_pelapor->nama ?? 'Tanpa Nama' }}?');">
                                                     @csrf
-                                                    @method('PUT')
-                                                    <button type="submit" class="btn btn-warning btn-sm" title="Proses">
-                                                        <i class="fas fa-cogs"></i> Proses
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="Hapus">
+                                                        <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 </form>
-                                                <form action="{{ route('laporan.selesai', $data->id_laporan) }}"
-                                                    method="POST" style="display:inline;"
-                                                    onsubmit="return confirm('Apakah laporan {{ $data->detail_pelapor->nama ?? 'Tanpa Nama' }} sudah selesai?');">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <button type="submit" class="btn btn-hijau btn-sm">Selesai</button>
-                                                </form>
                                             </td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>

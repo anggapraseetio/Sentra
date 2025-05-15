@@ -180,4 +180,31 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  $(document).ready(function() {
+    $('#example').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{{ route("rekapan.data") }}',
+        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'kategori', name: 'kategori' },
+            { data: 'nama', name: 'nama' },
+            { data: 'nik', name: 'nik' },
+            { data: 'created_at', name: 'created_at' }],
+            dom: 'Bfrtip', buttons: 
+            [{
+            extend: 'excelHtml5',
+            text: '<i class="fas fa-file-excel text-success"></i>',
+            titleAttr: 'Download Excel',
+            className: 'btn btn-link'
+          },
+          {
+          extend: 'print',
+          text: '<i class="fas fa-print text-dark"></i>',
+          titleAttr: 'Print Table',
+          className: 'btn btn-link'
+        }]
+      });
+    });
 })();
+
