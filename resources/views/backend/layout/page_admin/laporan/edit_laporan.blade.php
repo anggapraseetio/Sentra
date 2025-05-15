@@ -65,10 +65,6 @@
                                                         {{ $laporan->kategori == 'TPPO' ? 'selected' : '' }}>
                                                         TPPO
                                                     </option>
-                                                    <option value="Lainnya"
-                                                        {{ $laporan->kategori == 'Lainnya' ? 'selected' : '' }}>
-                                                        Lainnya
-                                                    </option>
                                                     <option value="unset"
                                                         {{ $laporan->kategori == 'unset' ? 'selected' : '' }}>
                                                         -</option>
@@ -146,13 +142,13 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Umur</label>
-                                            <input type="number" name="penerima[umur]"
-                                                class="form-control penerima-input"
+                                            <input type="number" name="penerima[umur]" class="form-control penerima-input"
                                                 value="{{ optional($laporan->detail_penerima_manfaat)->umur }}">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Jenis Kelamin</label>
                                             <select name="penerima[jk]" class="form-control penerima-input">
+                                                <option value="">Pilih</option>
                                                 <option value="Laki-laki"
                                                     {{ optional($laporan->detail_penerima_manfaat)->jk == 'Laki-laki' ? 'selected' : '' }}>
                                                     Laki-Laki</option>
@@ -171,6 +167,7 @@
                                             <label>Agama</label>
                                             <select name="penerima[agama]" class="form-control penerima-input">
                                                 @foreach (['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Konghucu', 'lainnya'] as $agama)
+                                                    <option value="">Pilih</option>
                                                     <option value="{{ $agama }}"
                                                         {{ optional($laporan->detail_penerima_manfaat)->agama == $agama ? 'selected' : '' }}>
                                                         {{ $agama }}</option>
@@ -181,6 +178,7 @@
                                             <label>Pendidikan</label>
                                             <select name="penerima[pendidikan]" class="form-control penerima-input">
                                                 @foreach (['Tidak Sekolah', 'SD', 'SMP', 'SMA', 'Diploma', 'S1', 'S2', 'S3', 'Lainnya'] as $pendidikan)
+                                                    <option value="">Pilih</option>
                                                     <option value="{{ $pendidikan }}"
                                                         {{ optional($laporan->detail_penerima_manfaat)->pendidikan == $pendidikan ? 'selected' : '' }}>
                                                         {{ $pendidikan }}</option>
@@ -341,6 +339,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label>Jenis Kelamin</label>
                                             <select name="terlapor[jk]" class="form-control">
+                                                <option value="">Pilih</option>
                                                 <option value="Laki-laki"
                                                     {{ optional($laporan->detail_terlapor)->jk == 'Laki-laki' ? 'selected' : '' }}>
                                                     Laki-Laki</option>

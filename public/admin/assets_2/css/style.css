@@ -2619,7 +2619,7 @@ input[type="button"].btn-block {
   .dropdown-item.active, .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #593bdb; }
+    background-color: #059652; }
   .dropdown-item.disabled, .dropdown-item:disabled {
     color: #6c757d;
     pointer-events: none;
@@ -3551,9 +3551,7 @@ input[type="button"].btn-block {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-top-left-radius: 20px !important;
-  border-top-right-radius: 20px !important;}
+  border: 1px solid rgba(0, 0, 0, 0.125);}
   .card > hr {
     margin-right: 0;
     margin-left: 0; }
@@ -3863,8 +3861,8 @@ input[type="button"].btn-block {
     box-shadow: 0 0 0 0.2rem rgba(103, 59, 183, 0.5); }
 
 .badge-success {
-  color: #212529;
-  background-color: #7ED321; }
+  color: #fff !important;
+  background-color: #059652 !important; }
   a.badge-success:hover, a.badge-success:focus {
     color: #212529;
     background-color: #64a71a; }
@@ -4951,8 +4949,8 @@ button.bg-secondary:focus {
 
 .bg-ijo {
   background-color: #059652 !important;
-  border-top-left-radius: 20px !important;
-  border-top-right-radius: 20px !important;
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
 }
 
 
@@ -10370,13 +10368,34 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
         top: -2px; }
       .quixnav .metismenu > li > a {
         color: #fff; }
-      .quixnav .metismenu > li:hover > a, .quixnav .metismenu > li:focus > a, .quixnav .metismenu > li.mm-active > a {
-        background-color: #52AE77;
-        color: #fff; }
+        /* Saat hover, ubah warna ikon dan teks */
+          .quixnav .metismenu > li:hover > a,
+          .quixnav .metismenu > li:focus > a,
+          .quixnav .metismenu > li.mm-active > a {
+              background-color: rgba(255, 255, 255, 0.95) !important; 
+              color: #059652 !important;
+              transition: background-color 0.3s ease, color 0.3s ease;
+          }
+
+          /* Ubah warna teks span.nav-text juga */
+          .quixnav .metismenu > li:hover > a .nav-text,
+          .quixnav .metismenu > li:focus > a .nav-text,
+          .quixnav .metismenu > li.mm-active > a .nav-text {
+              color: #059652 !important;
+              transition: background-color 0.3s ease, color 0.3s ease;
+          }
+
+          /* Ubah warna ikon */
+          .quixnav .metismenu > li:hover > a i,
+          .quixnav .metismenu > li:focus > a i,
+          .quixnav .metismenu > li.mm-active > a i {
+              color: #059652 !important;
+              transition: background-color 0.3s ease, color 0.3s ease;
+          }
       .quixnav .metismenu > li.mm-active ul {
-        background-color: rgba(88, 115, 254, 0.04); }
+        background-color: #059652 !important; }
         .quixnav .metismenu > li.mm-active ul ul {
-          background-color: rgba(88, 115, 254, 0.04); }
+        background-color: #059652 !important; }
     .quixnav .metismenu li {
       position: relative; }
     .quixnav .metismenu ul {
@@ -10387,7 +10406,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
         font-weight: 300; }
         .quixnav .metismenu ul a:hover, .quixnav .metismenu ul a:focus, .quixnav .metismenu ul a.mm-active {
           text-decoration: none;
-          color: #bdbdc7; }
+          color: #fff; }
         [direction="rtl"] .quixnav .metismenu ul a {
           padding-right: 54px; }
       .quixnav .metismenu ul ul a {
@@ -10399,7 +10418,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
       display: block;
       padding: 0.8125rem 1.25rem;
       outline-width: 0;
-      color: #fff;
+      color: #bdbdc7;
       text-decoration: none; }
     .quixnav .metismenu .has-arrow:after {
       width: .35rem;
@@ -15456,6 +15475,7 @@ button {
   border-radius: 0.25rem;
   box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05); }
   .card-body {
+    position: relative;
     padding: 1.25rem; }
   .card-title {
     font-size: 19px;
@@ -15473,7 +15493,7 @@ button {
     border-color: #eaeaea;
     position: relative;
     background: transparent;
-    padding: 1.25rem 1.25rem 15px;
+    padding: 8px 1.25rem 8px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19435,9 +19455,37 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     }
     
     .table tbody td {
-      color: #047344;
-      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
   }
-  
+  .custom-font {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin-left: 5px;
+  }
+    .custom-font-sidebar {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+  }
+  table#laporanTable thead.custom-font-sidebar th {
+    text-align: center !important;
+    color: white !important;
+    font-weight: bold !important;
+    font-size: 13px !important;
+}
+  #laporanAreaChart {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 250px; /* supaya tidak gepeng di HP */
+  }
+  .icon-lg {
+    font-size: 20px !important;
+  }
+
+
+
   
       

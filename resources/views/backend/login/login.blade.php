@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ 'backend/assets/img/apple-icon.png' }}">
-    <link rel="icon" type="image/png" href="{{ 'backend/assets/img/favicon.png' }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ 'backend/assets/img/logo-sentra.png' }}">
+    <link rel="icon" type="image/png" href="{{ 'backend/assets/img/logo-sentra.png' }}">
     <title>
-        Material Dashboard 3 by Creative Tim
+        SENTRA
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"
@@ -47,12 +47,16 @@
                                         @csrf
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">Email</label>
-                                            <input type="email" class="form-control" id="email" name="email">
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                required oninvalid="this.setCustomValidity('Email tidak boleh kosong')"
+                                                oninput="this.setCustomValidity('')">
                                         </div>
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">Password</label>
                                             <input type="password" class="form-control" id="passwordInput"
-                                                name="password">
+                                                name="password" required
+                                                oninvalid="this.setCustomValidity('Password wajib diisi')"
+                                                oninput="this.setCustomValidity('')">
                                         </div>
                                         <div class="form-check form-check-info text-start ps-0 mb-3">
                                             <input class="form-check-input" type="checkbox" id="togglePassword">

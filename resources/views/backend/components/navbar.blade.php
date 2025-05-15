@@ -1,9 +1,9 @@
         {{-- NAV --}}
         <div class="nav-header">
             <a class="brand-logo">
-                <img class="logo-abbr" src="{{ 'admin/assets_2/images/logo_nganjuk.png' }}" alt="">
-                <img class="logo-compact" src="{{ 'admin/assets_2/images/dinsos.png' }}" alt="">
-                <img class="brand-title" src="{{ 'admin/assets_2/images/dinsos.png' }}" alt="">
+                <img class="logo-abbr" src="{{ asset('admin/assets_2/images/logo_nganjuk.png') }}" alt="">
+                <img class="logo-compact" src="{{ asset('admin/assets_2/images/dinsos.png') }}" alt="">
+                <img class="brand-title" src="{{ asset('admin/assets_2/images/dinsos.png') }}" alt="">
             </a>
 
             <div class="nav-control">
@@ -42,11 +42,18 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown header-profile">
-                                <a class="nav-link d-flex align-items-center" href="#" role="button" data-toggle="dropdown">
+                                <a class="nav-link d-flex align-items-center" href="#" role="button"
+                                    data-toggle="dropdown">
                                     <i class="fas fa-user-circle fa-lg"></i>
+                                    <span class="custom-font">Admin</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <form method="POST" action="{{ route('logout') }}">
+                                    <a href="{{ route('resetpw') }}" class="dropdown-item">
+                                        <i class="fas fa-key"></i>
+                                        <span class="ml-2">Reset Password</span>
+                                    </a>
+                                    <form method="POST" action="{{ route('logout') }}"
+                                        onsubmit="return confirm('Apakah Anda yakin ingin logout?');">
                                         @csrf
                                         <button type="submit" class="dropdown-item">
                                             <i class="fas fa-sign-out-alt"></i>
@@ -54,7 +61,7 @@
                                         </button>
                                     </form>
                                 </div>
-                            </li>                            
+                            </li>
                         </ul>
                     </div>
                 </nav>

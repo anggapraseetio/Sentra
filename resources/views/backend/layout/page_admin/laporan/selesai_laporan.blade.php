@@ -10,19 +10,34 @@
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Laporan</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('selesai')}}">Selesai</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('selesai') }}">Selesai</a></li>
                 </ol>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <input type="text" id="searchNama" class="form-control" placeholder="Cari Nama Pelapor...">
+            </div>
+            <div class="col-md-2">
+                <select id="filterKategori" class="form-control">
+                    <option value="">Semua Kategori</option>
+                    <option value="Kekerasan Fisik">Kekerasan Fisik</option>
+                    <option value="Kekerasan Psikis">Kekerasan Psikis</option>
+                    <option value="Kekerasan Seksual">Kekerasan Seksual</option>
+                    <option value="Penelantaran">Penelantaran</option>
+                    <option value="Eksploitasi">Eksploitasi</option>
+                    <option value="TPPO">TPPO</option>
+                    <option value="unset">Tidak Disetting</option>
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header">
-                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-responsive-sm">
-                                <thead>
+                            <table id="laporanTable" class="table table-striped text-center table-responsive-sm">
+                                <thead class="custom-font-sidebar bg-ijo">
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Pelapor</th>
@@ -38,13 +53,7 @@
                                             <th>{{ $index + 1 }}</th>
                                             <td>{{ $data->detail_pelapor->nama ?? '-' }}</td>
                                             <td>
-                                                @if ($data->status == 'dikirim')
-                                                    <span class="badge badge-secondary">DIKIRIM</span>
-                                                @elseif($data->status == 'diterima')
-                                                    <span class="badge badge-info">DITERIMA</span>
-                                                @elseif($data->status == 'diproses')
-                                                    <span class="badge badge-warning">DIPROSES</span>
-                                                @elseif($data->status == 'selesai')
+                                                @if ($data->status == 'selesai')
                                                     <span class="badge badge-success">SELESAI</span>
                                                 @endif
                                             </td>
@@ -53,8 +62,8 @@
                                             <td>
                                                 <!-- Tombol Preview -->
                                                 <a href="{{ route('laporan.show', $data->id_laporan) }}"
-                                                    class="btn btn-info btn-sm" title="Preview">
-                                                    <i class="fas fa-eye"></i>
+                                                    class="btn btn-hijau btn-sm" title="Preview">
+                                                    Preview
                                                 </a>
 
                                                 <!-- Tombol Hapus -->
@@ -64,11 +73,10 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" title="Hapus">
-                                                        <i class="fas fa-trash-alt"></i>
+                                                        Hapus
                                                     </button>
                                                 </form>
                                             </td>
-
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -81,3 +89,23 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            const table = $('#laporanTable').DataTable({
+                dom: 'rt',
+                ordering: false,
+            });
+
+            // Search berdasarkan nama pelapor (kolom ke-1)
+            $('#searchNama').on('keyup', function() {
+                table.column(1).search(this.value).draw();
+            });
+
+            // Filter berdasarkan status (kolom ke-2)
+            $('#filterKategori').on('change', function() {
+                table.column(3).search(this.value).draw();
+            });
+        });
+    </script>
+@endpush

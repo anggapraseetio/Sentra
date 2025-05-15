@@ -14,15 +14,25 @@
                 </ol>
             </div>
         </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <input type="text" id="searchNama" class="form-control" placeholder="Cari Nama Pelapor...">
+            </div>
+            <div class="col-md-2">
+                <select id="filterStatus" class="form-control">
+                    <option value="">Semua Status</option>
+                    <option value="DITERIMA">Diterima</option>
+                    <option value="DIPROSES">Diproses</option>
+                </select>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header">
-                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-responsive-sm">
-                                <thead>
+                            <table id="laporanTable" class="table table-striped text-center table-responsive-sm">
+                                <thead class="custom-font-sidebar bg-ijo">
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Pelapor</th>
@@ -38,9 +48,7 @@
                                             <th>{{ $index + 1 }}</th>
                                             <td>{{ $data->detail_pelapor->nama ?? '-' }}</td>
                                             <td>
-                                                @if ($data->status == 'dikirim')
-                                                    <span class="badge badge-secondary">DIKIRIM</span>
-                                                @elseif($data->status == 'diterima')
+                                                @if ($data->status == 'diterima')
                                                     <span class="badge badge-info">DITERIMA</span>
                                                 @elseif($data->status == 'diproses')
                                                     <span class="badge badge-warning">DIPROSES</span>
@@ -53,9 +61,8 @@
                                                     method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('PUT')
-                                                    <button type="submit" class="btn btn-warning btn-sm" title="Proses">
-                                                        <i class="fas fa-cogs"></i> Proses
-                                                    </button>
+                                                    <button type="submit" class="btn btn-warning btn-sm"
+                                                        title="Proses">Proses</button>
                                                 </form>
                                                 <form action="{{ route('laporan.selesai', $data->id_laporan) }}"
                                                     method="POST" style="display:inline;"
@@ -77,3 +84,23 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            const table = $('#laporanTable').DataTable({
+                dom: 'rt',
+                ordering: false,
+            });
+
+            // Search berdasarkan nama pelapor (kolom ke-1)
+            $('#searchNama').on('keyup', function() {
+                table.column(1).search(this.value).draw();
+            });
+
+            // Filter berdasarkan status (kolom ke-2)
+            $('#filterStatus').on('change', function() {
+                table.column(2).search(this.value).draw();
+            });
+        });
+    </script>
+@endpush

@@ -10,19 +10,20 @@
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Menu</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 </ol>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="card-header bg-ijo d-flex justify-content-between align-items-center">
                         <h4 class="card-title">TRACKING LAPORAN MASUK</h4>
                         <div class="form-group mb-0">
                             <select class="form-control" id="tahun-filter" onchange="updateChart()">
-                                @foreach($tahun_list as $tahun)
-                                    <option value="{{ $tahun }}" {{ $tahun == $tahun_aktif ? 'selected' : '' }}>{{ $tahun }}</option>
+                                @foreach ($tahun_list as $tahun)
+                                    <option value="{{ $tahun }}" {{ $tahun == $tahun_aktif ? 'selected' : '' }}>
+                                        {{ $tahun }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -37,11 +38,13 @@
                     <div class="stat-widget-two card-body">
                         <div class="stat-content">
                             <div class="stat-text">Kekerasan Fisik</div>
-                            <div class="stat-digit"> <i class="fa fa-file-text-o"></i> {{ $data_kekerasan_fisik_total }}</div>
+                            <div class="stat-digit"> <i class="fa fa-file-text-o"></i> {{ $data_kekerasan_fisik_total }}
+                            </div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-success" style="width: {{ $persen_kekerasan_fisik }}%" role="progressbar" 
-                                aria-valuenow="{{ $persen_kekerasan_fisik }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar progress-bar-success" style="width: {{ $persen_kekerasan_fisik }}%"
+                                role="progressbar" aria-valuenow="{{ $persen_kekerasan_fisik }}" aria-valuemin="0"
+                                aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -54,8 +57,9 @@
                             <div class="stat-digit"> <i class="fa fa-file-text-o"></i> {{ $kekerasan_psikis }}</div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-primary" style="width: {{ $persen_kekerasan_psikis }}%" role="progressbar" 
-                                aria-valuenow="{{ $persen_kekerasan_psikis }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar progress-bar-primary" style="width: {{ $persen_kekerasan_psikis }}%"
+                                role="progressbar" aria-valuenow="{{ $persen_kekerasan_psikis }}" aria-valuemin="0"
+                                aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -68,8 +72,9 @@
                             <div class="stat-digit"> <i class="fa fa-file-text-o"></i> {{ $kekerasan_seksual }}</div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-warning" style="width: {{ $persen_kekerasan_seksual }}%" role="progressbar" 
-                                aria-valuenow="{{ $persen_kekerasan_seksual }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar progress-bar-warning" style="width: {{ $persen_kekerasan_seksual }}%"
+                                role="progressbar" aria-valuenow="{{ $persen_kekerasan_seksual }}" aria-valuemin="0"
+                                aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -82,8 +87,9 @@
                             <div class="stat-digit"> <i class="fa fa-file-text-o"></i> {{ $penelantaran }}</div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-danger" style="width: {{ $persen_penelantaran }}%" role="progressbar" 
-                                aria-valuenow="{{ $persen_penelantaran }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar progress-bar-danger" style="width: {{ $persen_penelantaran }}%"
+                                role="progressbar" aria-valuenow="{{ $persen_penelantaran }}" aria-valuemin="0"
+                                aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -96,8 +102,9 @@
                             <div class="stat-digit"> <i class="fa fa-file-text-o"></i> {{ $eksploitasi }}</div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-info" style="width: {{ $persen_eksploitasi }}%" role="progressbar" 
-                                aria-valuenow="{{ $persen_eksploitasi }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar progress-bar-info" style="width: {{ $persen_eksploitasi }}%"
+                                role="progressbar" aria-valuenow="{{ $persen_eksploitasi }}" aria-valuemin="0"
+                                aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -110,8 +117,9 @@
                             <div class="stat-digit"> <i class="fa fa-file-text-o"></i> {{ $tppo }}</div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-warning" style="width: {{ $persen_tppo }}%" role="progressbar" 
-                                aria-valuenow="{{ $persen_tppo }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar progress-bar-warning" style="width: {{ $persen_tppo }}%"
+                                role="progressbar" aria-valuenow="{{ $persen_tppo }}" aria-valuemin="0"
+                                aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -125,8 +133,7 @@
         var myAreaChart;
         var chartData = {
             labels: {!! json_encode($bulan) !!},
-            datasets: [
-                {
+            datasets: [{
                     label: 'Kekerasan Fisik',
                     data: {!! json_encode($data_kekerasan_fisik) !!},
                     backgroundColor: 'rgba(40, 167, 69, 0.2)',

@@ -12,36 +12,23 @@ class DetailPenerimaManfaat extends Model
     protected $table = 'detail_penerima_manfaat';
     protected $primaryKey = 'id_penerima';
     public $timestamps = false;
-    
-    // Di dalam model DetailPenerimaManfaat
-    protected static function boot()
-    {
-        parent::boot();
-        
-        static::creating(function ($model) {
-            if ($model->tanggal_lahir) {
-                // Menghitung umur otomatis saat membuat record baru
-                $model->umur = Carbon::parse($model->tanggal_lahir)->age;
-            }
-        });
-        
-        static::updating(function ($model) {
-            if ($model->tanggal_lahir) {
-                // Menghitung ulang umur saat data tanggal lahir diperbarui
-                $model->umur = Carbon::parse($model->tanggal_lahir)->age;
-            }
-        });
-    }
+
     protected $fillable = [
         'id_laporan',
         'id_penerima',
         'nama',
         'nik',
-        'alamat',
+        'tempat_lahir',
+        'tanggal_lahir',
         'umur',
         'jenis_kelamin',
+        'pekerjaan',
+        'agama',
+        'alamat',
         'pendidikan',
         'hubungan_dengan_terlapor',
+        'notelp',
+        'informasi_tambahan',
     ];
 
     public function rekapan()
@@ -50,7 +37,7 @@ class DetailPenerimaManfaat extends Model
     }
 
     // Relasi ke informasi anak
-    public function informasiAnak()
+    public function informasi_anak()
     {
         return $this->hasMany(InformasiAnak::class, 'id_penerima', 'id_penerima');
     }
