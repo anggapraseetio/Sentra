@@ -2,8 +2,6 @@
 
 @section('admin')
 
-<title>Rekapan</title>
-
 <div class="container-fluid">
     <!-- Breadcrumb -->
     <div class="row page-titles mx-0">

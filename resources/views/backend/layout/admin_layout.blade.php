@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <!-- <title>SENTRA</title> -->
+    <title>SENTRA</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/assets_2/images/logo-sentra.png') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets_2/vendor/owl-carousel/css/owl.carousel.min.css') }}">
