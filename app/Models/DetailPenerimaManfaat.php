@@ -39,6 +39,6 @@ class DetailPenerimaManfaat extends Model
     // Relasi ke informasi anak
     public function informasi_anak()
     {
-        return $this->hasMany(InformasiAnak::class, 'id_penerima', 'id_penerima');
+        return $this->hasOne(InformasiAnak::class, 'id_penerima', 'id_penerima');
     }
 }

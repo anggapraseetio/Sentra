@@ -9,7 +9,6 @@ class Rekapan extends Model
     protected $table = 'rekapan';
     protected $primaryKey = 'id_laporan';
     public $timestamps = true;
-
     protected $fillable = [
         'id_laporan',
         'nama',
@@ -20,25 +19,25 @@ class Rekapan extends Model
     ];
 
     // Relasi ke detail_pelapor
-    public function pelapor()
+    public function detail_pelapor()
     {
         return $this->hasOne(DetailPelapor::class, 'id_laporan', 'id_laporan');
     }
 
     // Relasi ke detail_penerima_manfaat
-    public function penerimaManfaat()
+    public function detail_penerima_manfaat()
     {
         return $this->hasOne(DetailPenerimaManfaat::class, 'id_laporan', 'id_laporan');
     }
 
     // Relasi ke detail_terlapor
-    public function terlapor()
+    public function detail_terlapor()
     {
         return $this->hasOne(DetailTerlapor::class, 'id_laporan', 'id_laporan');
     }
 
     // Relasi ke detail_kasus
-    public function detailKasus()
+    public function detail_kasus()
     {
         return $this->hasOne(DetailKasus::class, 'id_laporan', 'id_laporan');
     }
