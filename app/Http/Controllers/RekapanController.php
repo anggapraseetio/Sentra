@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rekapan;
+
 use App\Models\Laporan;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -17,6 +17,7 @@ class RekapanController extends Controller
     public function index(Request $request)
     {
         $dataLaporan = Laporan::with(['detail_pelapor', 'detail_terlapor', 'detail_penerima_manfaat.informasi_anak', 'detail_kasus'])
+        ->where('status', 'selesai')
         ->orderBy('created_at', 'desc')
         ->get();
 
@@ -120,7 +121,7 @@ class RekapanController extends Controller
                 'title' => 'Informasi Anak',
                 'headers' => ['ID Laporan', 'Nama', 'Umur', 'JK', 'Pendidikan'],
                 'rows' => $dataLaporan->map(function ($d) {
-                    $anak = $d->detail_penerima_manfaat->informasi_anak ?? null;
+                    $informasi_anak = $d->detail_penerima_manfaat->informasi_anak ?? null;
                     return [
                         $d->id_laporan,
                         $informasi_anak->nama ?? '-', $informasi_anak->umur ?? '-', $informasi_anak->jenis_kelamin ?? '-', $informasi_anak->pendidikan ?? '-'
@@ -173,6 +174,7 @@ class RekapanController extends Controller
     private function filteredQuery(Request $request)
     {
         return Laporan::with(['detail_pelapor', 'detail_terlapor', 'detail_kasus', 'detail_penerima_manfaat.informasi_anak'])
+            ->where('status', 'selesai')
             ->when($request->filled('search'), fn($q) =>
                 $q->whereHas('detail_pelapor', fn($sub) =>
                     $sub->where('nama', 'like', "%{$request->search}%")
@@ -183,7 +185,7 @@ class RekapanController extends Controller
                 $q->whereDate('created_at', '<=', $request->end_date))
             ->when($request->filled('kategori'), fn($q) =>
                 $q->where('kategori', $request->kategori))
-            ->when($request->filled('status'), fn($q) =>
+            ->when($request->filled('status') && $request->status !=='selesai', fn($q) =>
                 $q->where('status', $request->status));
     }
 

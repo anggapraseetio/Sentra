@@ -54,10 +54,6 @@
                         <i class="fas fa-file-excel me-2"></i>Export to Excel
                     </button>
                 </div>
-                <div id="exportLoading" style="display:none;" class="mt-2 text-end">
-                    <span class="spinner-border text-success" role="status" aria-hidden="true"></span>
-                    <span class="ms-2">Menyiapkan file...</span>
-                </div>
             </form>
         </div>
     </div>
