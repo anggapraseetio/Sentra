@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Laporan;
 
 class LaporanController extends Controller
-{
+{  
     public function laporan_selesai()
     {
         $laporan = Laporan::with('detail_pelapor')->where('status', 'selesai')->get();
