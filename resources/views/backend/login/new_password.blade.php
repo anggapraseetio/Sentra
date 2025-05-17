@@ -43,24 +43,39 @@
                             </div>
                             <div class="card card-plain">
                                 <div class="card-body">
-                                    <form role="form">
+                                    <form role="form" method="POST" action="{{ route('otp.reset') }}">
+                                        @csrf
+                                        <input type="hidden" name="email" value="{{ session('verified_email') }}" />
+
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">Password baru</label>
-                                            <input type="password" class="form-control" id="passwordInput">
+                                            <input type="password" class="form-control" name="password" id="password"
+                                                required>
                                         </div>
+
                                         <div class="input-group input-group-outline mb-3">
-                                            <label class="form-label">Ketikkan ulang</label>
-                                            <input type="password" class="form-control" id="passwordInput">
+                                            <label class="form-label">Ketikkan ulang password</label>
+                                            <input type="password" class="form-control" name="password_confirmation"
+                                                id="password_confirmation" required>
                                         </div>
+
                                         <div class="form-check form-check-info text-start ps-0 mb-3">
                                             <input class="form-check-input" type="checkbox" id="togglePassword">
                                             <label class="form-check-label" for="togglePassword">
-                                                Show Password
+                                                Tampilkan Password
                                             </label>
                                         </div>
+                                        @if ($errors->any())
+                                            <div class="alert alert-soft-danger text-center mb-0">
+                                                @foreach ($errors->all() as $error)
+                                                    <div>{{ $error }}</div>
+                                                @endforeach
+                                            </div>
+                                        @endif
                                         <div class="text-center">
-                                            <button type="button"
-                                                class="btn btn-lg custom-login-btn w-100 mt-4 mb-0">Ubah Password</button>
+                                            <button type="submit"
+                                                class="btn btn-lg custom-login-btn w-100 mt-4 mb-0">Ubah
+                                                Password</button>
                                         </div>
                                     </form>
                                 </div>
@@ -71,10 +86,14 @@
             </div>
         </section>
     </main>
+
     <script>
         document.getElementById('togglePassword').addEventListener('change', function() {
-            const passwordInput = document.getElementById('passwordInput');
-            passwordInput.type = this.checked ? 'text' : 'password';
+            const pw = document.getElementById('password');
+            const pwConfirm = document.getElementById('password_confirmation');
+            const type = this.checked ? 'text' : 'password';
+            pw.type = type;
+            pwConfirm.type = type;
         });
     </script>
     <!--   Core JS Files   -->

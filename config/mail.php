@@ -36,18 +36,17 @@ return [
     */
 
     'mailers' => [
+    'smtp' => [
+        'transport' => 'smtp',
+        'host' => env('MAIL_HOST', 'smtp.gmail.com'), // Gunakan smtp.gmail.com untuk Gmail
+        'port' => env('MAIL_PORT', 587), // Port untuk TLS
+        'username' => env('MAIL_USERNAME'), // Email Anda
+        'password' => env('MAIL_PASSWORD'), // Password atau app password Gmail
+        'encryption' => env('MAIL_ENCRYPTION', 'tls'), // Gunakan TLS untuk Gmail
+        'timeout' => null,
+        'local_domain' => env('MAIL_EHLO_DOMAIN', null), // Biasanya tidak diperlukan untuk Gmail
+    ],
 
-        'smtp' => [
-            'transport' => 'smtp',
-            'scheme' => env('MAIL_SCHEME'),
-            'url' => env('MAIL_URL'),
-            'host' => env('MAIL_HOST', '127.0.0.1'),
-            'port' => env('MAIL_PORT', 2525),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
-            'timeout' => null,
-            'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url(env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
-        ],
 
         'ses' => [
             'transport' => 'ses',

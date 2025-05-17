@@ -4,14 +4,14 @@
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
-                    <h4>PRIVIEW LAPORAN</h4>
+                    <h4>PREVIEW LAPORAN</h4>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('selesai') }}">Laporan</a></li>
                     <li class="breadcrumb-item active"><a href="{{ route('selesai') }}">Selesai</a></li>
-                    <li class="breadcrumb-item active"><a href="">Priview</a></li>
+                    <li class="breadcrumb-item active"><a href="">Preview</a></li>
                 </ol>
             </div>
         </div>
@@ -36,7 +36,7 @@
                                         <div class="form-group">
                                             <label class="font-weight-bold">Kategori Laporan</label>
                                             <p class="form-control form-control-lg">
-                                                {{ $laporan->kategori_laporan != 'unset' ? $laporan->kategori_laporan : '-' }}
+                                                {{ $laporan->kategori != 'unset' ? $laporan->kategori : '-' }}
                                             </p>
                                         </div>
                                     </div>
@@ -114,7 +114,8 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Jenis Kelamin</label>
-                                            <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->jk }}
+                                            <p class="form-control">
+                                                {{ optional($laporan->detail_penerima_manfaat)->jenis_kelamin }}
                                             </p>
                                         </div>
                                         <div class="col-md-6 mb-3">
@@ -226,7 +227,8 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Jenis Kelamin</label>
-                                            <p class="form-control">{{ optional($laporan->detail_terlapor)->jk }}</p>
+                                            <p class="form-control">
+                                                {{ optional($laporan->detail_terlapor)->jenis_kelamin }}</p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="font-weight-bold">Hubungan dengan Korban</label>
@@ -259,17 +261,11 @@
                                         </div>
                                         <div class="col-md-12 mb-3">
                                             <label class="font-weight-bold">Kronologi Kejadian</label>
-                                            <div class="p-3 bg-light rounded">
+                                            <div class="p-4 bg-white border rounded shadow-sm"
+                                                style="line-height: 1.7; font-size: 1rem; color: #333;">
                                                 {!! nl2br(e(optional($laporan->detail_kasus)->kronologi)) !!}
                                             </div>
                                         </div>
-                                        @if (optional($laporan->detail_kasus)->bukti)
-                                            <div class="col-md-12 mb-3">
-                                                <label class="font-weight-bold">Bukti</label><br>
-                                                <img src="{{ asset('storage/' . $laporan->detail_kasus->bukti) }}"
-                                                    alt="Bukti Kasus" class="img-fluid" style="max-width: 300px;">
-                                            </div>
-                                        @endif
                                     </div>
                                 </div>
                             </div>

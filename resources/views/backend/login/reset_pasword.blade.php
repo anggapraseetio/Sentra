@@ -25,7 +25,7 @@
 </head>
 
 <body class="">
-    <main class="main-content  mt-0">
+    <main class="main-content mt-0">
         <section>
             <div class="page-header min-vh-100">
                 <div class="container">
@@ -43,16 +43,28 @@
                             </div>
                             <div class="card card-plain">
                                 <div class="card-body">
-                                    <form role="form">
+                                    <!-- Formulir untuk mengirim email dan OTP -->
+                                    <form method="POST" action="{{ route('send.otp') }}" id="resetPasswordForm">
+                                        @csrf
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">Email</label>
-                                            <input type="email" class="form-control">
+                                            <input type="email" name="email" class="form-control" required
+                                                oninvalid="this.setCustomValidity('Email tidak boleh kosong')"
+                                                oninput="this.setCustomValidity('')">
                                         </div>
-                                        <div class="text-center">
-                                            <a href="{{ route('inputOTP') }}" class="btn btn-lg custom-login-btn w-100 mt-4 mb-0">
-                                              Kirim OTP
-                                            </a>
-                                          </div>                                          
+                                        <div class="card card-plain">
+                                            @if ($errors->any())
+                                                <div class="alert alert-soft-danger text-center mb-0">
+                                                    @foreach ($errors->all() as $error)
+                                                        <div>{{ $error }}</div>
+                                                    @endforeach
+                                                </div>
+                                            @endif
+                                            <div class="text-center">
+                                                <button type="submit"
+                                                    class="btn btn-lg custom-login-btn w-100 mt-4 mb-0">Kirim
+                                                    OTP</button>
+                                            </div>
                                     </form>
                                 </div>
                             </div>

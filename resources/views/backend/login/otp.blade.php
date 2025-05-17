@@ -25,7 +25,7 @@
 </head>
 
 <body class="">
-    <main class="main-content  mt-0">
+    <main class="main-content mt-0">
         <section>
             <div class="page-header min-vh-100">
                 <div class="container">
@@ -43,38 +43,60 @@
                             </div>
                             <div class="card card-plain">
                                 <div class="card-body">
-                                    <form role="form">
+                                    <form method="POST" action="{{ route('otp.verify') }}">
+                                        @csrf
+                                        <!-- Input email tersembunyi -->
+                                        <input type="hidden" name="email" value="{{ session('email') }}">
+
+                                        <!-- Input OTP -->
                                         <div class="otp-wrapper d-flex justify-content-between flex-wrap gap-2 mb-3">
                                             <input type="text" class="form-control otp-input" maxlength="1"
-                                                inputmode="numeric">
+                                                name="otp[]" inputmode="numeric" required>
                                             <input type="text" class="form-control otp-input" maxlength="1"
-                                                inputmode="numeric">
+                                                name="otp[]" inputmode="numeric" required>
                                             <input type="text" class="form-control otp-input" maxlength="1"
-                                                inputmode="numeric">
+                                                name="otp[]" inputmode="numeric" required>
                                             <input type="text" class="form-control otp-input" maxlength="1"
-                                                inputmode="numeric">
+                                                name="otp[]" inputmode="numeric" required>
                                             <input type="text" class="form-control otp-input" maxlength="1"
-                                                inputmode="numeric">
+                                                name="otp[]" inputmode="numeric" required>
                                             <input type="text" class="form-control otp-input" maxlength="1"
-                                                inputmode="numeric">
+                                                name="otp[]" inputmode="numeric" required>
                                         </div>
+                                        @if (session('message'))
+                                            <div class="alert alert-soft-success text-center mb-0">
+                                                {{ session('message') }}
+                                            </div>
+                                        @endif
+
+                                        @if ($errors->any())
+                                            <div class="alert alert-soft-danger text-center mb-0">
+                                                @foreach ($errors->all() as $error)
+                                                    <div>{{ $error }}</div>
+                                                @endforeach
+                                            </div>
+                                        @endif
 
 
                                         <div class="text-center">
-                                            <a href="{{ route('newpassword') }}"
-                                                class="btn btn-lg custom-login-btn w-100 mt-4 mb-0">
-                                                Lanjut
-                                            </a>
+                                            <button type="submit"
+                                                class="btn btn-lg custom-login-btn w-100 mt-4 mb-0">Verifikasi</button>
                                         </div>
                                     </form>
                                 </div>
 
                                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                                    <p class="mb-2 text-sm mx-auto">
+                                    <span class="mb-2 text-sm mx-auto">
                                         Kirim ulang kode OTP?
-                                        <a href="{{ route('resetpw') }}"
-                                            class="text-info text-gradient font-weight-bold">Kirim ulang</a>
-                                    </p>
+                                        <form id="resendOtpForm" method="POST" action="{{ route('send.otp') }}"
+                                            class="d-inline">
+                                            @csrf
+                                            <input type="hidden" name="email" value="{{ session('email') }}">
+                                            <a href="#"
+                                                onclick="event.preventDefault(); document.getElementById('resendOtpForm').submit();"
+                                                class="text-info text-gradient font-weight-bold">Kirim ulang</a>
+                                        </form>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -83,6 +105,7 @@
             </div>
         </section>
     </main>
+
     <script>
         document.getElementById('togglePassword').addEventListener('change', function() {
             const passwordInput = document.getElementById('passwordInput');
@@ -178,8 +201,6 @@
             }
         }
     </style>
-
-
 </body>
 
 </html>
