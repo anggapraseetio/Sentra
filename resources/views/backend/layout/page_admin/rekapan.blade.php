@@ -2,8 +2,6 @@
 
 @section('admin')
 
-<title>Rekapan</title>
-
 <div class="container-fluid">
     <!-- Breadcrumb -->
     <div class="row page-titles mx-0">
@@ -56,10 +54,6 @@
                         <i class="fas fa-file-excel me-2"></i>Export to Excel
                     </button>
                 </div>
-                <div id="exportLoading" style="display:none;" class="mt-2 text-end">
-                    <span class="spinner-border text-success" role="status" aria-hidden="true"></span>
-                    <span class="ms-2">Menyiapkan file...</span>
-                </div>
             </form>
         </div>
     </div>
@@ -80,7 +74,7 @@
                 <div class="card-body">
                     <div class="table-responsive mt-3">
                         <table id="rekapanTable" class="table table-striped table-bordered nowrap" style="width:100%">
-                            <thead class="table-dark">
+                            <thead class="">
                                 <tr>
                                     <th>ID Laporan</th>
                                     <th>Kategori</th>
@@ -104,17 +98,17 @@
                                     <td>{{ $p->status }}</td>
                                     <td>{{ optional($p->created_at)->format('Y-m-d') }}</td>
 
-                                    <td>{{ $p->pelapor->nik ?? '-' }}</td>
-                                    <td>{{ $p->pelapor->nama ?? '-' }}</td>
+                                    <td>{{ $p->detail_pelapor->nik ?? '-' }}</td>
+                                    <td>{{ $p->detail_pelapor->nama ?? '-' }}</td>
 
-                                    <td>{{ $p->terlapor->nik ?? '-' }}</td>
-                                    <td>{{ $p->terlapor->nama ?? '-' }}</td>
+                                    <td>{{ $p->detail_terlapor->nik ?? '-' }}</td>
+                                    <td>{{ $p->detail_terlapor->nama ?? '-' }}</td>
 
-                                    <td>{{ $p->penerimaManfaat->informasiAnak->nik ?? '-' }}</td>
-                                    <td>{{ $p->penerimaManfaat->informasiAnak->nama ?? '-' }}</td>
+                                    <td>{{ $p->detail_penerima_manfaat->informasiAnak->nik ?? '-' }}</td>
+                                    <td>{{ $p->detail_penerima_manfaat->informasiAnak->nama ?? '-' }}</td>
 
-                                    <td>{{ $p->penerimaManfaat->nik ?? '-' }}</td>
-                                    <td>{{ $p->penerimaManfaat->nama ?? '-' }}</td>
+                                    <td>{{ $p->detail_penerima_manfaat->nik ?? '-' }}</td>
+                                    <td>{{ $p->detail_penerima_manfaat->nama ?? '-' }}</td>
                                 </tr>
                                 @empty
                                 <tr>
