@@ -8,10 +8,10 @@ use App\Http\Controllers\RekapanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\InformasiAnakController;
+use App\Http\Controllers\GantiSandiController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\OtpController;
 use Illuminate\Support\Facades\Mail;
 
@@ -53,6 +53,15 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/informasi/{id}', 'update')->name('informasi.update');
         Route::delete('/informasi/{id}', 'destroy')->name('informasi.destroy');
     });
+
+
+// Routes untuk reset password
+Route::middleware('auth')->group(function () {
+    Route::get('/reset-password', [App\Http\Controllers\GantiSandiController::class, 'showResetForm'])->name('password.reset.form');
+    Route::post('/reset-password/confirm', [App\Http\Controllers\GantiSandiController::class, 'confirm'])->name('password.confirm');
+    Route::post('/reset-password/reset', [App\Http\Controllers\GantiSandiController::class, 'reset'])->name('password.reset');
+    Route::post('/password/close-modal', [App\Http\Controllers\GantiSandiController::class, 'closeModal'])->name('password.close-modal');
+});
 
     //Rekapan
     Route::get('/rekapan', [RekapanController::class, 'index'])->name('rekapan');

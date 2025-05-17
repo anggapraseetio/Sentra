@@ -48,7 +48,7 @@
                                     <span class="custom-font">Admin</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="{{ route('resetpw') }}" class="dropdown-item">
+                                    <a href="#confirmPasswordModal" class="dropdown-item">
                                         <i class="fas fa-key"></i>
                                         <span class="ml-2">Reset Password</span>
                                     </a>

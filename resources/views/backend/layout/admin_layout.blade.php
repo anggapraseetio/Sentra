@@ -29,7 +29,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-
+    {{-- CSS reset password --}}
+    @include('backend.layout.page_admin.reset_password.styles')
 </head>
 
 <body>
@@ -50,8 +51,10 @@
         @include('backend.components.footer')
     </div>
 
-    @stack('scripts')
+    @include('backend.layout.page_admin.reset_password.reset-password')
+    @include('backend.layout.page_admin.reset_password.scripts')
 
+    @stack('scripts')
     <!-- Required vendors -->
     <script src="{{ asset('admin/assets_2/vendor/global/global.min.js') }}"></script>
     <script src="{{ asset('admin/assets_2/js/quixnav-init.js') }}"></script>
@@ -106,7 +109,6 @@
     @hasSection('chart')
         @yield('chart')
     @endif
-
 </body>
 
 </html>

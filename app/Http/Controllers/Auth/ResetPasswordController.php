@@ -27,8 +27,21 @@ class ResetPasswordController extends Controller
     public function reset(Request $request)
     {
         $request->validate([
-            'password' => 'required|min:6|confirmed',
-        ]);
+        'password' => [
+            'required',
+            'string',
+            'min:8',
+            'regex:/[a-z]/',    
+            'regex:/[A-Z]/', 
+            'regex:/[0-9]/',      
+            'confirmed',
+        ],
+    ], [
+        'password.required' => 'Password wajib diisi.',
+        'password.min' => 'Password minimal 8 karakter.',
+        'password.regex' => 'Password harus mengandung huruf besar, huruf kecil, dan angka.',
+        'password.confirmed' => 'Konfirmasi password tidak sesuai.',
+    ]);
 
         $email = session('verified_email');
 
