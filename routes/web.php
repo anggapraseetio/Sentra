@@ -11,7 +11,6 @@ use App\Http\Controllers\InformasiAnakController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\OtpController;
 use Illuminate\Support\Facades\Mail;
 
