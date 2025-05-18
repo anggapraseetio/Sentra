@@ -29159,6 +29159,12 @@ input:-webkit-autofill {
     color: #cc0000;
     border: 1px solid rgba(255, 0, 0, 0.2);
 }
+.alert-soft-success {
+    background-color: rgba(0, 128, 0, 0.15);
+    color: #2e7d32; 
+    border: 1px solid rgba(0, 128, 0, 0.2);
+}
+
 
 .text-black-custom {
   color: #000000 !important; /*hitam*/

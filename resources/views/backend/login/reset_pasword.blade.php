@@ -10,14 +10,16 @@
         Material Dashboard 3 by Creative Tim
     </title>
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
     <!-- Nucleo Icons -->
     <link href="{{ 'backend/assets/css/nucleo-icons.css' }}" rel="stylesheet" />
     <link href="{{ 'backend/assets/css/nucleo-svg.css' }}" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- Material Icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ 'backend/assets/css/material-dashboard.css?v=3.2.0' }}" rel="stylesheet" />
 </head>
@@ -28,8 +30,10 @@
             <div class="page-header min-vh-100">
                 <div class="container">
                     <div class="row">
-                        <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
-                            <div class="position-relative bg-gradient-primary h-100 m-1 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('backend/assets/img/illustrations/ilustrasi_sigin.png'); background-size: cover;">
+                        <div
+                            class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+                            <div class="position-relative bg-gradient-primary h-100 m-1 px-7 border-radius-lg d-flex flex-column justify-content-center"
+                                style="background-image: url('backend/assets/img/illustrations/ilustrasi_sigin.png'); background-size: cover;">
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-0">
@@ -44,11 +48,23 @@
                                         @csrf
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">Email</label>
-                                            <input type="email" name="email" class="form-control" required>
+                                            <input type="email" name="email" class="form-control" required
+                                                oninvalid="this.setCustomValidity('Email tidak boleh kosong')"
+                                                oninput="this.setCustomValidity('')">
                                         </div>
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-lg custom-login-btn w-100 mt-4 mb-0">Kirim OTP</button>
-                                        </div>
+                                        <div class="card card-plain">
+                                            @if ($errors->any())
+                                                <div class="alert alert-soft-danger text-center mb-0">
+                                                    @foreach ($errors->all() as $error)
+                                                        <div>{{ $error }}</div>
+                                                    @endforeach
+                                                </div>
+                                            @endif
+                                            <div class="text-center">
+                                                <button type="submit"
+                                                    class="btn btn-lg custom-login-btn w-100 mt-4 mb-0">Kirim
+                                                    OTP</button>
+                                            </div>
                                     </form>
                                 </div>
                             </div>

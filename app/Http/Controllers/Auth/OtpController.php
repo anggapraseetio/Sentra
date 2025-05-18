@@ -12,33 +12,38 @@ use Illuminate\Support\Facades\Mail;
 class OtpController extends Controller
 {
     // Kirim OTP ke email
-    public function sendOtp(Request $request)
-    {
-        $request->validate(['email' => 'required|email']);
+public function sendOtp(Request $request)
+{
+    $request->validate(['email' => 'required|email']);
 
-        $user = DB::table('akun')->where('email', $request->email)->first();
+    $user = DB::table('akun')->where('email', $request->email)->first();
 
-        if (!$user) {
-            return redirect()->back()->withErrors(['email' => 'Email tidak ditemukan.']);
-        }
-
-        $otp = rand(100000, 999999);
-        $expiry = Carbon::now()->addMinutes(5);
-
-        DB::table('akun')->where('email', $request->email)->update([
-            'otp' => $otp,
-            'otp_expiry' => $expiry
-        ]);
-
-        Mail::raw("Kode OTP Anda adalah: $otp. Berlaku selama 5 menit.", function ($message) use ($request) {
-            $message->to($request->email)->subject('Reset Password - Kode OTP');
-        });
-
-        // Simpan email ke session & arahkan ke form OTP
-        session(['email' => $request->email]);
-
-        return redirect()->route('otp.form')->with('message', 'Kode OTP telah dikirim ke email Anda.');
+    if (!$user) {
+        return redirect()->back()->withErrors(['email' => 'Email tidak ditemukan.']);
     }
+
+    if ($user->role !== 'admin') {
+        return redirect()->back()->withErrors(['email' => 'Hanya admin yang dapat melakukan reset password.']);
+    }
+
+    $otp = rand(100000, 999999);
+    $expiry = Carbon::now()->addMinutes(5);
+
+    DB::table('akun')->where('email', $request->email)->update([
+        'otp' => $otp,
+        'otp_expiry' => $expiry
+    ]);
+
+    Mail::raw("Kode OTP Anda adalah: $otp. Berlaku selama 5 menit.", function ($message) use ($request) {
+        $message->to($request->email)->subject('Reset Password - Kode OTP');
+    });
+
+    session(['email' => $request->email]);
+
+    return redirect()->route('otp.form')->with('message', 'Kode OTP telah dikirim ke email Anda.');
+}
+
+
 
     // Tampilkan form OTP
     public function showOtpForm(Request $request)

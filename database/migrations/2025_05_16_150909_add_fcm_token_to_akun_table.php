@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rekapan', function (Blueprint $table) {
-            $table->id();
-            $table->string('id_laporan')->unique();
-            $table->string('kategori');
-            $table->enum('status', ['proses', 'selesai'])->default('selesai');
-            $table->timestamps();
-        });
+        if (!Schema::hasColumn('akun', 'fcm_token')) {
+            Schema::table('akun', function (Blueprint $table) {
+                $table->string('fcm_token')->nullable()->after('otp_expiry');
+            });
+        }
     }
 
     /**
@@ -25,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rekapan');
+        Schema::table('akun', function (Blueprint $table) {
+            //
+        });
     }
 };

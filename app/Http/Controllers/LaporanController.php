@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Laporan;
 
 class LaporanController extends Controller
-{
+{  
     public function laporan_selesai()
     {
         $laporan = Laporan::with('detail_pelapor')->where('status', 'selesai')->get();
@@ -125,7 +125,7 @@ public function update(Request $request, $id_laporan)
                 'tempat_lahir' => $request->penerima['ttl'],
                 'tanggal_lahir' => $request->penerima['tanggal'],
                 'umur' => $request->penerima['umur'],
-                'jk' => $request->penerima['jk'],
+                'jenis_kelamin' => $request->penerima['jk'],
                 'pekerjaan' => $request->penerima['pekerjaan'],
                 'agama' => $request->penerima['agama'],
                 'pendidikan' => $request->penerima['pendidikan'],
@@ -142,7 +142,7 @@ public function update(Request $request, $id_laporan)
                 'tempat_lahir' => $request->penerima['ttl'],
                 'tanggal_lahir' => $request->penerima['tanggal'],
                 'umur' => $request->penerima['umur'],
-                'jk' => $request->penerima['jk'],
+                'jenis_kelamin' => $request->penerima['jk'],
                 'pekerjaan' => $request->penerima['pekerjaan'],
                 'agama' => $request->penerima['agama'],
                 'pendidikan' => $request->penerima['pendidikan'],
@@ -162,7 +162,7 @@ public function update(Request $request, $id_laporan)
                 'nama' => $request->terlapor['nama'],
                 'umur' => $request->terlapor['umur'],
                 'alamat' => $request->terlapor['alamat'],
-                'jk' => $request->terlapor['jk'],
+                'jenis_kelamin' => $request->terlapor['jk'],
                 'hubungan_dengan_korban' => $request->terlapor['hubungan'],
                 'informasi_tambahan' => $request->terlapor['informasi_tambahan'],
             ]);
@@ -172,7 +172,7 @@ public function update(Request $request, $id_laporan)
                 'nama' => $request->terlapor['nama'],
                 'umur' => $request->terlapor['umur'],
                 'alamat' => $request->terlapor['alamat'],
-                'jk' => $request->terlapor['jk'],
+                'jenis_kelamin' => $request->terlapor['jk'],
                 'hubungan_dengan_korban' => $request->terlapor['hubungan'],
                 'informasi_tambahan' => $request->terlapor['informasi_tambahan'],
             ]);
