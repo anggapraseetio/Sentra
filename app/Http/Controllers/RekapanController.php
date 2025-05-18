@@ -41,28 +41,36 @@ class RekapanController extends Controller
         $sheet = $spreadsheet->getActiveSheet();
 
         $headers = [
-            'ID Laporan', 'Kategori', 'Tanggal Dibuat', 'Status',
-            'Nama Anak', 'Umur Anak', 'JK Anak', 'Pendidikan Anak',
-            'Nama Pelapor', 'NIK Pelapor', 'Alamat Pelapor', 'Hubungan dgn Korban',
-            'Nama Terlapor', 'NIK Terlapor', 'Alamat Terlapor', 'Umur Terlapor', 'JK Terlapor', 'Hubungan dgn Korban',
-            'Nama Penerima', 'NIK Penerima', 'Alamat Penerima', 'Umur Penerima', 'JK Penerima', 'Pendidikan Penerima', 'Hubungan dgn Terlapor',
-            'Tanggal Kejadian', 'Tempat Kejadian', 'Kronologi', 'Bukti'
+            'ID Laporan', 'Kategori', 'Tanggal Laporan', 'Status',
+            'Nama_Anak', 'Umur_Anak', 'Jenis_Kelamin', 'Pendidikan_Anak',
+            'Nama Pelapor', 'NIK Pelapor', 'Alamat Pelapor', 'Hubungan dengan Korban',
+            'Nama Terlapor', 'NIK Terlapor', 'Alamat Terlapor', 'Umur Terlapor', 'Jenis Kelamin', 'Hubungan dengan Korban',
+            'Nama Penerima', 'NIK Penerima', 'Alamat Penerima', 'Umur Penerima', 'Jenis Kelamin', 'Pendidikan Penerima', 'Hubungan dengan Terlapor',
+            'Tanggal Kejadian', 'Tempat Kejadian', 'Kronologi'
         ];
 
         $sheet->fromArray($headers, null, 'A1');
         $row = 2;
 
         foreach ($dataLaporan as $p) {
+
+            $anakList = $p->detail_penerima_manfaat->informasi_anak ?? collect();
+
+            $namaAnak = $anakList->pluck('nama')->filter()->implode("\n") ?: '-';
+            $umurAnak = $anakList->pluck('umur')->filter()->implode("\n") ?: '-';
+            $jkAnak = $anakList->pluck('jenis_kelamin')->filter()->implode("\n") ?: '-';
+            $pendidikanAnak = $anakList->pluck('pendidikan')->filter()->implode("\n") ?: '-';
+
             $sheet->fromArray([
                 $p->id_laporan,
                 $p->kategori,
                 optional($p->created_at)->format('Y-m-d'),
                 $p->status,
 
-                $p->detail_penerima_manfaat->informasi_anak->nama ?? '-',
-                $p->detail_penerima_manfaat->informasi_anak->umur ?? '-',
-                $p->detail_penerima_manfaat->informasi_anak->jenis_kelamin ?? '-',
-                $p->detail_penerima_manfaat->informasi_anak->pendidikan ?? '-',
+                $namaAnak,
+                $umurAnak,
+                $jkAnak,
+                $pendidikanAnak,
 
                 $p->detail_pelapor->nama ?? '-',
                 $p->detail_pelapor->nik ?? '-',
@@ -87,7 +95,6 @@ class RekapanController extends Controller
                 $p->detail_kasus->tanggal ?? '-',
                 $p->detail_kasus->tempat_kejadian ?? '-',
                 $p->detail_kasus->kronologi ?? '-',
-                $p->detail_kasus->bukti ?? '-',
             ], null, 'A' . $row++);
         }
 
@@ -119,15 +126,20 @@ class RekapanController extends Controller
             ],
             [
                 'title' => 'Informasi Anak',
-                'headers' => ['ID Laporan', 'Nama', 'Umur', 'JK', 'Pendidikan'],
+                'headers' => ['ID Laporan', 'Nama Anak', 'Umur Anak', 'JK Anak', 'Pendidikan Anak'],
                 'rows' => $dataLaporan->map(function ($d) {
-                    $informasi_anak = $d->detail_penerima_manfaat->informasi_anak ?? null;
+                    $anakList = $d->detail_penerima_manfaat->informasi_anak ?? collect();
+
                     return [
                         $d->id_laporan,
-                        $informasi_anak->nama ?? '-', $informasi_anak->umur ?? '-', $informasi_anak->jenis_kelamin ?? '-', $informasi_anak->pendidikan ?? '-'
+                        $anakList->pluck('nama')->filter()->implode("\n") ?: '-',
+                        $anakList->pluck('umur')->filter()->implode("\n") ?: '-',
+                        $anakList->pluck('jenis_kelamin')->filter()->implode("\n") ?: '-',
+                        $anakList->pluck('pendidikan')->filter()->implode("\n") ?: '-',
                     ];
                 })->toArray()
             ],
+
             [
                 'title' => 'Detail Terlapor',
                 'headers' => ['ID Laporan', 'Nama', 'NIK', 'Alamat', 'Umur', 'JK', 'Hubungan'],
@@ -149,10 +161,10 @@ class RekapanController extends Controller
             ],
             [
                 'title' => 'Detail Kasus',
-                'headers' => ['ID Laporan', 'Tanggal Kejadian', 'Tempat', 'Kronologi', 'Bukti'],
+                'headers' => ['ID Laporan', 'Tanggal Kejadian', 'Tempat', 'Kronologi'],
                 'rows' => $dataLaporan->map(fn($d) => [
                     $d->id_laporan, $d->detail_kasus->tanggal ?? '-', $d->detail_kasus->tempat_kejadian ?? '-',
-                    $d->detail_kasus->kronologi ?? '-', $d->detail_kasus->bukti ?? '-'
+                    $d->detail_kasus->kronologi ?? '-'
                 ])->toArray()
             ],
         ];

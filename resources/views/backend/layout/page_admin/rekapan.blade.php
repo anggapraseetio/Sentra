@@ -22,8 +22,8 @@
     <div class="row mb-4 align-items-center">
         <!-- Filter Form -->
         <div class="col-md-3 mb-3 mb-md-0">
-            <label for="searchInput" class="form-label fw-bold">Cari Nama/NIK</label>
-            <input type="text" id="searchInput" class="form-control" placeholder="Contoh: Aulia/351817...">
+            <label for="searchInput" class="form-label fw-bold">Cari Nama/NIK Pelapor</label>
+            <input type="text" id="searchInput" class="form-control" placeholder="Cari...">
         </div>
         <div class="col-md-2 mb-3 mb-md-0">
             <label for="startDate" class="form-label fw-bold">Tanggal Awal</label>
@@ -74,7 +74,7 @@
                 <div class="card-body">
                     <div class="table-responsive mt-3">
                         <table id="rekapanTable" class="table table-striped table-bordered nowrap" style="width:100%">
-                            <thead class="">
+                            <thead class="custom-font-sidebar bg-ijo">
                                 <tr>
                                     <th>ID Laporan</th>
                                     <th>Kategori</th>
@@ -132,13 +132,23 @@
         const table = $('#rekapanTable').DataTable({
             responsive: true,
             paging: true,
-            ordering: true,
+            dom: 'rt',
+            ordering: false,
             info: true
         });
 
-        // Filter pencarian manual
+        // Filter pencarian di kolom ke-4 dan 5
+        $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+            const keyword = $('#searchInput').val().toLowerCase();
+            const col4 = (data[4] || '').toLowerCase(); // Kolom ke-4
+            const col5 = (data[5] || '').toLowerCase(); // Kolom ke-5
+
+            return col4.includes(keyword) || col5.includes(keyword);
+        });
+
+        // Trigger filter saat mengetik
         $('#searchInput').on('keyup', function () {
-            table.search(this.value).draw();
+            table.draw();
         });
 
         // Update jumlah data

@@ -98,7 +98,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="laporanTable" class="table table-striped text-center table-responsive-sm">
+                            <table id="InformasiTable" class="table table-striped text-center table-responsive-sm">
                                 <thead class="custom-font-sidebar bg-ijo">
                                     <tr>
                                         <th>No</th>
@@ -159,7 +159,7 @@
 
     <script>
         $(document).ready(function() {
-            const table = $('#laporanTable').DataTable({
+            const table = $('#InformasiTable').DataTable({
                 dom: 'rt',
                 ordering: false,
             });
