@@ -1,6 +1,6 @@
 @extends ('frontend.template')
 
-<!DOCTYPE html>
+@section('content')
 
 <body class="index-page">
 
@@ -18,6 +18,7 @@
           <li><a href="#hero" class="active">Beranda</a></li>
           <li><a href="#about">Tentang Kami</a></li>
           <li><a href="#faq">Pertanyaan Umum</a></li>
+          <li><a href="#information">Informasi</a></li>
           <li><a href="#contact">Kontak</a></li>
           <li><a href="#team">Team</a></li>
         </ul>
@@ -42,7 +43,7 @@
             <h1><span>Selamat Datang di Website Resmi</span></h1>
             <p>Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak</p>
             <div class="d-flex">
-              <a href="#about" class="btn-get-started">Download APK</a>
+              <a href="#download" class="btn btn-outline-light"><i class="bi bi-download me-1"></i>Download APP</a>
             </div>
           </div>
 
@@ -95,7 +96,7 @@
               Kami percaya bahwa sinergi antara pemerintah dan masyarakat menjadi kunci utama dalam mewujudkan kesejahteraan sosial yang inklusif dan berkeadilan.
               Mari bersama menciptakan lingkungan yang aman, ramah, dan memberdayakan bagi selruh warga, terutama perempuan dan anak-anak.
             </p>
-            <p> Salam hangat, </p></>
+            <p> Salam hangat, </p>
             <p class="fst-italic">Tim Dinas Sosial PPPA</p>
           </div>
         </div>
@@ -186,6 +187,75 @@
       </div>
 
     </section><!-- /Faq Section -->
+
+     <!-- Informasi Section -->
+    <section id="information" class="informasi-section">
+
+        <!-- Section Title -->
+      <div class="container section-title text-center" data-aos="fade-up">
+        <div><span>Informasi</span> <span class="description-title">Terkini</span></div>
+        <p>Update Terbaru Informasi Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak</p>
+      </div>
+      
+      @isset($informasiList)
+      @if($informasiList->count() > 0)
+      <div class="row g-4">
+        @foreach($informasiList as $informasi)
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card h-100 shadow-sm border-0 rounded-4 hover-shadow">
+            @if($informasi->gambar)
+            <img src="{{ asset('uploads/informasi/' . $informasi->gambar) }}" class="card-img-top" alt="{{ $informasi->judul }}">
+            @endif
+            
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title fw-semibold description-title">{{ $informasi->judul }}</h5>
+              <p class="card-text text-muted">{{ Str::limit(strip_tags($informasi->deskripsi), 100) }}</p>
+              
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <small class="badge bg-light text-dark">{{ $informasi->created_at->diffForHumans() }}</small>
+                <a href="#" class="btn btn-outline-success btn-sm stretched-link"
+                  data-bs-toggle="modal" data-bs-target="#infoModal{{ $informasi->id }}">Baca Selengkapnya</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        @endforeach
+      </div>
+      @else
+      <div class="alert alert-info text-center mt-4">Tidak ada informasi terbaru saat ini</div>
+      @endif
+    @endisset
+    </section>
+    
+    <!-- Modal untuk Informasi -->
+    @foreach ($informasiList as $informasi)
+    <div class="modal fade" id="infoModal{{ $informasi->id }}" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{ $informasi->judul }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            @if ($informasi->gambar)
+            <img src="{{ asset('uploads/informasi/' . $informasi->gambar) }}" class="img-fluid rounded mb-4 w-100" alt="{{ $informasi->judul }}" style="max-height: 300px; object-fit: cover;">
+            @endif
+            
+            <div class="d-flex align-items-center mb-4">
+              <span class="badge bg-primary me-3">Informasi</span>
+              <small class="text-muted me-3"><i class="bi bi-clock me-1"></i>{{ $informasi->created_at->diffForHumans() }}</small>
+              <small class="text-muted"><i class="bi bi-calendar me-1"></i>{{ $informasi->created_at->format('d F Y') }}</small>
+            </div>
+            <div class="content">{!! $informasi->deskripsi !!}</div>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  @endforeach
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
@@ -394,3 +464,5 @@
 </footer>
 
 </body>
+
+@endsection

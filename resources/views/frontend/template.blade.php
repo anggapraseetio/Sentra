@@ -5,8 +5,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <meta name="description" content="Website resmi Dinas Sosial PPPA Kabupaten Nganjuk. Informasi layanan, pengaduan, dan edukasi sosial.">
+  <meta name="keywords" content="Dinas Sosial, PPPA, Kabupaten Nganjuk, perlindungan anak, pemberdayaan perempuan">
+  <meta property="og:title" content="Website Dinsos PPPA Nganjuk" />
+  <meta property="og:description" content="Informasi, edukasi, dan layanan pengaduan terkait sosial, perempuan, dan anak." />
+  <meta property="og:image" content="{{ asset('landingpage/assets/img/logo.png') }}" />
+  <meta property="og:url" content="{{ url()->current() }}" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Favicons -->
   <link href="{{ asset('landingpage/assets/img/logo.jpg') }}" rel="icon">
@@ -16,6 +21,7 @@
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="{{ asset('landingpage/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -26,19 +32,26 @@
 
   <!-- Main CSS File -->
   <link href="{{ asset('landingpage/assets/css/main.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  
+  <style>
+  html {
+    scroll-behavior: smooth;
+  }
+  </style>
 
-  <!-- =======================================================
-  * Template Name: Bootslander
-  * Template URL: https://bootstrapmade.com/bootslander-free-bootstrap-landing-page-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
 </head>
+
+<body>
 
   <main class="main">
     @yield ('content')
   </main>
+
+  <a href="#header" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  </body>
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -56,7 +69,6 @@
 
   <!-- Main JS File -->
   <script src="{{ asset('landingpage/assets/js/main.js') }}"></script>
-
-</body>
+  
 
 </html>
