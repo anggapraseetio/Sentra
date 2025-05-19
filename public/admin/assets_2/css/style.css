@@ -19464,11 +19464,13 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
       color: #333;
       margin-left: 5px;
   }
-    .custom-font-sidebar {
+    .custom-font-sidebar th {
       font-family: 'Poppins', sans-serif;
       font-size: 16px;
       font-weight: 600;
-      color: #fff;
+      color: #fff !important;
+      text-align: center !important;
+      vertical-align: middle !important;
   }
   table#laporanTable thead.custom-font-sidebar th {
     text-align: center !important;

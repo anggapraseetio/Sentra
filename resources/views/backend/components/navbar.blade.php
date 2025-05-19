@@ -18,29 +18,31 @@
             <div class="header-content">
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-                        </div>
+                        <div class="header-left"></div>
                         <ul class="navbar-nav header-right">
                             <li class="nav-item dropdown notification_dropdown">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                                     <i class="mdi mdi-bell mdi-24px"></i>
-                                    <div class="pulse-css"></div>
+                                    @php
+                                        $count = \App\Models\Notifikasi::where('id_akun', Auth::id())
+                                            ->where('tipe', 'admin')
+                                            ->where('status', 'terkirim')
+                                            ->count();
+                                    @endphp
+
+                                    @if ($count > 0)
+                                        <div class="pulse-css"></div>
+                                        <span class="badge badge-danger badge-pill">{{ $count }}</span>
+                                    @endif
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <ul class="list-unstyled">
-                                        <li class="media dropdown-item">
-                                            <span class="success"><i class="ti-user"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Alex</strong> Mengirim Laporan
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                    </ul>
-                                </div>
+
+                                <!-- Dropdown notifikasi akan di-load dari NotifikasiController -->
+                                @include('backend.components.notifikasi_dropdown', [
+                                    'notifikasi' => \App\Models\Notifikasi::where('id_akun', Auth::id())->where('tipe', 'admin')->where('status', 'terkirim')->orderBy('created_at', 'desc')->limit(5)->get(),
+                                    'count' => $count,
+                                ])
                             </li>
+
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link d-flex align-items-center" href="#" role="button"
                                     data-toggle="dropdown">

@@ -27,7 +27,7 @@
 
         <!-- row -->
         <div class="row">
-            <div class="col-xl-6 col-xxl-12">
+            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="basic-form">
@@ -79,7 +79,7 @@
                                         {{ isset($informasi) ? 'Update' : 'Simpan' }}
                                     </button>
                                     @if (isset($informasi))
-                                        <a href="{{ route('informasi.index') }}" class="btn btn-secondary ml-2">Batal</a>
+                                        <a href="{{ route('informasi.index') }}" class="btn btn-danger ml-2">Batal</a>
                                     @endif
                                 </div>
                             </form>
@@ -125,7 +125,7 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('informasi.edit', $item->id_informasi) }}"
-                                                    class="btn btn-warning btn-sm "> Edit
+                                                    class="btn btn-warning btn-sm"> Edit
                                                 </a>
                                                 <form action="{{ route('informasi.destroy', $item->id_informasi) }}"
                                                     method="POST" class="d-inline"
