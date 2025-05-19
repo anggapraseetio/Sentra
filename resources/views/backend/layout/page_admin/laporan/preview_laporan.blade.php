@@ -93,7 +93,7 @@
                                             </p>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label class="font-weight-bold">Nama</label>
+                                            <label class="font-weight-bold">Nama Penerima Manfaat</label>
                                             <p class="form-control">{{ optional($laporan->detail_penerima_manfaat)->nama }}
                                             </p>
                                         </div>
@@ -169,7 +169,7 @@
                                                 <h6 class="font-weight-bold mb-3">ANAK KE-{{ $index + 1 }}</h6>
                                                 <div class="row">
                                                     <div class="col-md-6 mb-3">
-                                                        <label class="font-weight-bold">Nama</label>
+                                                        <label class="font-weight-bold">Nama Anak</label>
                                                         <p class="form-control">{{ $anak->nama }}</p>
                                                     </div>
                                                     <div class="col-md-6 mb-3">
@@ -214,7 +214,7 @@
                                             <p class="form-control">{{ optional($laporan->detail_terlapor)->nik }}</p>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label class="font-weight-bold">Nama</label>
+                                            <label class="font-weight-bold">Nama Terlapor</label>
                                             <p class="form-control">{{ optional($laporan->detail_terlapor)->nama }}</p>
                                         </div>
                                         <div class="col-md-6 mb-3">

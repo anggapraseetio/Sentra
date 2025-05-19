@@ -36,7 +36,6 @@
                                     @endif
                                 </a>
 
-                                <!-- Dropdown notifikasi akan di-load dari NotifikasiController -->
                                 @include('backend.components.notifikasi_dropdown', [
                                     'notifikasi' => \App\Models\Notifikasi::where('id_akun', Auth::id())->where('tipe', 'admin')->where('status', 'terkirim')->orderBy('created_at', 'desc')->limit(5)->get(),
                                     'count' => $count,
