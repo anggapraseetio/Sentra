@@ -25,7 +25,7 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/resetpassword1', [PageController::class, 'otp'])->name('inputOTP');
     Route::get('/resetpassword2', [PageController::class, 'new_pw'])->name('newpassword');
 
-    Route::get('/', [LandingPageController::class, 'index']);
+    Route::get('/', [LandingPageController::class, 'index'])->name('index');
     
 
     Route::get('/layanan/perempuan', function () {
