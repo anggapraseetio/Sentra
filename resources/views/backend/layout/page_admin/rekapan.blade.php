@@ -102,10 +102,8 @@
                                             <td>{{ $p->detail_terlapor->nama ?? '-' }}</td>
 
                                             <td>
-                                                {{ $p->detail_penerima_manfaat->informasi_anak->pluck('nama')->implode(', ') ?: '-' }}
+                                                {{ optional($p->detail_penerima_manfaat->informasi_anak ?? collect())->pluck('nama')->implode(', ') ?:'-' }}
                                             </td>
-
-
                                         </tr>
                                     @empty
                                         <tr>

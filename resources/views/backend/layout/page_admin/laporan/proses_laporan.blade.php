@@ -1,6 +1,10 @@
 @extends('backend.layout.admin_layout')
 @section('admin')
-
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="container-fluid">
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
@@ -70,7 +74,10 @@
                                                     onsubmit="return confirm('Apakah laporan {{ $data->detail_pelapor->nama ?? 'Tanpa Nama' }} sudah selesai?');">
                                                     @csrf
                                                     @method('PUT')
-                                                    <button type="submit" class="btn btn-hijau btn-sm">Selesai</button>
+                                                    <button type="submit" class="btn btn-hijau btn-sm"
+                                                        {{ $data->status == 'diterima' ? 'disabled title=Proses-Laporan' : '' }}>
+                                                        Selesai
+                                                    </button>
                                                 </form>
                                             </td>
                                         </tr>

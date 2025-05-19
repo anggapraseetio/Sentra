@@ -1,5 +1,10 @@
 @extends('backend.layout.admin_layout')
 @section('admin')
+    @if ($errors->has('kasus'))
+        <div class="alert alert-danger">
+            {{ $errors->first('kasus') }}
+        </div>
+    @endif
     <div class="container-fluid">
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
@@ -89,27 +94,37 @@
                                         <div class="col-md-6 mb-3">
                                             <label>NIK Pelapor</label>
                                             <input type="text" name="pelapor[nik]" class="form-control"
-                                                value="{{ optional($laporan->detail_pelapor)->nik }}">
+                                                value="{{ optional($laporan->detail_pelapor)->nik }}" required
+                                                oninvalid="this.setCustomValidity('Data pelapor wajib di isi')"
+                                                oninput="this.setCustomValidity('')">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Nama Pelapor</label>
                                             <input type="text" name="pelapor[nama]" class="form-control"
-                                                value="{{ optional($laporan->detail_pelapor)->nama }}">
+                                                value="{{ optional($laporan->detail_pelapor)->nama }}" required
+                                                oninvalid="this.setCustomValidity('Data pelapor wajib di isi')"
+                                                oninput="this.setCustomValidity('')">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Alamat Pelapor</label>
                                             <input type="text" name="pelapor[alamat]" class="form-control"
-                                                value="{{ optional($laporan->detail_pelapor)->alamat }}">
+                                                value="{{ optional($laporan->detail_pelapor)->alamat }}" required
+                                                oninvalid="this.setCustomValidity('Data pelapor wajib di isi')"
+                                                oninput="this.setCustomValidity('')">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Hubungan dengan Korban</label>
                                             <input type="text" name="pelapor[hubungan]" class="form-control"
-                                                value="{{ optional($laporan->detail_pelapor)->hubungan_dengan_korban }}">
+                                                value="{{ optional($laporan->detail_pelapor)->hubungan_dengan_korban }}"
+                                                required oninvalid="this.setCustomValidity('Data pelapor wajib di isi')"
+                                                oninput="this.setCustomValidity('')">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Nomor Telepon Pelapor</label>
                                             <input type="text" name="pelapor[telepon]" class="form-control"
-                                                value="{{ optional($laporan->detail_pelapor)->no_telp }}">
+                                                value="{{ optional($laporan->detail_pelapor)->no_telp }}" required
+                                                oninvalid="this.setCustomValidity('Data pelapor wajib di isi')"
+                                                oninput="this.setCustomValidity('')">
                                         </div>
                                     </div>
                                 </section>
@@ -125,7 +140,7 @@
                                                 value="{{ optional($laporan->detail_penerima_manfaat)->nik }}">
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label>Nama</label>
+                                            <label>Nama Penerima Manfaat</label>
                                             <input type="text" name="penerima[nama]" class="form-control penerima-input"
                                                 value="{{ optional($laporan->detail_penerima_manfaat)->nama }}">
                                         </div>
@@ -142,7 +157,8 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Umur</label>
-                                            <input type="number" name="penerima[umur]" class="form-control penerima-input"
+                                            <input type="number" name="penerima[umur]"
+                                                class="form-control penerima-input"
                                                 value="{{ optional($laporan->detail_penerima_manfaat)->umur }}">
                                         </div>
                                         <div class="col-md-6 mb-3">
@@ -228,7 +244,7 @@
                                                     <input type="hidden" name="anak[{{ $index }}][id]"
                                                         value="{{ $anak->id_anak }}">
                                                     <div class="col-md-6 mb-3">
-                                                        <label>Nama</label>
+                                                        <label>Nama Anak</label>
                                                         <input type="text" name="anak[{{ $index }}][nama]"
                                                             class="form-control" value="{{ $anak->nama }}" required>
                                                     </div>
@@ -322,7 +338,7 @@
                                                 value="{{ optional($laporan->detail_terlapor)->nik }}">
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label>Nama</label>
+                                            <label>Nama Terlapor</label>
                                             <input type="text" name="terlapor[nama]" class="form-control"
                                                 value="{{ optional($laporan->detail_terlapor)->nama }}">
                                         </div>
@@ -370,24 +386,22 @@
                                         <div class="col-md-6 mb-3">
                                             <label>Tanggal Kejadian</label>
                                             <input type="date" name="kasus[tanggal]" class="form-control"
-                                                value="{{ optional($laporan->detail_kasus)->tanggal }}">
+                                                value="{{ optional($laporan->detail_kasus)->tanggal }}" required
+                                                oninvalid="this.setCustomValidity('Detail kasus wajib di isi')"
+                                                oninput="this.setCustomValidity('')">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Tempat Kejadian</label>
                                             <input type="text" name="kasus[tempat]" class="form-control"
-                                                value="{{ optional($laporan->detail_kasus)->tempat_kejadian }}">
+                                                value="{{ optional($laporan->detail_kasus)->tempat_kejadian }}" required
+                                                oninvalid="this.setCustomValidity('Detail kasus wajib di isi')"
+                                                oninput="this.setCustomValidity('')">
                                         </div>
                                         <div class="col-md-12 mb-3">
                                             <label>Kronologi Kejadian</label>
-                                            <textarea name="kasus[kronologi]" class="form-control" rows="5">{{ optional($laporan->detail_kasus)->kronologi }}</textarea>
+                                            <textarea name="kasus[kronologi]" class="form-control" rows="5" required
+                                                oninvalid="this.setCustomValidity('Detail kasus wajib di isi')" oninput="this.setCustomValidity('')">{{ optional($laporan->detail_kasus)->kronologi }}</textarea>
                                         </div>
-                                        @if (optional($laporan->detail_kasus)->bukti)
-                                            <div class="col-md-12 mb-3">
-                                                <label>Bukti</label><br>
-                                                <img src="{{ asset('storage/' . $laporan->detail_kasus->bukti) }}"
-                                                    alt="Bukti Kasus" style="max-width: 300px; height: auto;">
-                                            </div>
-                                        @endif
                                     </div>
                                 </section>
                             </div>
