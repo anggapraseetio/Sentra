@@ -53,6 +53,7 @@
 
     @include('backend.layout.page_admin.reset_password.reset-password')
     @include('backend.layout.page_admin.reset_password.scripts')
+    @include('backend.layout.page_admin.notifikasi')
 
     @stack('scripts')
     <!-- Required vendors -->

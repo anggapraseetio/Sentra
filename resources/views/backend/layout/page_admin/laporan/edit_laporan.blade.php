@@ -166,8 +166,8 @@
                                         <div class="col-md-6 mb-3">
                                             <label>Agama</label>
                                             <select name="penerima[agama]" class="form-control penerima-input">
+                                                <option value="">Pilih</option>
                                                 @foreach (['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Konghucu', 'lainnya'] as $agama)
-                                                    <option value="">Pilih</option>
                                                     <option value="{{ $agama }}"
                                                         {{ optional($laporan->detail_penerima_manfaat)->agama == $agama ? 'selected' : '' }}>
                                                         {{ $agama }}</option>
@@ -177,8 +177,8 @@
                                         <div class="col-md-6 mb-3">
                                             <label>Pendidikan</label>
                                             <select name="penerima[pendidikan]" class="form-control penerima-input">
+                                                <option value="">Pilih</option>
                                                 @foreach (['Tidak Sekolah', 'SD', 'SMP', 'SMA', 'Diploma', 'S1', 'S2', 'S3', 'Lainnya'] as $pendidikan)
-                                                    <option value="">Pilih</option>
                                                     <option value="{{ $pendidikan }}"
                                                         {{ optional($laporan->detail_penerima_manfaat)->pendidikan == $pendidikan ? 'selected' : '' }}>
                                                         {{ $pendidikan }}</option>

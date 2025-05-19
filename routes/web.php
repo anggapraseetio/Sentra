@@ -63,6 +63,27 @@ Route::middleware('auth')->group(function () {
     Route::post('/password/close-modal', [App\Http\Controllers\GantiSandiController::class, 'closeModal'])->name('password.close-modal');
 });
 
+Route::middleware(['auth'])->group(function () {
+    // Menampilkan halaman notifikasi
+    Route::get('/admin/notifikasi', [App\Http\Controllers\NotifikasiController::class, 'index'])
+        ->name('admin.notifikasi');
+    
+    // Menampilkan dropdown notifikasi (untuk navbar)
+    Route::get('/admin/notifikasi/dropdown', [App\Http\Controllers\NotifikasiController::class, 'showNotifikasi'])
+        ->name('admin.notifikasi.dropdown');
+    
+    // Menandai notifikasi sudah dibaca
+    Route::post('/admin/notifikasi/{id}/read', [App\Http\Controllers\NotifikasiController::class, 'markAsRead'])
+        ->name('admin.notifikasi.mark-read');
+    
+    // Menerima laporan dari notifikasi
+    Route::post('/admin/notifikasi/{id_notif}/terima-laporan/{id_laporan}', [App\Http\Controllers\NotifikasiController::class, 'terimaLaporan'])
+        ->name('admin.notifikasi.terima-laporan');
+    
+    // Mendapatkan jumlah notifikasi belum dibaca (untuk refresh otomatis)
+    Route::get('/admin/notifikasi/count', [App\Http\Controllers\NotifikasiController::class, 'getCount'])
+        ->name('admin.notifikasi.count');
+});
     //Rekapan
     Route::get('/rekapan', [RekapanController::class, 'index'])->name('rekapan');
     Route::get('rekapan/data', [RekapanController::class, 'getData'])->name('rekapan.data');
@@ -81,7 +102,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/laporan/{id_laporan}', [LaporanController::class, 'update'])->name('laporan.update');
     Route::delete('/anak/{id}', [InformasiAnakController::class, 'destroy'])->name('anak.destroy');
 
-    Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi');
 
 
     //Rekapan
@@ -91,7 +111,7 @@ Route::middleware('auth')->group(function () {
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        return redirect()->route('login');
+        return redirect()->route('index');
     })->name('logout');
 });
 
@@ -105,4 +125,3 @@ Route::middleware('web')->group(function () {
     Route::get('/new-password', [ResetPasswordController::class, 'showNewPasswordForm'])->name('password.new');
     Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('otp.reset');
 });
-
