@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\OtpController;
+use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -24,9 +25,8 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/resetpassword1', [PageController::class, 'otp'])->name('inputOTP');
     Route::get('/resetpassword2', [PageController::class, 'new_pw'])->name('newpassword');
 
-    Route::get('/', function () {
-        return view('frontend.index');
-    });
+    Route::get('/', [LandingPageController::class, 'index']);
+    
 
     Route::get('/layanan/perempuan', function () {
         return view('frontend.layanan.perempuan');

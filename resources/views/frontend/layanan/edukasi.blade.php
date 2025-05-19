@@ -58,7 +58,7 @@
     </div>
 
     <div class="text-center mt-4">
-        <a href="/index" class="btn btn-primary btn-lg"><i class="bi bi-arrow-left-circle"></i> Kembali ke Beranda</a>
+        <a href="/" class="btn btn-success btn-lg"><i class="bi bi-arrow-left-circle"></i> Kembali ke Beranda</a>
     </div>
 </div>
 @endsection
