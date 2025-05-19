@@ -106,7 +106,7 @@ Route::middleware(['auth'])->group(function () {
 
     //Rekapan
     Route::get('/rekapan', [RekapanController::class, 'index'])->name('rekapan');
-    Route::post('/rekapan/export', [RekapanController::class, 'handleExport'])->name('rekapan.export');
+    Route::post('/rekapan/export', [RekapanController::class, 'exportSimple'])->name('rekapan.export');
     Route::post('/logout', function () {
         Auth::logout();
         request()->session()->invalidate();

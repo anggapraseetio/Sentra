@@ -28,17 +28,7 @@ class RekapanController extends Controller
         return view('backend.layout.page_admin.rekapan', compact('dataLaporan'));
     }
 
-    public function handleExport(Request $request)
-    {
-        $request->validate([
-            'export_type' => 'required|in:simple,multi'
-        ]);
-
-        return $request->export_type === 'multi'
-            ? $this->exportMultiSheet($request)
-            : $this->exportSimple($request);
-    }
-
+    
     public function exportSimple(Request $request)
     {
         $dataLaporan = $this->filteredQuery($request)->get();
@@ -100,86 +90,9 @@ class RekapanController extends Controller
 
         $this->applyStyle($sheet, count($headers), $row - 1);
 
-        return $this->downloadExcel($spreadsheet, 'rekapan_laporan');
+        return $this->downloadExcel($spreadsheet, 'rekapan');
     }
 
-    public function exportMultiSheet(Request $request)
-    {
-        $dataLaporan = $this->filteredQuery($request)->get();
-        $spreadsheet = new Spreadsheet();
-
-        $sheets = [
-            [
-                'title' => 'Rekapan Umum',
-                'headers' => ['ID Laporan', 'Kategori', 'Tanggal Dibuat', 'Status'],
-                'rows' => $dataLaporan->map(fn($d) => [
-                    $d->id_laporan, $d->kategori, optional($d->created_at)->format('Y-m-d'), $d->status
-                ])->toArray()
-            ],
-            [
-                'title' => 'Detail Pelapor',
-                'headers' => ['ID Laporan', 'Nama', 'NIK', 'Alamat', 'Hubungan'],
-                'rows' => $dataLaporan->map(fn($d) => [
-                    $d->id_laporan, $d->detail_pelapor->nama ?? '-', "'" . ($d->detail_pelapor->nik ?? '-'),
-                    $d->detail_pelapor->alamat ?? '-', $d->detail_pelapor->hubungan_dengan_korban ?? '-'
-                ])->toArray()
-            ],
-            [
-                'title' => 'Informasi Anak',
-                'headers' => ['ID Laporan', 'Nama Anak', 'Umur Anak', 'JK Anak', 'Pendidikan Anak'],
-                'rows' => $dataLaporan->map(function ($d) {
-                    $anak = $d->detail_penerima_manfaat->informasi_anak ?? collect();
-
-                    return [
-                        $d->id_laporan,
-                        $anak->pluck('nama')->filter()->implode("\n") ?: '-',
-                        $anak->pluck('umur')->filter()->implode("\n") ?: '-',
-                        $anak->pluck('jenis_kelamin')->filter()->implode("\n") ?: '-',
-                        $anak->pluck('pendidikan')->filter()->implode("\n") ?: '-'
-                    ];
-                })->toArray()
-            ],
-            [
-                'title' => 'Detail Terlapor',
-                'headers' => ['ID Laporan', 'Nama', 'NIK', 'Alamat', 'Umur', 'JK', 'Hubungan'],
-                'rows' => $dataLaporan->map(fn($d) => [
-                    $d->id_laporan, $d->detail_terlapor->nama ?? '-', "'" . ($d->detail_terlapor->nik ?? '-'),
-                    $d->detail_terlapor->alamat ?? '-', $d->detail_terlapor->umur ?? '-',
-                    $d->detail_terlapor->jenis_kelamin ?? '-', $d->detail_terlapor->hubungan_dengan_korban ?? '-'
-                ])->toArray()
-            ],
-            [
-                'title' => 'Penerima Manfaat',
-                'headers' => ['ID Laporan', 'Nama', 'NIK', 'Alamat', 'Umur', 'JK', 'Pendidikan', 'Hubungan'],
-                'rows' => $dataLaporan->map(fn($d) => [
-                    $d->id_laporan, $d->detail_penerima_manfaat->nama ?? '-', "'" . ($d->detail_penerima_manfaat->nik ?? '-'),
-                    $d->detail_penerima_manfaat->alamat ?? '-', $d->detail_penerima_manfaat->umur ?? '-',
-                    $d->detail_penerima_manfaat->jenis_kelamin ?? '-', $d->detail_penerima_manfaat->pendidikan ?? '-',
-                    $d->detail_penerima_manfaat->hubungan_dengan_terlapor ?? '-'
-                ])->toArray()
-            ],
-            [
-                'title' => 'Detail Kasus',
-                'headers' => ['ID Laporan', 'Tanggal Kejadian', 'Tempat', 'Kronologi'],
-                'rows' => $dataLaporan->map(fn($d) => [
-                    $d->id_laporan, $d->detail_kasus->tanggal ?? '-', $d->detail_kasus->tempat_kejadian ?? '-',
-                    $d->detail_kasus->kronologi ?? '-'
-                ])->toArray()
-            ]
-        ];
-
-        foreach ($sheets as $index => $s) {
-            $sheet = new Worksheet($spreadsheet, $s['title']);
-            $spreadsheet->addSheet($sheet, $index);
-            $sheet->fromArray($s['headers'], null, 'A1');
-            $sheet->fromArray($s['rows'], null, 'A2');
-            $this->applyStyle($sheet, count($s['headers']), count($s['rows']) + 1);
-        }
-
-        $spreadsheet->removeSheetByIndex(0); // Hapus sheet default
-
-        return $this->downloadExcel($spreadsheet, 'rekapan_multi');
-    }
 
     private function filteredQuery(Request $request)
     {

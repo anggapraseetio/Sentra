@@ -7,11 +7,6 @@
   <title>Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak</title>
   <meta name="description" content="Website resmi Dinas Sosial PPPA Kabupaten Nganjuk. Informasi layanan, pengaduan, dan edukasi sosial.">
   <meta name="keywords" content="Dinas Sosial, PPPA, Kabupaten Nganjuk, perlindungan anak, pemberdayaan perempuan">
-  <meta property="og:title" content="Website Dinsos PPPA Nganjuk" />
-  <meta property="og:description" content="Informasi, edukasi, dan layanan pengaduan terkait sosial, perempuan, dan anak." />
-  <meta property="og:image" content="{{ asset('landingpage/assets/img/logo.png') }}" />
-  <meta property="og:url" content="{{ url()->current() }}" />
-  <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Favicons -->
   <link href="{{ asset('landingpage/assets/img/logo.jpg') }}" rel="icon">
@@ -29,17 +24,11 @@
   <link href="{{ asset('landingpage/assets/vendor/aos/aos.css') }}" rel="stylesheet">
   <link href="{{ asset('landingpage/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
   <link href="{{ asset('landingpage/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
 
   <!-- Main CSS File -->
   <link href="{{ asset('landingpage/assets/css/main.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  
-  <style>
-  html {
-    scroll-behavior: smooth;
-  }
-  </style>
-
 
 </head>
 
@@ -51,8 +40,6 @@
 
   <a href="#header" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  </body>
-
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -61,14 +48,15 @@
 
   <!-- Vendor JS Files -->
   <script src="{{ asset('landingpage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('landingpage/assets/vendor/php-email-form/validate.js') }}"></script>
   <script src="{{ asset('landingpage/assets/vendor/aos/aos.js') }}"></script>
   <script src="{{ asset('landingpage/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
   <script src="{{ asset('landingpage/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
   <script src="{{ asset('landingpage/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
   <!-- Main JS File -->
   <script src="{{ asset('landingpage/assets/js/main.js') }}"></script>
   
-
+  </body>
 </html>

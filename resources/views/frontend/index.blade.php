@@ -433,7 +433,7 @@
     
     <!-- Modal untuk Informasi -->
     @foreach ($informasiList as $informasi)
-    <div class="modal fade" id="infoModal{{ $informasi->id }}" tabindex="-1" aria-labelledby="infoModalLabel{{ $informasi->id }}" aria-hidden="true">
+    <div class="modal fade" id="infoModal{{ $informasi->id }}" tabindex="-1" aria-labelledby="infoModalLabel{{ $informasi->id }}" innert="true">
       <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
 

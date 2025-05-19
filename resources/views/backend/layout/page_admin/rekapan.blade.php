@@ -39,7 +39,7 @@
                 <input type="date" id="endDate" class="form-control">
             </div>
             <div class="col-md-3 mb-3 mb-md-0">
-                <label for="exportType" class="form-label fw-bold">Export Data</label>
+                <label for="exportType" class="form-label fw-bold">Export Rekapan</label>
                 <form id="exportForm" method="POST" action="{{ route('rekapan.export') }}">
                     @csrf
                     <input type="hidden" name="search" id="exportSearch">
@@ -47,12 +47,6 @@
                     <input type="hidden" name="end_date" id="exportEndDate">
                     <input type="hidden" name="kategori" id="exportKategori">
 
-                    <div class="d-grid gap-2"> {{-- Membuat elemen vertikal penuh --}}
-                        <select name="export_type" id="exportType" class="form-select w-100 mb-2" required>
-                            <option value="">-- Pilih Jenis Export --</option>
-                            <option value="simple">Satu Sheet (Menyeluruh)</option>
-                            <option value="multi">Multi Sheet (Per Kategori)</option>
-                        </select>
                         <button type="submit" class="btn btn-success w-100">
                             <i class="fas fa-file-excel me-2"></i> Export to Excel
                         </button>
