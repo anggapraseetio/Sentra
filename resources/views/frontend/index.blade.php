@@ -8,8 +8,6 @@
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">SENTRA</h1>
       </a>
 
@@ -22,10 +20,15 @@
           <li><a href="#contact">Kontak</a></li>
           <li><a href="#team">Team</a></li>
         </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-get-started" href="{{route('login')}}" style="color : #ffffff"> Login </a>
+      <div class="d-flex align-items-center gap-2">
+        <a href="{{route('login')}}" class="btn btn-success"><i class="bi bi-box-arrow-in-right me-1"></i> Login </a>
+        <a href="#download" class="btn btn-success"><i class="bi bi-download me-1"></i>Download APK</a>
+      </div>
+              
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+
     </div>
   </header>
 
@@ -36,15 +39,12 @@
       <div class="container">
         <div class="row gy-4 justify-content-between">
           <div class="col-lg-4 order-lg-last hero-img" data-aos="zoom-out" data-aos-delay="100">
-            <img src="{{ asset('landingpage/assets/img/img-hero.webp') }}" class="img-fluid animated" alt="">
+            <img src="{{ asset('landingpage/assets/img/logo_nganjuk.png') }}" class="img-fluid animated" alt="" style="max-width: 250px; height: auto;">
           </div>
 
           <div class="col-lg-6  d-flex flex-column justify-content-center" data-aos="fade-in">
-            <h1><span>Selamat Datang di Website Resmi</span></h1>
-            <p>Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak</p>
-            <div class="d-flex">
-              <a href="#download" class="btn btn-outline-light"><i class="bi bi-download me-1"></i>Download APP</a>
-            </div>
+            <h1><span>Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak</span></h1>
+            <p>Pusat informasi dan layanan digital untuk mewujudkan perlindungan dan pemberdayaan yang berkeadilan.</p>
           </div>
 
         </div>
@@ -71,33 +71,33 @@
     <section id="about" class="about section">
 
          <!-- Section Title -->
-         <div class="container section-title" data-aos="fade-up">
+         <div class="container section-title text-center" data-aos="fade-down" data-aos-duration="800">
         <div><span class="description-title">Tentang Kami</span></div>
+        <p class="mt-2">Tentang Web Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak</p>
       </div><!-- End Section Title -->
 
-
       <div class="container">
-        <div class="row gy-4 align-items-center features-item">
-          <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
+        <div class="row gy-4 align-items-center features-item px-xl-5">
+          <div class="col-md-5 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="200">
             <img src="{{ asset('landingpage/assets/img/about.png') }}" class="img-fluid" alt="">
           </div>
-          <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-            <p class="fst-italic">
+          <div class="col-md-7" data-aos="fade-left" data-aos-delay="300" style="text-align: justify;">
+            <p data-aos="fade-up" data-aos-delay="400">
               Website ini merupakan portal informasi resmi dari Dinas Sosial PPPA yang bertujuan untuk memberikan layanan informasi, edukasi, serta wadah komunikasi
               bagi masyarakat terkait isu-isu sosial, pemberdayaan perempuan, dan perlindungan anak.
-              Melalui platform ini, kami berkomitmen utnuk:
+              Melalui platform ini, kami berkomitmen untuk:
             </p>
-            <ul>
+            <ul data-aos="fade-up" data-aos-delay="500">
               <li><i class="bi bi-check2-circle"></i><span> Meningkatkan transparansi dan akuntabilitas dalam penyelenggaraan program sosial.</span></li>
               <li><i class="bi bi-check2-circle"></i><span> Memberikan akses mudah terhadap layanan sosial, pengaduan, dan perlindungan hak-hak perempuan dan anak.</span></li>
               <li><i class="bi bi-check2-circle"></i><span> Menyediakan informasi terkini mengenai kegiatan, program kerja, serta kebijakan pemerintah dibidang sosial dan pemberdayaan masyarakat.</span></li>
             </ul>
-            <p class="fst-italic">
+            <p data-aos="fade-up" data-aos-delay="600">
               Kami percaya bahwa sinergi antara pemerintah dan masyarakat menjadi kunci utama dalam mewujudkan kesejahteraan sosial yang inklusif dan berkeadilan.
               Mari bersama menciptakan lingkungan yang aman, ramah, dan memberdayakan bagi selruh warga, terutama perempuan dan anak-anak.
             </p>
-            <p> Salam hangat, </p>
-            <p class="fst-italic">Tim Dinas Sosial PPPA</p>
+            <p data-aos="fade-up" data-aos-delay="700"> Salam hangat, </p>
+            <p class="fst-italic" data-aos="fade-up" data-aos-delay="750">Tim Dinas Sosial PPPA</p>
           </div>
         </div>
 
@@ -110,9 +110,9 @@
 
         <div class="row gy-4">
 
-          <div class="col-lg-7 d-flex flex-column justify-content-center order-2 order-lg-1">
+          <div class="col-lg-7 mx-auto d-flex flex-column justify-content-center order-2 order-lg-1">
 
-            <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
+            <div class="content px-xl-5 text-center" data-aos="fade-up" data-aos-delay="100">
               <h3><strong>PERTANYAAN UMUM</strong></h3>
               <p>
                 Pertanyaan umum terkait Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak.
@@ -179,9 +179,6 @@
 
           </div>
 
-          <div class="col-lg-5 order-1 order-lg-2">
-            <img src="{{ asset('landingpage/assets/img/faq.png') }}" class="img-fluid" alt="" data-aos="zoom-in" data-aos-delay="100">
-          </div>
         </div>
 
       </div>
@@ -226,36 +223,6 @@
       @endif
     @endisset
     </section>
-    
-    <!-- Modal untuk Informasi -->
-    @foreach ($informasiList as $informasi)
-    <div class="modal fade" id="infoModal{{ $informasi->id }}" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">{{ $informasi->judul }}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            @if ($informasi->gambar)
-            <img src="{{ asset('uploads/informasi/' . $informasi->gambar) }}" class="img-fluid rounded mb-4 w-100" alt="{{ $informasi->judul }}" style="max-height: 300px; object-fit: cover;">
-            @endif
-            
-            <div class="d-flex align-items-center mb-4">
-              <span class="badge bg-primary me-3">Informasi</span>
-              <small class="text-muted me-3"><i class="bi bi-clock me-1"></i>{{ $informasi->created_at->diffForHumans() }}</small>
-              <small class="text-muted"><i class="bi bi-calendar me-1"></i>{{ $informasi->created_at->format('d F Y') }}</small>
-            </div>
-            <div class="content">{!! $informasi->deskripsi !!}</div>
-          </div>
-          
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  @endforeach
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
@@ -462,6 +429,45 @@
 </div>
 
 </footer>
+
+    
+    <!-- Modal untuk Informasi -->
+    @foreach ($informasiList as $informasi)
+    <div class="modal fade" id="infoModal{{ $informasi->id }}" tabindex="-1" aria-labelledby="infoModalLabel{{ $informasi->id }}" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+
+          <div class="modal-header">
+            <h5 class="modal-title">{{ $informasi->judul }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body p-0">
+            @if ($informasi->gambar)
+            <div class="w-100">
+              <img src="{{ asset('uploads/informasi/' . $informasi->gambar) }}" class="img-fluid w-100" alt="{{ $informasi->judul }}" style="display: block; height: auto; max-height: 70vh; object-fit: contain; background-color: #f8f9fa;">
+            </div>
+            @endif
+            
+              <!-- konten modal -->
+              <div class="modal-body p-4">
+                <h4 class="fw-bold mb-3" id="infoModalLabel{{ $informasi->id }}">{{ $informasi->judul }}</h4>
+                <div class="d-flex align-items-center mb-3 text-muted small">
+                  <span class="badge bg-primary me-2">Informasi</span>
+                  <span class="me-3"><i class="bi bi-clock me-1"></i>{{ $informasi->created_at->diffForHumans() }}</span>
+                  <span><i class="bi bi-calendar me-1"></i>{{ $informasi->created_at->format('d F Y') }}</span>
+                </div>
+
+                <p class="mb-0" style="white-space: pre-line;">{!! $informasi->deskripsi !!}</p>
+              </div>
+          
+          <div class="modal-footer border-0 p-3 pt-0">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Tutup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  @endforeach
 
 </body>
 
