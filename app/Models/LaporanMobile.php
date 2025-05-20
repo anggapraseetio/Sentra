@@ -90,7 +90,7 @@ class DetailPelapor extends Model
     public function scopeSearch($query, $keyword)
     {
         return $query->where(function ($q) use ($keyword) {
-            $q->where('nama', 'like', "%{$keyword}%") // Ganti 'nama' dengan kolom yang relevan
+            $q->where('nama', 'like', "%{$keyword}%") 
                 ->orWhereHas('detailPelapor', function ($q) use ($keyword) {
                     $q->where('nama', 'like', "%{$keyword}%");
                 })

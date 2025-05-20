@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthControllerMobile;
 use App\Http\Controllers\LaporanControllerMobile;
 use App\Http\Controllers\ChatControllerMobile;
 use App\Http\Controllers\NotificationControllerMobile;
+use App\Http\Controllers\InformasiController;
 
 
 
@@ -45,3 +46,5 @@ Route::put('/chats/{chatId}/read', [ChatControllerMobile::class, 'markAsRead']);
 Route::post('/new-message', [NotificationControllerMobile::class, 'newMessage']);
 Route::post('/report-update', [NotificationControllerMobile::class, 'reportUpdate']);
 Route::post('/update-fcm-token', [NotificationControllerMobile::class, 'updateFCMToken']);
+
+Route::get('/informasi', [InformasiController::class, 'apiIndex']);

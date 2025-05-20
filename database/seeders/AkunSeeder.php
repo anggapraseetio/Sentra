@@ -24,5 +24,31 @@ class AkunSeeder extends Seeder
             'otp' => null,
             'otp_expiry' => null,
         ]);
+        Akun::create([
+            'notelp' => '087860616271',
+            'nama' => 'Admin Konsultasi',
+            'email' => null,
+            'jenis_kelamin' => null,
+            'alamat' => null,
+            'password' => Hash::make('adminkonsul123'), // password terenkripsi
+            'role' => 'admin',
+            'emerquest' => null,
+            'answquest' => null,
+            'otp' => null,
+            'otp_expiry' => null,
+        ]);
+        Akun::create([
+            'notelp' => '087860616277',
+            'nama' => 'Guest',
+            'email' => null,
+            'jenis_kelamin' => null,
+            'alamat' => null,
+            'password' => Hash::make('guest321'), // password terenkripsi
+            'role' => 'guest',
+            'emerquest' => null,
+            'answquest' => null,
+            'otp' => null,
+            'otp_expiry' => null,
+        ]);
     }
 }

@@ -180,7 +180,7 @@ class LaporanControllerMobile extends Controller
                 'nik' => $validated['nik'],
                 'nama' => $validated['nama'],
                 'alamat' => $validated['alamat'],
-                'hubungan_dengan_korban' => '-', // Default karena laporan cepat
+                'hubungan_dengan_korban' => '-', 
                 'no_telp' => $validated['no_telp'],
             ]);
 
@@ -188,7 +188,7 @@ class LaporanControllerMobile extends Controller
             DB::table('detail_kasus')->insert([
                 'id_laporan' => $id_laporan,
                 'tanggal' => Carbon::now()->format('Y-m-d'),
-                'tempat_kejadian' => '-', // Default kosong
+                'tempat_kejadian' => '-',
                 'kronologi' => $validated['deskripsi']
             ]);
 

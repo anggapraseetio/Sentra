@@ -54,22 +54,66 @@ class AkunControllerMobile extends Controller
             'alamat' => 'nullable|string|max:100',
         ]);
 
-        DB::table('akun')->insert([
-            'notelp' => $request->notelp,
-            'nama' => $request->nama,
-            'password' => Hash::make($request->password), // Hash password
-            'role' => $request->role ?? 'guest',
-            'emerquest' => $request->emerquest,
-            'answquest' => $request->answquest,
-            'jenis_kelamin' => $request->gender,
-            'alamat'=> $request->alamat,
-            'otp' => rand(100000, 999999), // Random OTP
-            'otp_expiry' => Carbon::now()->addMinutes(5), // OTP berlaku 5 menit
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        DB::beginTransaction();
 
-        return response()->json(['message' => 'Akun berhasil ditambahkan']);
+        try {
+            // Insert akun baru dan dapatkan ID
+            $newAccountId = DB::table('akun')->insertGetId([
+                'notelp' => $request->notelp,
+                'nama' => $request->nama,
+                'password' => Hash::make($request->password),
+                'role' => $request->role ?? 'guest',
+                'emerquest' => $request->emerquest,
+                'answquest' => $request->answquest,
+                'jenis_kelamin' => $request->gender,
+                'alamat' => $request->alamat,
+                'otp' => rand(100000, 999999),
+                'otp_expiry' => Carbon::now()->addMinutes(5),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            // Cari laporan yang terkait dengan nomor telepon dan id_akun = 3 (Guest)
+            $laporan = DB::table('laporan')
+                ->join('detail_pelapor', 'laporan.id_laporan', '=', 'detail_pelapor.id_laporan')
+                ->where('detail_pelapor.no_telp', $request->notelp)
+                ->where('laporan.id_akun', 3)
+                ->select('laporan.id_laporan')
+                ->first();
+
+            // Jika ditemukan laporan, update id_akun
+            if ($laporan) {
+                DB::table('laporan')
+                    ->where('id_laporan', $laporan->id_laporan)
+                    ->update([
+                        'id_akun' => $newAccountId,
+                        'updated_at' => now(),
+                    ]);
+
+                // Opsional: Tambahkan log atau notifikasi
+                \Log::info("Laporan dengan ID {$laporan->id_laporan} diperbarui dari Guest (3) ke akun baru ({$newAccountId}).");
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Akun berhasil ditambahkan',
+                'data' => [
+                    'id_akun' => $newAccountId,
+                    'laporan_updated' => $laporan ? true : false,
+                ]
+            ], 201);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal membuat akun.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     // Update akun
@@ -97,7 +141,7 @@ class AkunControllerMobile extends Controller
             'nama' => $request->nama ?? $akun->nama,
             'email' => $request->email ?? $akun->email,
             'jenis_kelamin' => $request->jenis_kelamin ?? $akun->jenis_kelamin,
-            'alamat' => $request-> alamat ?? $akun-> alamat,
+            'alamat' => $request->alamat ?? $akun->alamat,
             'password' => $request->password ? Hash::make($request->password) : $akun->password,
             'role' => $request->role ?? $akun->role,
             'emerquest' => $request->emerquest ?? $akun->emerquest,

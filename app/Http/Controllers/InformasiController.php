@@ -97,6 +97,22 @@ class InformasiController extends Controller
         return redirect()->route('informasi.index')
             ->with('success', 'Informasi berhasil diperbarui');
     }
+    public function apiIndex()
+    {
+        $informasiList = Informasi::all()->map(function ($informasi) {
+            return [
+                'id' => $informasi->id,
+                'judul' => $informasi->judul,
+                'deskripsi' => $informasi->deskripsi,
+                'gambar' => $informasi->gambar ? asset('uploads/informasi/' . $informasi->gambar) : null,
+            ];
+        });
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $informasiList
+        ]);
+    }
 
     /**
      * Menghapus informasi
