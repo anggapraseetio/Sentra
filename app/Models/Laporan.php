@@ -11,6 +11,8 @@ class Laporan extends Model
 
     protected $table = 'laporan';
     protected $primaryKey = 'id_laporan';
+    protected $keyType = 'string'; // ← ubah ke 'int' atau 'string' sesuai kebutuhan
+    public $incrementing = false; 
     public $timestamps = true;
 
     

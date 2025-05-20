@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('detail_kasus', function (Blueprint $table) {
             $table->id('id_kasus');
-            $table->unsignedBigInteger('id_laporan');
+            $table->string('id_laporan', 50);
             $table->date('tanggal')->nullable();
             $table->string('tempat_kejadian', 150)->nullable();
             $table->text('kronologi')->nullable();
