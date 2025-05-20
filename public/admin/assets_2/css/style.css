@@ -3982,6 +3982,20 @@ input[type="button"].btn-block {
     border-top-color: #cfefac; }
   .alert-success .alert-link {
     color: #27420a; }
+  
+.alert-custom-success {
+  color: #045c34; /* teks utama */
+  background-color: #d2f4e5; /* latar belakang */
+  border-color: #a6e9cd; /* border */
+}
+
+.alert-custom-success hr {
+  border-top-color: #8de0be; /* garis pemisah */
+}
+
+.alert-custom-success .alert-link {
+  color: #034227; /* warna link */
+}
 
 .alert-info {
   color: #2a7665;

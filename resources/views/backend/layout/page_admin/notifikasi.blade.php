@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped">
                         <thead class="custom-font-sidebar bg-ijo">
                             <tr>
                                 <th>No</th>
@@ -38,7 +38,7 @@
                                     <td>
                                         @if(strpos($notif->judul, 'Laporan Baru') !== false)
                                             @php
-                                                $id_laporan = intval(explode(' - ', $notif->judul)[0]);
+                                                $id_laporan = trim(explode(' - ', $notif->judul)[0]);
                                             @endphp
                                             <form method="POST" action="{{ route('admin.notifikasi.terima-laporan', ['id_notif' => $notif->id_notif, 'id_laporan' => $id_laporan]) }}" class="d-inline">
                                                 @csrf
@@ -61,9 +61,6 @@
                     </table>
                 </div>
             </div>
-            {{-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-            </div> --}}
         </div>
     </div>
 </div>

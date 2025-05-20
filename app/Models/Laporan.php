@@ -11,11 +11,17 @@ class Laporan extends Model
 
     protected $table = 'laporan';
     protected $primaryKey = 'id_laporan';
-    protected $keyType = 'string'; // ← ubah ke 'int' atau 'string' sesuai kebutuhan
+    protected $keyType = 'string';
     public $incrementing = false; 
     public $timestamps = true;
 
-    
+        protected $fillable = [
+        'id_laporan',
+        'id_akun',
+        'kategori',
+        'status',
+    ];
+
     public function detail_pelapor()
     {
         return $this->hasOne(DetailPelapor::class, 'id_laporan', 'id_laporan');

@@ -1,6 +1,13 @@
 @extends('backend.layout.admin_layout')
-
 @section('admin')
+    @if (session('success'))
+        <div class="alert alert-custom-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <div class="container-fluid">
         <!-- Breadcrumb -->
         <div class="row page-titles mx-0">
@@ -29,94 +36,92 @@
             </div>
         </div>
         <br>
-        <div class="row mb-3">
-            <div class="col-md-2 mb-3 mb-md-0">
-                <label for="startDate" class="form-label fw-bold">Tanggal Awal</label>
-                <input type="date" id="startDate" class="form-control">
+        <form id="exportForm" method="POST" action="{{ route('rekapan.export') }}">
+            @csrf
+            <div class="row mb-3">
+                <div class="col-md-2 mb-3 mb-md-0">
+                    <label for="exportStartDate" class="form-label fw-bold">Tanggal Awal</label>
+                    <input type="date" id="exportStartDate" name="start_date" class="form-control">
+                </div>
+                <div class="col-md-2 mb-3 mb-md-0">
+                    <label for="exportEndDate" class="form-label fw-bold">Tanggal Akhir</label>
+                    <input type="date" id="exportEndDate" name="end_date" class="form-control">
+                </div>
+                <div class="col-md-3 mb-3 mb-md-0">
+                    <label class="form-label fw-bold d-block">&nbsp;</label>
+                    <button type="submit" class="btn btn-success w-100">
+                        <i class="fas fa-file-excel me-2"></i> Export to Excel
+                    </button>
+                </div>
             </div>
-            <div class="col-md-2 mb-3 mb-md-0">
-                <label for="endDate" class="form-label fw-bold">Tanggal Akhir</label>
-                <input type="date" id="endDate" class="form-control">
-            </div>
-            <div class="col-md-3 mb-3 mb-md-0">
-                <label for="exportType" class="form-label fw-bold">Export Rekapan</label>
-                <form id="exportForm" method="POST" action="{{ route('rekapan.export') }}">
-                    @csrf
-                    <input type="hidden" name="search" id="exportSearch">
-                    <input type="hidden" name="start_date" id="exportStartDate">
-                    <input type="hidden" name="end_date" id="exportEndDate">
-                    <input type="hidden" name="kategori" id="exportKategori">
-
-                        <button type="submit" class="btn btn-success w-100">
-                            <i class="fas fa-file-excel me-2"></i> Export to Excel
-                        </button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
+        </form>
+    </div>
 
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card shadow-sm border-light">
-                    <div class="card-body">
-                        <div class="table-responsive mt-3">
-                            <table id="rekapanTable" class="table table-striped table-bordered nowrap" style="width:100%">
-                                <thead class="custom-font-sidebar bg-ijo">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm border-light">
+                <div class="card-body">
+                    <div class="table-responsive mt-3">
+                        <table id="rekapanTable" class="table table-striped table-bordered nowrap" style="width:100%">
+                            <thead class="custom-font-sidebar bg-ijo">
+                                <tr>
+                                    <th>ID Laporan</th>
+                                    <th>Kategori</th>
+                                    <th>Status</th>
+                                    <th>Tanggal</th>
+                                    <th>NIK Pelapor</th>
+                                    <th>Nama Pelapor</th>
+                                    <th>NIK Penerima</th>
+                                    <th>Nama Penerima</th>
+                                    <th>NIK Terlapor</th>
+                                    <th>Nama Terlapor</th>
+                                    <th>Nama Anak</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($dataLaporan as $p)
                                     <tr>
-                                        <th>ID Laporan</th>
-                                        <th>Kategori</th>
-                                        <th>Status</th>
-                                        <th>Tanggal</th>
-                                        <th>NIK Pelapor</th>
-                                        <th>Nama Pelapor</th>
-                                        <th>NIK Penerima</th>
-                                        <th>Nama Penerima</th>
-                                        <th>NIK Terlapor</th>
-                                        <th>Nama Terlapor</th>
-                                        <th>Nama Anak</th>
+                                        <td>{{ $p->id_laporan }}</td>
+                                        <td>{{ $p->kategori }}</td>
+                                        <td>{{ $p->status }}</td>
+                                        <td>{{ optional($p->created_at)->format('Y-m-d') }}</td>
+
+                                        <td>{{ $p->detail_pelapor->nik ?? '-' }}</td>
+                                        <td>{{ $p->detail_pelapor->nama ?? '-' }}</td>
+
+                                        <td>{{ $p->detail_penerima_manfaat->nik ?? '-' }}</td>
+                                        <td>{{ $p->detail_penerima_manfaat->nama ?? '-' }}</td>
+
+                                        <td>{{ $p->detail_terlapor->nik ?? '-' }}</td>
+                                        <td>{{ $p->detail_terlapor->nama ?? '-' }}</td>
+
+                                        <td>
+                                            {{ optional($p->detail_penerima_manfaat->informasi_anak ?? collect())->pluck('nama')->implode(', ') ?:'-' }}
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($dataLaporan as $p)
-                                        <tr>
-                                            <td>{{ $p->id_laporan }}</td>
-                                            <td>{{ $p->kategori }}</td>
-                                            <td>{{ $p->status }}</td>
-                                            <td>{{ optional($p->created_at)->format('Y-m-d') }}</td>
-
-                                            <td>{{ $p->detail_pelapor->nik ?? '-' }}</td>
-                                            <td>{{ $p->detail_pelapor->nama ?? '-' }}</td>
-
-                                            <td>{{ $p->detail_penerima_manfaat->nik ?? '-' }}</td>
-                                            <td>{{ $p->detail_penerima_manfaat->nama ?? '-' }}</td>
-
-                                            <td>{{ $p->detail_terlapor->nik ?? '-' }}</td>
-                                            <td>{{ $p->detail_terlapor->nama ?? '-' }}</td>
-
-                                            <td>
-                                                {{ optional($p->detail_penerima_manfaat->informasi_anak ?? collect())->pluck('nama')->implode(', ') ?:'-' }}
+                                @empty
+                                    <tr>
+                                        @for ($i = 0; $i < 11; $i++)
+                                            <td class="{{ $i === 0 ? 'text-center text-warning' : '' }}">
+                                                {{ $i === 0 ? 'Data Kosong' : '' }}
                                             </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="12" class="text-center text-warning">Data Tidak Ditemukan!</td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                            <p class="mt-3">Total Data Ditampilkan: <span id="dataCount"></span></p>
-                        </div>
+                                        @endfor
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        <p class="mt-3">Total Data Ditampilkan: <span id="dataCount"></span></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 
     @push('scripts')
         <script>
-            $(document).ready(function() {
+            document.addEventListener('DOMContentLoaded', function() {
                 // Initialize DataTable
                 const table = $('#rekapanTable').DataTable({
                     responsive: true,
@@ -139,7 +144,6 @@
                 $('#searchInput').on('keyup', function() {
                     table.draw();
                 });
-
                 // Update jumlah data
                 const updateCount = () => {
                     const info = table.page.info();
@@ -147,7 +151,6 @@
                 };
                 $('#rekapanTable').on('draw.dt', updateCount);
                 updateCount();
-
                 // Reset filter
                 $('#resetFilter').on('click', function() {
                     $('#searchInput').val('');
@@ -156,33 +159,20 @@
                     $('#kategoriFilter').val('');
                     table.search('').draw();
                 });
+                // Update nilai pencarian jika diperlukan
+                document.getElementById('exportForm').addEventListener('submit', function(e) {
+                    // Validasi tanggal
+                    const startDate = document.getElementById('exportStartDate').value;
+                    const endDate = document.getElementById('exportEndDate').value;
 
-                // Export form submission handler
-                $('#exportForm').on('submit', function(e) {
-                    e.preventDefault();
-
-                    const exportType = $('#exportType').val();
-                    if (!exportType) {
-                        Swal.fire({
-                            icon: 'warning',
-                            title: 'Peringatan',
-                            text: 'Silakan pilih jenis export terlebih dahulu.',
-                            confirmButtonText: 'OK'
-                        });
-                        return;
+                    if (startDate && endDate) {
+                        // Periksa apakah tanggal akhir lebih besar dari tanggal awal
+                        if (new Date(startDate) > new Date(endDate)) {
+                            e.preventDefault();
+                            alert('Tanggal akhir harus lebih besar atau sama dengan tanggal awal!');
+                            return false;
+                        }
                     }
-
-                    // Isi hidden inputs
-                    $('#exportSearch').val($('#searchInput').val());
-                    $('#exportStartDate').val($('#startDate').val());
-                    $('#exportEndDate').val($('#endDate').val());
-                    $('#exportKategori').val($('#kategoriFilter').length ? $('#kategoriFilter').val() : '');
-
-                    $('#exportLoading').show();
-
-                    setTimeout(() => {
-                        document.getElementById('exportForm').submit();
-                    }, 0);
                 });
             });
         </script>
