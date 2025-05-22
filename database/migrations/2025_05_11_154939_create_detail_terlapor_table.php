@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('detail_terlapor', function (Blueprint $table) {
             $table->id('id_terlapor');
             $table->string('id_laporan', 50);
-            $table->string('nik', 20)->nullable();
+            $table->string('nik', 255)->nullable();
             $table->string('nama', 100)->nullable();
             $table->integer('umur')->nullable();
             $table->text('alamat')->nullable();

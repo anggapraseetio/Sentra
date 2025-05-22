@@ -95,36 +95,38 @@
                                             <label>NIK Pelapor</label>
                                             <input type="text" name="pelapor[nik]" class="form-control"
                                                 value="{{ optional($laporan->detail_pelapor)->nik }}" required
-                                                oninvalid="this.setCustomValidity('Data pelapor wajib di isi')"
-                                                oninput="this.setCustomValidity('')">
+                                                oninvalid="this.setCustomValidity('NIK salah')"
+                                                oninput="this.setCustomValidity('')" pattern="\d{16}" inputmode="numeric"
+                                                maxlength="16">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Nama Pelapor</label>
                                             <input type="text" name="pelapor[nama]" class="form-control"
                                                 value="{{ optional($laporan->detail_pelapor)->nama }}" required
-                                                oninvalid="this.setCustomValidity('Data pelapor wajib di isi')"
+                                                oninvalid="this.setCustomValidity('Data pelapor wajib  diisi')"
                                                 oninput="this.setCustomValidity('')">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Alamat Pelapor</label>
                                             <input type="text" name="pelapor[alamat]" class="form-control"
                                                 value="{{ optional($laporan->detail_pelapor)->alamat }}" required
-                                                oninvalid="this.setCustomValidity('Data pelapor wajib di isi')"
+                                                oninvalid="this.setCustomValidity('Data pelapor wajib diisi')"
                                                 oninput="this.setCustomValidity('')">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Hubungan dengan Korban</label>
                                             <input type="text" name="pelapor[hubungan]" class="form-control"
                                                 value="{{ optional($laporan->detail_pelapor)->hubungan_dengan_korban }}"
-                                                required oninvalid="this.setCustomValidity('Data pelapor wajib di isi')"
+                                                required oninvalid="this.setCustomValidity('Data pelapor wajib diisi')"
                                                 oninput="this.setCustomValidity('')">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Nomor Telepon Pelapor</label>
                                             <input type="text" name="pelapor[telepon]" class="form-control"
                                                 value="{{ optional($laporan->detail_pelapor)->no_telp }}" required
-                                                oninvalid="this.setCustomValidity('Data pelapor wajib di isi')"
-                                                oninput="this.setCustomValidity('')">
+                                                oninvalid="this.setCustomValidity('Nomor telepon salah')"
+                                                oninput="this.setCustomValidity('')" pattern="\d{11,15}" inputmode="numeric"
+                                                maxlength="15">
                                         </div>
                                     </div>
                                 </section>
@@ -137,16 +139,21 @@
                                         <div class="col-md-6 mb-3">
                                             <label>NIK Penerima Manfaat</label>
                                             <input type="text" name="penerima[nik]" class="form-control penerima-input"
-                                                value="{{ optional($laporan->detail_penerima_manfaat)->nik }}">
+                                                value="{{ optional($laporan->detail_penerima_manfaat)->nik }}"
+                                                oninvalid="this.setCustomValidity('NIK salah')"
+                                                oninput="this.setCustomValidity('')" pattern="\d{16}" inputmode="numeric"
+                                                maxlength="16">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Nama Penerima Manfaat</label>
-                                            <input type="text" name="penerima[nama]" class="form-control penerima-input"
+                                            <input type="text" name="penerima[nama]"
+                                                class="form-control penerima-input"
                                                 value="{{ optional($laporan->detail_penerima_manfaat)->nama }}">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Tempat Lahir</label>
-                                            <input type="text" name="penerima[ttl]" class="form-control penerima-input"
+                                            <input type="text" name="penerima[ttl]"
+                                                class="form-control penerima-input"
                                                 value="{{ optional($laporan->detail_penerima_manfaat)->tempat_lahir }}">
                                         </div>
                                         <div class="col-md-6 mb-3">
@@ -217,7 +224,10 @@
                                             <label>Nomor Telepon</label>
                                             <input type="text" name="penerima[telepon]"
                                                 class="form-control penerima-input"
-                                                value="{{ optional($laporan->detail_penerima_manfaat)->notelp }}">
+                                                value="{{ optional($laporan->detail_penerima_manfaat)->notelp }}"
+                                                oninvalid="this.setCustomValidity('Nomor telepon salah')"
+                                                oninput="this.setCustomValidity('')" pattern="\d{11,15}"
+                                                inputmode="numeric" maxlength="15">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Informasi Tambahan</label>
@@ -335,7 +345,10 @@
                                         <div class="col-md-6 mb-3">
                                             <label>NIK Terlapor</label>
                                             <input type="text" name="terlapor[nik]" class="form-control"
-                                                value="{{ optional($laporan->detail_terlapor)->nik }}">
+                                                value="{{ optional($laporan->detail_terlapor)->nik }}"
+                                                oninvalid="this.setCustomValidity('NIK salah')"
+                                                oninput="this.setCustomValidity('')" pattern="\d{16}" inputmode="numeric"
+                                                maxlength="16">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label>Nama Terlapor</label>

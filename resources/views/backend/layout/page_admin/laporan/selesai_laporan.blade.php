@@ -74,13 +74,13 @@
                                                     Preview
                                                 </a>
 
-                                                <!-- Tombol Hapus -->
-                                                <form action="{{ route('laporan.destroy', $data->id_laporan) }}"
-                                                    method="POST" style="display:inline;"
-                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus laporan {{ $data->detail_pelapor->nama ?? 'Tanpa Nama' }}?');">
+                                                <form id="delete-form-{{ $data->id_laporan }}"
+                                                    action="{{ route('laporan.destroy', $data->id_laporan) }}"
+                                                    method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" title="Hapus">
+                                                    <button type="button" class="btn btn-danger btn-sm" title="Hapus"
+                                                        onclick="confirmDelete('{{ $data->id_laporan }}', '{{ $data->detail_pelapor->nama ?? 'Tanpa Nama' }}')">
                                                         Hapus
                                                     </button>
                                                 </form>
@@ -98,6 +98,28 @@
     </div>
 @endsection
 @push('scripts')
+    @include('backend.components.style-confirm')
+    <script>
+        function confirmDelete(id, nama = 'data ini') {
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                text: `Apakah Anda yakin ingin menghapus laporan ${nama}?`,
+                icon: 'warning',
+                iconColor: '#ff4d4f',
+                showCancelButton: true,
+                confirmButtonColor: '#059652',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal',
+                buttonsStyling: true,
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
+    </script>
     <script>
         $(document).ready(function() {
             const table = $('#laporanTable').DataTable({

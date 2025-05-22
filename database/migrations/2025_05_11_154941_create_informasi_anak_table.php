@@ -25,13 +25,8 @@ return new class extends Migration
             $table->foreign('id_penerima')->references('id_penerima')->on('detail_penerima_manfaat')->onDelete('cascade');
         });
         
-        // Note: In Laravel, calculating age would typically be handled through model events
-        // rather than database triggers
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('informasi_anak');

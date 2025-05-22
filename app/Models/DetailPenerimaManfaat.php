@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Crypt;
 
 class DetailPenerimaManfaat extends Model
 {
@@ -40,5 +41,34 @@ class DetailPenerimaManfaat extends Model
     public function informasi_anak()
     {
         return $this->hasMany(InformasiAnak::class, 'id_penerima', 'id_penerima');
+    }
+    // NIK
+    public function getNikAttribute($value)
+    {
+        try {
+            return Crypt::decryptString($value);
+        } catch (\Exception $e) {
+            return $value; // fallback kalau nilainya belum terenkripsi
+        }
+    }
+
+    public function setNikAttribute($value)
+    {
+        $this->attributes['nik'] = Crypt::encryptString($value);
+    }
+
+    // No Telepon
+    public function getNoTelpAttribute($value)
+    {
+        try {
+            return Crypt::decryptString($value);
+        } catch (\Exception $e) {
+            return $value;
+        }
+    }
+
+    public function setNoTelpAttribute($value)
+    {
+        $this->attributes['notelp'] = Crypt::encryptString($value);
     }
 }

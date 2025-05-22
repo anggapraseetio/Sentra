@@ -132,17 +132,23 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('informasi.edit', $item->id_informasi) }}"
-                                                    class="btn btn-warning btn-sm"> Edit
-                                                </a>
-                                                <form action="{{ route('informasi.destroy', $item->id_informasi) }}"
-                                                    method="POST" class="d-inline"
-                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus informasi ini?');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">Hapus
-                                                    </button>
-                                                </form>
+                                                <div class="d-flex justify-content-center flex-wrap action-button-container">
+                                                    <form action="{{ route('informasi.edit', $item->id_informasi) }}"
+                                                        method="GET" class="me-2 mb-1">
+                                                        <button type="submit" class="btn btn-warning btn-sm">Edit</button>
+                                                    </form>
+
+                                                    <form method="POST"
+                                                        action="{{ route('informasi.destroy', $item->id_informasi) }}"
+                                                        id="delete-form-{{ $item->id_informasi }}" class="mb-2">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                            onclick="confirmDelete({{ $item->id_informasi }})">
+                                                            Hapus
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -156,6 +162,7 @@
     </div>
 @endsection
 
+{{-- INI SCRIPT JS --}}
 @push('scripts')
     <script>
         // Custom file input label
@@ -177,5 +184,27 @@
                 table.column(1).search(this.value).draw();
             });
         });
+    </script>
+    @include('backend.components.style-confirm')
+    <script>
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                text: 'Apakah Anda yakin ingin menghapus data ini?',
+                icon: 'warning',
+                iconColor: '#ff4d4f',
+                showCancelButton: true,
+                confirmButtonColor: '#059652',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal',
+                buttonsStyling: true,
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
     </script>
 @endpush

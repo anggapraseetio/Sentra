@@ -72,13 +72,14 @@
                                                     <button type="submit" class="btn btn-warning btn-sm"
                                                         title="Proses">Proses</button>
                                                 </form>
-                                                <form action="{{ route('laporan.selesai', $data->id_laporan) }}"
-                                                    method="POST" style="display:inline;"
-                                                    onsubmit="return confirm('Apakah laporan {{ $data->detail_pelapor->nama ?? 'Tanpa Nama' }} sudah selesai?');">
+                                                <form id="selesai-form-{{ $data->id_laporan }}"
+                                                    action="{{ route('laporan.selesai', $data->id_laporan) }}"
+                                                    method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('PUT')
-                                                    <button type="submit" class="btn btn-hijau btn-sm"
-                                                        {{ $data->status == 'diterima' ? 'disabled title=Proses-Laporan' : '' }}>
+                                                    <button type="button" class="btn btn-hijau btn-sm"
+                                                        {{ $data->status == 'diterima' ? 'disabled title=Proses-Laporan' : '' }}
+                                                        onclick="confirmSelesai('{{ $data->id_laporan }}', '{{ $data->detail_pelapor->nama ?? 'Tanpa Nama' }}')">
                                                         Selesai
                                                     </button>
                                                 </form>
@@ -96,6 +97,28 @@
     </div>
 @endsection
 @push('scripts')
+    @include('backend.components.style-confirm')
+    <script>
+        function confirmSelesai(id, nama = 'ini') {
+            Swal.fire({
+                title: 'Konfirmasi Selesai',
+                text: `Apakah laporan ${nama} sudah selesai?`,
+                icon: 'question',
+                iconColor: '#059652',
+                showCancelButton: true,
+                confirmButtonColor: '#059652',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Selesai',
+                cancelButtonText: 'Batal',
+                buttonsStyling: true,
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('selesai-form-' + id).submit();
+                }
+            });
+        }
+    </script>
     <script>
         $(document).ready(function() {
             const table = $('#laporanTable').DataTable({

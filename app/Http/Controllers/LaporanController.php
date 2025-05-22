@@ -293,7 +293,7 @@ public function destroy($id)
     // Hapus laporan utama
     $laporan->delete();
 
-    return redirect()->route('selesai')->with('success', 'Data laporan dan semua relasi berhasil dihapus.');
+    return redirect()->route('selesai')->with('success', 'Data laporan berhasil dihapus.');
 }
 
 

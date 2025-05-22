@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('detail_pelapor', function (Blueprint $table) {
             $table->id('id_pelapor');
             $table->string('id_laporan', 50);
-            $table->string('nik', 100)->nullable();
+            $table->string('nik', 255)->nullable();
             $table->string('nama', 150)->nullable();
             $table->string('alamat', 255)->nullable();
             $table->string('hubungan_dengan_korban', 100)->nullable();
-            $table->string('no_telp', 15)->nullable();
+            $table->string('no_telp', 255)->nullable();
             
             $table->foreign('id_laporan')->references('id_laporan')->on('laporan')->onDelete('cascade');
         });

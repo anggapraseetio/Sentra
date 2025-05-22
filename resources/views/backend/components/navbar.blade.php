@@ -41,7 +41,6 @@
                                     'count' => $count,
                                 ])
                             </li>
-
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link d-flex align-items-center" href="#" role="button"
                                     data-toggle="dropdown">
@@ -53,10 +52,9 @@
                                         <i class="fas fa-key"></i>
                                         <span class="ml-2">Reset Password</span>
                                     </a>
-                                    <form method="POST" action="{{ route('logout') }}"
-                                        onsubmit="return confirm('Apakah Anda yakin ingin logout?');">
+                                    <form method="POST" action="{{ route('logout') }}" id="logout-form">
                                         @csrf
-                                        <button type="submit" class="dropdown-item">
+                                        <button type="button" class="dropdown-item" onclick="confirmLogout()">
                                             <i class="fas fa-sign-out-alt"></i>
                                             <span class="ml-2">Logout</span>
                                         </button>
@@ -68,3 +66,26 @@
                 </nav>
             </div>
         </div>
+
+        @include('backend.components.style-confirm')
+        <script>
+            function confirmLogout() {
+                Swal.fire({
+                    title: 'Konfirmasi',
+                    text: 'Apakah Anda yakin ingin logout?',
+                    icon: 'question',
+                    iconColor: '#059652',
+                    showCancelButton: true,
+                    confirmButtonColor: '#059652',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Logout',
+                    cancelButtonText: 'Batal',
+                    buttonsStyling: true,
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('logout-form').submit();
+                    }
+                });
+            }
+        </script>

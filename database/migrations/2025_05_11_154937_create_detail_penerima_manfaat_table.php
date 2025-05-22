@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('detail_penerima_manfaat', function (Blueprint $table) {
             $table->id('id_penerima');
             $table->string('id_laporan', 50);
-            $table->string('nik', 20)->nullable();
+            $table->string('nik', 255)->nullable();
             $table->string('nama', 100)->nullable();
             $table->string('tempat_lahir', 100)->nullable();
             $table->date('tanggal_lahir')->nullable();
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->text('alamat')->nullable();
             $table->enum('pendidikan', ['Tidak Sekolah', 'SD', 'SMP', 'SMA', 'Diploma', 'S1', 'S2', 'S3', 'Lainnya'])->nullable();
             $table->string('hubungan_dengan_terlapor', 100)->nullable();
-            $table->string('notelp', 20)->nullable();
+            $table->string('notelp', 255)->nullable();
             $table->text('informasi_tambahan')->nullable();
             
             $table->foreign('id_laporan')->references('id_laporan')->on('laporan')->onDelete('cascade');
