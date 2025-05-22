@@ -34,20 +34,13 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
-      <img src="{{ asset('landingpage/assets/img/hero-bg-2.jpg') }}" alt="" class="hero-bg">
+      <img src="{{ asset('landingpage/assets/img/nganjuk.webp') }}" alt="" class="hero-bg">
 
-      <div class="container">
-        <div class="row gy-4 justify-content-between">
-          <div class="col-lg-4 order-lg-last hero-img" data-aos="zoom-out" data-aos-delay="100">
-            <img src="{{ asset('landingpage/assets/img/logo_nganjuk.png') }}" class="img-fluid animated" alt="" style="max-width: 250px; height: auto;">
-          </div>
+      <div class="container d-flex flex-column align-items-center justify-content-center text-center" style="min-height: 100vh;">
+        <img src="{{ asset('landingpage/assets/img/logo_nganjuk.png') }}" class="img-fluid animated mb-4" alt="" style="max-width: 250px; height: auto;">
 
-          <div class="col-lg-6  d-flex flex-column justify-content-center" data-aos="fade-in">
-            <h1><span>Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak</span></h1>
+            <h1 class="text-white"><span>Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak</span></h1>
             <p>Pusat informasi dan layanan digital untuk mewujudkan perlindungan dan pemberdayaan yang berkeadilan.</p>
-          </div>
-
-        </div>
       </div>
 
       <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
@@ -351,7 +344,7 @@
             <div class="member">
               <div class="member-info">
                 <h4>Muhamad Igviloja Mahendra</h4>
-                <span>Quality Asurance</span>
+                <span>Mobile Developer</span>
                 <div class="social">
                   <a href="https://www.instagram.com/mixvim.biz"><i class="bi bi-instagram"></i></a>
                   <a href="http://www.linkedin.com/in/muhamad-igviloja-mahendra-320618361"><i class="bi bi-linkedin"></i></a>
@@ -364,7 +357,7 @@
             <div class="member">
               <div class="member-info">
                 <h4>Nur Rohmatul Laili</h4>
-                <span>Tester</span>
+                <span>Dokumentator</span>
                 <div class="social">
                   <a href="https://www.instagram.com/laily_885"><i class="bi bi-instagram"></i></a>
                   <a href=""><i class="bi bi-linkedin"></i></a>
