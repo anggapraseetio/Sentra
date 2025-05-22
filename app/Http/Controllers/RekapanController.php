@@ -38,10 +38,10 @@ class RekapanController extends Controller
 
         $headers = [
             'ID Laporan', 'Kategori', 'Tanggal Laporan', 'Status',
-            'Nama Anak', 'Umur Anak', 'Jenis Kelamin Anak', 'Pendidikan Anak',
-            'Nama Pelapor', 'NIK Pelapor', 'Alamat Pelapor', 'Hubungan dengan Korban',
-            'Nama Terlapor', 'NIK Terlapor', 'Alamat Terlapor', 'Umur Terlapor', 'Jenis Kelamin Terlapor', 'Hubungan dengan Korban',
+            'Nama Pelapor', 'NIK Pelapor', 'No HP Pelapor', 'Alamat Pelapor', 'Hubungan dengan Korban',
             'Nama Penerima', 'NIK Penerima', 'Alamat Penerima', 'Umur Penerima', 'Jenis Kelamin Penerima', 'Pendidikan Penerima', 'Hubungan dengan Terlapor',
+            'Nama Terlapor', 'NIK Terlapor', 'Alamat Terlapor', 'Umur Terlapor', 'Jenis Kelamin Terlapor', 'Hubungan dengan Korban',
+            'Nama Anak', 'Umur Anak', 'Jenis Kelamin Anak', 'Pendidikan Anak',
             'Tanggal Kejadian', 'Tempat Kejadian', 'Kronologi'
         ];
 
@@ -57,22 +57,11 @@ class RekapanController extends Controller
                 optional($p->created_at)->format('Y-m-d'),
                 $p->status,
 
-                $anakList->pluck('nama')->filter()->implode("\n") ?: '-',
-                $anakList->pluck('umur')->filter()->implode("\n") ?: '-',
-                $anakList->pluck('jenis_kelamin')->filter()->implode("\n") ?: '-',
-                $anakList->pluck('pendidikan')->filter()->implode("\n") ?: '-',
-
                 $p->detail_pelapor->nama ?? '-',
                 "'" . ($p->detail_pelapor->nik ?? '-'),
+                $p->detail_pelapor->no_telp ?? '-',
                 $p->detail_pelapor->alamat ?? '-',
                 $p->detail_pelapor->hubungan_dengan_korban ?? '-',
-
-                $p->detail_terlapor->nama ?? '-',
-                "'" . ($p->detail_terlapor->nik ?? '-'),
-                $p->detail_terlapor->alamat ?? '-',
-                $p->detail_terlapor->umur ?? '-',
-                $p->detail_terlapor->jenis_kelamin ?? '-',
-                $p->detail_terlapor->hubungan_dengan_korban ?? '-',
 
                 $p->detail_penerima_manfaat->nama ?? '-',
                 "'" . ($p->detail_penerima_manfaat->nik ?? '-'),
@@ -81,6 +70,18 @@ class RekapanController extends Controller
                 $p->detail_penerima_manfaat->jenis_kelamin ?? '-',
                 $p->detail_penerima_manfaat->pendidikan ?? '-',
                 $p->detail_penerima_manfaat->hubungan_dengan_terlapor ?? '-',
+
+                $p->detail_terlapor->nama ?? '-',
+                "'" . ($p->detail_terlapor->nik ?? '-'),
+                $p->detail_terlapor->alamat ?? '-',
+                $p->detail_terlapor->umur ?? '-',
+                $p->detail_terlapor->jenis_kelamin ?? '-',
+                $p->detail_terlapor->hubungan_dengan_korban ?? '-',
+                
+                $anakList->pluck('nama')->filter()->implode("\n") ?: '-',
+                $anakList->pluck('umur')->filter()->implode("\n") ?: '-',
+                $anakList->pluck('jenis_kelamin')->filter()->implode("\n") ?: '-',
+                $anakList->pluck('pendidikan')->filter()->implode("\n") ?: '-',
 
                 $p->detail_kasus->tanggal ?? '-',
                 $p->detail_kasus->tempat_kejadian ?? '-',

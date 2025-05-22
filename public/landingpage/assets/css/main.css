@@ -657,9 +657,10 @@ section,
   min-height: 70vh;
   position: relative;
   padding: 120px 0 120px 0;
+  padding-top: 100px;
   display: flex;
-  background: linear-gradient(135deg, #059652, #1acc8d);
   color: #fff;
+  background-size: cover;
   align-items: center;
 }
 
