@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('akun', function (Blueprint $table) {
             $table->id('id_akun');
-            $table->string('notelp', 15); 
+            $table->string('notelp', 255); 
             $table->string('nama', 50); 
             $table->string('email', 100)->unique()->nullable();
             $table->enum('jenis_kelamin', ['Pria', 'Wanita'])->nullable(); 
@@ -34,9 +34,7 @@ return new class extends Migration
     }
 
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('akun');
