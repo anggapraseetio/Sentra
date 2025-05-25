@@ -173,7 +173,7 @@ class AkunControllerMobile extends Controller
                     ]);
 
                 // Opsional: Tambahkan log atau notifikasi
-                \Log::info("Laporan dengan ID {$laporan->id_laporan} diperbarui dari Guest (3) ke akun baru ({$newAccountId}).");
+                Log::info("Laporan dengan ID {$laporan->id_laporan} diperbarui dari Guest (3) ke akun baru ({$newAccountId}).");
             }
 
             DB::commit();
