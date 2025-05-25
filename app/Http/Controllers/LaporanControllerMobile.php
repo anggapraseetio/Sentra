@@ -7,6 +7,7 @@ use App\Models\{LaporanMobile, DetailPelapor, DetailTerlapor, DetailPenerimaManf
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Log;
+use Illuminate\Support\Facades\Crypt;
 
 class LaporanControllerMobile extends Controller
 {
@@ -48,49 +49,128 @@ class LaporanControllerMobile extends Controller
         $data = $request->validate([
             'id_akun' => 'required|exists:akun,id_akun',
             'kategori' => 'required|string',
-            'lokasi' => 'required|string',
             'status' => 'required|in:dikirim,diterima,diproses,selesai',
             'detail_pelapor' => 'required|array',
-            'detail_terlapor' => 'required|array',
+            'detail_terlapor' => 'sometimes|array',
             'detail_penerima_manfaat' => 'required|array',
             'detail_kasus' => 'required|array',
-            'informasi_anak' => 'required|array'
+            'informasi_anak' => 'sometimes|array'
         ]);
 
-        // 1. Create laporan
-        $laporan = LaporanMobile::create($data);
+        DB::beginTransaction();
 
-        // 2. Create detail pelapor
-        $laporan->detailPelapor()->create($data['detail_pelapor']);
+        try {
+            // 1. Insert laporan utama
+            DB::table('laporan')->insert([
+                'id_akun' => $data['id_akun'],
+                'kategori' => $data['kategori'],
+                'status' => $data['status'],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
 
-        // 3. Create detail terlapor
-        $laporan->detailTerlapor()->create($data['detail_terlapor']);
+            // 2. Ambil laporan terbaru
+            $laporanTerbaru = DB::table('laporan')
+                ->where('id_akun', $data['id_akun'])
+                ->orderBy('created_at', 'desc')
+                ->first();
 
-        // 4. Create detail penerima manfaat dan ambil id_penerima
-        $penerimaManfaat = $laporan->detailPenerimaManfaat()->create($data['detail_penerima_manfaat']);
+            $id_laporan = $laporanTerbaru->id_laporan;
 
-        // 5. Create detail kasus
-        $laporan->detailKasus()->create($data['detail_kasus']);
+            // 3. Insert detail_pelapor dengan enkripsi
+            DB::table('detail_pelapor')->insert([
+                'id_laporan' => $id_laporan,
+                'nik' => Crypt::encryptString($data['detail_pelapor']['nik']),
+                'nama' => $data['detail_pelapor']['nama'],
+                'alamat' => $data['detail_pelapor']['alamat'],
+                'no_telp' => Crypt::encryptString($data['detail_pelapor']['no_telp']),
+                'hubungan_dengan_korban' => $data['detail_pelapor']['hubungan_dengan_korban']
+            ]);
 
-        foreach ($data['informasi_anak'] as $anak) {
-            // Tambahkan id_penerima ke tiap anak
-            $anak['id_penerima'] = $penerimaManfaat->id_penerima;
+            // 4. Insert detail_penerima_manfaat dengan enkripsi
+            $id_penerima = DB::table('detail_penerima_manfaat')->insertGetId([
+                'id_laporan' => $id_laporan,
+                'nik' => Crypt::encryptString($data['detail_penerima_manfaat']['nik']),
+                'nama' => $data['detail_penerima_manfaat']['nama'],
+                'Tempat_lahir' => $data['detail_penerima_manfaat']['Tempat_lahir'],
+                'tanggal_lahir' => $data['detail_penerima_manfaat']['tanggal_lahir'],
+                'umur' => $data['detail_penerima_manfaat']['umur'],
+                'jenis_kelamin' => $data['detail_penerima_manfaat']['jenis_kelamin'],
+                'pekerjaan' => $data['detail_penerima_manfaat']['pekerjaan'],
+                'agama' => $data['detail_penerima_manfaat']['agama'],
+                'alamat' => $data['detail_penerima_manfaat']['alamat'],
+                'pendidikan' => $data['detail_penerima_manfaat']['pendidikan'],
+                'hubungan_dengan_terlapor' => $data['detail_penerima_manfaat']['hubungan_dengan_terlapor'],
+                'notelp' => Crypt::encryptString($data['detail_penerima_manfaat']['notelp']),
+                'informasi_tambahan' => $data['detail_penerima_manfaat']['informasi_tambahan']
+            ]);
 
-            // Optional: skip jika data anak kosong
-            if (!empty($anak['nama'])) {
-                $penerimaManfaat->informasiAnak()->create($anak);
+            // 5. Insert detail_terlapor dengan enkripsi
+            if (!empty($data['detail_terlapor'])) {
+                foreach ($data['detail_terlapor'] as $terlapor) {
+                    if (empty($terlapor['nama'])) {
+                        continue;
+                    }
+                    DB::table('detail_terlapor')->insert([
+                        'id_laporan' => $id_laporan,
+                        'nik' => isset($terlapor['nik']) ? Crypt::encryptString($terlapor['nik']) : null,
+                        'nama' => $terlapor['nama'] ?? null,
+                        'umur' => $terlapor['umur'] ?? null,
+                        'alamat' => $terlapor['alamat'] ?? null,
+                        'jenis_kelamin' => $terlapor['jenis_kelamin'] ?? null,
+                        'hubungan_dengan_korban' => $terlapor['hubungan_dengan_korban'] ?? null,
+                        'informasi_tambahan' => $terlapor['informasi_tambahan'] ?? null
+                    ]);
+                }
             }
+
+            // 6. Insert detail_kasus
+            DB::table('detail_kasus')->insert([
+                'id_laporan' => $id_laporan,
+                'tanggal' => $data['detail_kasus']['tanggal'],
+                'tempat_kejadian' => $data['detail_kasus']['tempat_kejadian'],
+                'kronologi' => $data['detail_kasus']['kronologi']
+            ]);
+
+            // 7. Insert informasi_anak
+            if (!empty($data['informasi_anak'])) {
+                foreach ($data['informasi_anak'] as $anak) {
+                    if (empty($anak['nama'])) {
+                        continue;
+                    }
+                    DB::table('informasi_anak')->insert([
+                        'id_penerima' => $id_penerima,
+                        'nama' => $anak['nama'] ?? null,
+                        'tanggal_lahir' => $anak['tanggal_lahir'] ?? null,
+                        'umur' => $anak['umur'] ?? null,
+                        'jenis_kelamin' => $anak['jenis_kelamin'] ?? null,
+                        'pendidikan' => $anak['pendidikan'] ?? null,
+                        'agama' => $anak['agama'] ?? null,
+                        'status' => $anak['status'] ?? null
+                    ]);
+                }
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Laporan berhasil dikirim',
+                'data' => [
+                    'laporan' => $laporanTerbaru,
+                    'detail_penerima' => DB::table('detail_penerima_manfaat')->where('id_penerima', $id_penerima)->first(),
+                    'informasi_anak' => DB::table('informasi_anak')->where('id_penerima', $id_penerima)->get()
+                ]
+            ]);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal membuat laporan',
+                'error' => $e->getMessage(),
+            ], 500);
         }
-        $notificationController = new NotificationControllerMobile();
-        $notificationRequest = new Request([
-            'id_laporan' => $laporan->id,
-            'user_id' => $data['id_akun'],
-            'status' => $data['status'],
-        ]);
-        $notificationController->reportUpdate($notificationRequest);
-
-        return response()->json(['message' => 'Laporan berhasil dikirim', 'laporan' => $laporan]);
-
     }
 
 
@@ -155,7 +235,7 @@ class LaporanControllerMobile extends Controller
     {
         // Validasi input
         $validated = $request->validate([
-            'id_akun' => 'required|integer',
+            'id_akun' => 'required|int',
             'nik' => 'required|string|max:100',
             'nama' => 'required|string|max:150',
             'no_telp' => 'required|string|max:15',
@@ -166,22 +246,26 @@ class LaporanControllerMobile extends Controller
         DB::beginTransaction();
 
         try {
-            $id_laporan = DB::table('laporan')->insertGetId([
+            DB::table('laporan')->insertGetId([
                 'id_akun' => $validated['id_akun'],
                 'kategori' => 'unset',
                 'status' => 'dikirim',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+            $id_laporan = DB::table('laporan')
+                ->where('id_akun', $validated['id_akun'])
+                ->where('created_at', now())
+                ->value('id_laporan');
 
             // Insert ke tabel detail_pelapor
             DB::table('detail_pelapor')->insert([
                 'id_laporan' => $id_laporan,
-                'nik' => $validated['nik'],
+                'nik' => Crypt::encryptString( $validated['nik']),
                 'nama' => $validated['nama'],
                 'alamat' => $validated['alamat'],
-                'hubungan_dengan_korban' => '-', 
-                'no_telp' => $validated['no_telp'],
+                'hubungan_dengan_korban' => '-',
+                'no_telp' =>Crypt::encryptString( $validated['no_telp']),
             ]);
 
             // Insert ke tabel detail_kasus
@@ -215,7 +299,7 @@ class LaporanControllerMobile extends Controller
     public function Search(Request $request)
     {
         $keyword = $request->query('keyword');
-        $idAkun = $request->query('id_akun'); 
+        $idAkun = $request->query('id_akun');
 
         $laporan = LaporanMobile::with([
             'detailPelapor',
@@ -224,7 +308,7 @@ class LaporanControllerMobile extends Controller
             'detailKasus',
             'detailPenerimaManfaat.informasiAnak'
         ])
-            ->search($keyword, $idAkun) 
+            ->search($keyword, $idAkun)
             ->get();
 
         return response()->json($laporan);

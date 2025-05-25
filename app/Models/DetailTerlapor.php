@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Crypt;
 class DetailTerlapor extends Model
 {
     use HasFactory;
@@ -29,13 +29,13 @@ class DetailTerlapor extends Model
     {
         return $this->belongsTo(Laporan::class, 'id_laporan', 'id_laporan');
     }
-    // NIK
+    
     public function getNikAttribute($value)
     {
         try {
             return Crypt::decryptString($value);
         } catch (\Exception $e) {
-            return $value; // fallback kalau nilainya belum terenkripsi
+            return $value;
         }
     }
 

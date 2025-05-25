@@ -7,10 +7,33 @@
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
-        "axios": "^1.7.4",
+        "axios": "^1.9.0",
         "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^1.2.0",
         "tailwindcss": "^4.0.0",
         "vite": "^6.0.11"
-    }
+    },
+    "dependencies": {
+        "@hapi/boom": "^10.0.1",
+        "baileys": "^6.7.16",
+        "body-parser": "^2.2.0",
+        "express": "^5.1.0",
+        "firebase-admin": "^13.4.0",
+        "mysql": "^2.18.1",
+        "pino": "^9.6.0",
+        "qrcode-terminal": "^0.12.0",
+        "websocket": "^1.0.35",
+        "whatsapp-web.js": "^1.28.0",
+        "ws": "^8.18.1"
+    },
+    "name": "sentra",
+    "version": "1.0.0",
+    "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\" alt=\"Laravel Logo\"></a></p>",
+    "main": "botWA.js",
+    "directories": {
+        "test": "tests"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
 }

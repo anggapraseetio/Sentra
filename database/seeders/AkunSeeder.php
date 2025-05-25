@@ -17,7 +17,7 @@ class AkunSeeder extends Seeder
             'email' => 'sentraapplication@gmail.com',
             'jenis_kelamin' => null,
             'alamat' => null,
-            'password' => Hash::make('admin123'), // password terenkripsi
+            'password' => Hash::make('admin123'), 
             'role' => 'admin',
             'emerquest' => null,
             'answquest' => null,
@@ -25,12 +25,12 @@ class AkunSeeder extends Seeder
             'otp_expiry' => null,
         ]);
         Akun::create([
-            'notelp' => '087860616271',
+            'notelp' => '081234554321',
             'nama' => 'Admin Konsultasi',
             'email' => null,
             'jenis_kelamin' => null,
             'alamat' => null,
-            'password' => Hash::make('adminkonsul123'), // password terenkripsi
+            'password' => Hash::make('adminkonsul123'), 
             'role' => 'admin',
             'emerquest' => null,
             'answquest' => null,
@@ -43,7 +43,7 @@ class AkunSeeder extends Seeder
             'email' => null,
             'jenis_kelamin' => null,
             'alamat' => null,
-            'password' => Hash::make('guest321'), // password terenkripsi
+            'password' => Hash::make('guest321'), 
             'role' => 'guest',
             'emerquest' => null,
             'answquest' => null,

@@ -18,16 +18,21 @@ Route::get('/user', function (Request $request) {
 Route::get('auth/getdata', [AkunControllerMobile::class, 'index']);
 Route::post('auth/register', [AkunControllerMobile::class, 'register']);
 Route::post('auth/login', [AkunControllerMobile::class, 'login']);
+Route::post('auth/biometric', [AkunControllerMobile::class, 'loginBiometric']);
+Route::post('auth/email', [AkunControllerMobile::class, 'loginWithEmail']);
 Route::put('auth/edit/{id}', [AkunControllerMobile::class, 'update']);
 Route::delete('auth/delete/{id}', [AkunControllerMobile::class, 'delete']);
 Route::post('auth/updatenomor', [AkunControllerMobile::class, 'updatenomor']);
 Route::post('auth/ubahpassword', [AkunControllerMobile::class, 'updatepassword']);
+Route::post('auth/get-emergency-question', [AkunControllerMobile::class, 'getEmergencyQuestion']);
+Route::post('auth/emergency-check', [AkunControllerMobile::class, 'emergencyCheck']);
+
 
 Route::post('/login', [AuthControllerMobile::class, 'login']);
 Route::post('/register', [AuthControllerMobile::class, 'register']);
 Route::post('/forgot-password', [AuthControllerMobile::class, 'forgotPassword']);
 Route::post('/reset-password', [AuthControllerMobile::class, 'resetPassword']);
-Route::post('/emergency-check', [AuthControllerMobile::class, 'emergencyCheck']);
+
 
 Route::post('/track-report', [LaporanControllerMobile::class, 'trackReport']);
 Route::post('/post-report', [LaporanControllerMobile::class, 'postReport']);

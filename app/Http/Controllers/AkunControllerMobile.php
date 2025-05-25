@@ -39,6 +39,88 @@ class AkunControllerMobile extends Controller
 
         return response()->json(['message' => 'Login berhasil', 'user' => $user]);
     }
+    public function emergencyCheck(Request $request)
+    {
+        $data = $request->validate([
+            'notelp' => 'required',
+            'answer' => 'required'
+        ]);
+
+        $user = UserMobile::where('notelp', $data['notelp'])
+            ->where('answquest', $data['answer'])
+            ->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'Jawaban tidak sesuai'], 400);
+        }
+
+        return response()->json(['message' => 'Verifikasi berhasil'],200);
+    }
+    public function getEmergencyQuestion(Request $request)
+    {
+        $request->validate([
+            'notelp' => 'required|string|max:15'
+        ]);
+
+        $akun = DB::table('akun')
+            ->where('notelp', $request->notelp)
+            ->select('emerquest')
+            ->first();
+
+        if (!$akun) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Nomor telepon tidak ditemukan'
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'emerquest' => $akun->emerquest
+        ]);
+    }
+    //Login google
+    public function loginWithEmail(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        Log::info('Email login attempt:', ['email' => $credentials['email']]);
+        $user = UserMobile::where('email', $credentials['email'])->first();
+        if (!$user) {
+            Log::info('User not found for email:', ['email' => $credentials['email']]);
+            return response()->json(['message' => 'Email tidak ditemukan'], 404);
+        }
+        Log::info('User found:', ['user' => $user]);
+        return response()->json([
+            'message' => 'Login dengan email berhasil',
+            'user' => $user
+        ], 200);
+    }
+    //Login Biometric
+    public function loginBiometric(Request $request)
+    {
+        $credentials = $request->validate([
+            'notelp' => 'required|string',
+        ]);
+
+        Log::info('Biometric login attempt:', ['notelp' => $credentials['notelp']]);
+
+        $user = UserMobile::where('notelp', $credentials['notelp'])->first();
+
+        if (!$user) {
+            Log::info('User not found for notelp:', ['notelp' => $credentials['notelp']]);
+            return response()->json(['message' => 'Nomor telepon tidak ditemukan'], 404);
+        }
+
+        Log::info('User found:', ['user' => $user]);
+
+        return response()->json([
+            'message' => 'Login biometrik berhasil',
+            'user' => $user
+        ], 200);
+    }
 
     // Tambah akun baru
     public function register(Request $request)
@@ -168,9 +250,9 @@ class AkunControllerMobile extends Controller
     {
         // Validasi input
         $request->validate([
-            'notelp_lama' => 'required|string|max:15', // Nomor telepon lama
-            'notelp_baru' => 'required|string|max:15', // Nomor telepon baru
-            'answquest' => 'required|string|max:100',  // Jawaban dari pertanyaan darurat
+            'notelp_lama' => 'required|string|max:15', 
+            'notelp_baru' => 'required|string|max:15',
+            'answquest' => 'required|string|max:100', 
         ]);
 
         $akun = DB::table('akun')->where('notelp', $request->notelp_lama)->first();
@@ -183,7 +265,7 @@ class AkunControllerMobile extends Controller
             return response()->json(['message' => 'Jawaban pertanyaan darurat salah'], 401);
         }
 
-        // Update nomor telepon
+        
         DB::table('akun')->where('id_akun', $akun->id_akun)->update([
             'notelp' => $request->notelp_baru,
             'updated_at' => now(),

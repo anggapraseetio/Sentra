@@ -48,7 +48,7 @@ class DetailPenerimaManfaat extends Model
         try {
             return Crypt::decryptString($value);
         } catch (\Exception $e) {
-            return $value; // fallback kalau nilainya belum terenkripsi
+            return $value; 
         }
     }
 

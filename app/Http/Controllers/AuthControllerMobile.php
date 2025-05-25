@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserMobile;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -17,7 +19,7 @@ class AuthControllerMobile extends Controller
             'password' => 'required'
         ]);
 
-        $user = User::where('notelp', $credentials['notelp'])->first();
+        $user = UserMobile::where('notelp', $credentials['notelp'])->first();
 
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
             return response()->json(['message' => 'No Telp atau password salah'], 401);
@@ -38,7 +40,7 @@ class AuthControllerMobile extends Controller
         ]);
 
         $data['password'] = Hash::make($data['password']);
-        $user = User::create($data);
+        $user = UserMobile::create($data);
 
         return response()->json(['message' => 'Registrasi berhasil', 'user' => $user]);
     }
@@ -48,7 +50,7 @@ class AuthControllerMobile extends Controller
     {
         $request->validate(['notelp' => 'required']);
 
-        $user = User::where('notelp', $request->notelp)->first();
+        $user = UserMobile::where('notelp', $request->notelp)->first();
         if (!$user) {
             return response()->json(['message' => 'No Telp tidak ditemukan'], 404);
         }
@@ -68,7 +70,7 @@ class AuthControllerMobile extends Controller
             'password' => 'required|min:6'
         ]);
 
-        $user = User::where('notelp', $data['notelp'])
+        $user = UserMobile::where('notelp', $data['notelp'])
             ->where('otp', $data['otp'])
             ->where('otp_expiry', '>', now())
             ->first();
@@ -83,21 +85,39 @@ class AuthControllerMobile extends Controller
     }
 
     //PENGECEKAN DARURAT
+
     public function emergencyCheck(Request $request)
     {
         $data = $request->validate([
-            'notelp' => 'required',
-            'answer' => 'required'
+            'notelp' => 'required|string|max:15',
+            'answer' => 'required|string|max:100'
         ]);
 
-        $user = User::where('notelp', $data['notelp'])
-            ->where('answquest', $data['answer'])
-            ->first();
+        try {
+            $user = DB::table('akun')
+                ->where('notelp', $data['notelp'])
+                ->where('answquest', $data['answer'])
+                ->first();
 
-        if (!$user) {
-            return response()->json(['message' => 'Jawaban tidak sesuai'], 400);
+            if (!$user) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Jawaban tidak sesuai'
+                ], 400);
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Verifikasi berhasil',
+                'user' => $user
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Terjadi kesalahan server',
+                'error' => $e->getMessage()
+            ], 500);
         }
-
-        return response()->json(['message' => 'Verifikasi berhasil']);
     }
 }
