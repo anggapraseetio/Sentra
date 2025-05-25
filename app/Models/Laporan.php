@@ -45,11 +45,6 @@ class Laporan extends Model
         return $this->hasOne(DetailKasus::class, 'id_laporan', 'id_laporan');
     }
 
-    // public function informasi_anak()
-    // {
-    //     return $this->hasOne(InformasiAnak::class, 'id_penerima');
-    // }
-
 }
 
 
