@@ -63,7 +63,9 @@
                                             <td>
                                                 @if ($data->status == 'selesai')
                                                     <span class="badge badge-success">SELESAI</span>
-                                                @endif
+                                                @elseif ($data->status == 'dirujuk')
+                                                    <span class="badge badge-primary">DIRUJUK</span>
+                                                @endif 
                                             </td>
                                             <td>{{ $data->kategori }}</td>
                                             <td>{{ $data->created_at->format('d-m-Y') }}</td>

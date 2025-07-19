@@ -24,20 +24,20 @@
             </div>
         </div>
 
-        <!-- Filter & Export Section -->
+        <form id="exportForm" method="POST" action="{{ route('rekapan.export') }}">
+            @csrf
         <div class="row mb-3">
             <div class="col-md-6 mb-2">
                 <input type="text" id="searchInput" class="form-control" placeholder="Cari Nama/NIK Pelapor...">
             </div>
-            <div class="col-md-4">
-                <button type="button" class="btn btn-outline-secondary" id="resetFilter">
-                    <i class="fas fa-sync-alt me-1"></i> Reset Filter
-                </button>
+            <div class="col-md-2">
+                <select id="filterStatus" name="status" class="form-control">
+                    <option value="">Semua Status</option>
+                    <option value="selesai">Selesai</option>
+                    <option value="dirujuk">Dirujuk</option>
+                </select>
             </div>
         </div>
-        <br>
-        <form id="exportForm" method="POST" action="{{ route('rekapan.export') }}">
-            @csrf
             <div class="row mb-3">
                 <div class="col-md-2 mb-3 mb-md-0">
                     <label for="exportStartDate" class="form-label fw-bold">Tanggal Awal</label>
@@ -152,12 +152,16 @@
                 $('#rekapanTable').on('draw.dt', updateCount);
                 updateCount();
                 // Reset filter
-                $('#resetFilter').on('click', function() {
-                    $('#searchInput').val('');
-                    $('#startDate').val('');
-                    $('#endDate').val('');
-                    $('#kategoriFilter').val('');
-                    table.search('').draw();
+                // $('#resetFilter').on('click', function() {
+                //     $('#searchInput').val('');
+                //     $('#startDate').val('');
+                //     $('#endDate').val('');
+                //     $('#kategoriFilter').val('');
+                //     table.search('').draw();
+                // });
+                // Filter berdasarkan status (kolom ke-2)
+                $('#filterStatus').on('change', function() {
+                    table.column(2).search(this.value).draw();
                 });
                 // Update nilai pencarian jika diperlukan
                 document.getElementById('exportForm').addEventListener('submit', function(e) {

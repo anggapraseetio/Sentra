@@ -72,6 +72,19 @@
                                                     <button type="submit" class="btn btn-warning btn-sm"
                                                         title="Proses">Proses</button>
                                                 </form>
+
+                                                <form id="rujuk-form-{{ $data->id_laporan }}"
+                                                    action="{{ route('laporan.rujuk', $data->id_laporan) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button type="button" class="btn btn-primary btn-sm"
+                                                        {{ $data->status == 'diterima' ? 'disabled title=Proses-Laporan' : '' }}
+                                                        onclick="confirmRujuk('{{ $data->id_laporan }}', '{{ $data->detail_pelapor->nama ?? 'Tanpa Nama' }}')">
+                                                        Rujuk
+                                                    </button>
+                                                </form>
+
                                                 <form id="selesai-form-{{ $data->id_laporan }}"
                                                     action="{{ route('laporan.selesai', $data->id_laporan) }}"
                                                     method="POST" style="display:inline;">
@@ -115,6 +128,25 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('selesai-form-' + id).submit();
+                }
+            });
+        }
+        function confirmRujuk(id, nama = 'ini') {
+            Swal.fire({
+                title: 'Konfirmasi Rujuk',
+                text: `Apakah laporan ${nama} akan dirujuk?`,
+                icon: 'question',
+                iconColor: '#593bdb',
+                showCancelButton: true,
+                confirmButtonColor: '#593bdb',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Rujuk',
+                cancelButtonText: 'Batal',
+                buttonsStyling: true,
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('rujuk-form-' + id).submit();
                 }
             });
         }

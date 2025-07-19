@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/laporan/{id}', 'destroy')->name('laporan.destroy');
         Route::put('/laporan/proseskan/{id}', 'proseskan')->name('laporan.proseskan');
         Route::put('/laporan/{id}/selesai', 'selesai')->name('laporan.selesai');
+        Route::put('/laporan/{id}/rujuk', 'rujuk')->name('laporan.rujuk');
         Route::get('/laporan/{id_laporan}/edit', 'edit')->name('laporan.edit');
         Route::put('/laporan/{id_laporan}', 'update')->name('laporan.update');
     });

@@ -21,7 +21,7 @@ class RekapanController extends Controller
             'detail_penerima_manfaat.informasi_anak',
             'detail_kasus'
         ])
-        ->where('status', 'selesai')
+        ->whereIn('status', ['selesai', 'dirujuk'])
         ->orderBy('created_at', 'desc')
         ->get();
 
@@ -95,34 +95,37 @@ class RekapanController extends Controller
     }
 
 
-    private function filteredQuery(Request $request)
-    {
-        return Laporan::with([
-            'detail_pelapor',
-            'detail_terlapor',
-            'detail_kasus',
-            'detail_penerima_manfaat.informasi_anak'
-        ])
-        ->where('status', 'selesai')
-        ->when($request->filled('search'), fn($q) =>
-            $q->whereHas('detail_pelapor', fn($sub) =>
-                $sub->where('nama', 'like', "%{$request->search}%")
-                    ->orWhere('nik', 'like', "%{$request->search}%")
-            )
+   private function filteredQuery(Request $request)
+{
+    return Laporan::with([
+        'detail_pelapor',
+        'detail_terlapor',
+        'detail_kasus',
+        'detail_penerima_manfaat.informasi_anak'
+    ])
+    ->when($request->filled('status'), fn($q) =>
+        $q->where('status', $request->status)
+    )
+    // Default jika status tidak diisi → tampilkan "selesai" & "dirujuk"
+    ->when(!$request->filled('status'), fn($q) =>
+        $q->whereIn('status', ['selesai', 'dirujuk'])
+    )
+    ->when($request->filled('search'), fn($q) =>
+        $q->whereHas('detail_pelapor', fn($sub) =>
+            $sub->where('nama', 'like', "%{$request->search}%")
+                ->orWhere('nik', 'like', "%{$request->search}%")
         )
-        ->when($request->filled('start_date'), fn($q) =>
-            $q->whereDate('created_at', '>=', $request->start_date)
-        )
-        ->when($request->filled('end_date'), fn($q) =>
-            $q->whereDate('created_at', '<=', $request->end_date)
-        )
-        ->when($request->filled('kategori'), fn($q) =>
-            $q->where('kategori', $request->kategori)
-        )
-        ->when($request->filled('status') && $request->status !== 'selesai', fn($q) =>
-            $q->where('status', $request->status)
-        );
-    }
+    )
+    ->when($request->filled('start_date'), fn($q) =>
+        $q->whereDate('created_at', '>=', $request->start_date)
+    )
+    ->when($request->filled('end_date'), fn($q) =>
+        $q->whereDate('created_at', '<=', $request->end_date)
+    )
+    ->when($request->filled('kategori'), fn($q) =>
+        $q->where('kategori', $request->kategori)
+    );
+}
 
     private function applyStyle($sheet, $columnCount, $lastRow)
     {

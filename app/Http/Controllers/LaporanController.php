@@ -9,7 +9,7 @@ class LaporanController extends Controller
 {  
     public function laporan_selesai()
     {
-        $laporan = Laporan::with('detail_pelapor')->where('status', 'selesai')->get();
+        $laporan = Laporan::with('detail_pelapor')->whereIn('status', ['selesai', 'dirujuk'])->get();
         return view('backend.layout.page_admin.laporan.selesai_laporan', compact('laporan'));
     } 
 
@@ -39,6 +39,15 @@ public function selesai($id)
     $laporan->save();
 
     return redirect()->route('laporan_proses')->with('success', 'Laporan diselesaikan!');
+}
+
+public function rujuk($id)
+{
+    $laporan = Laporan::find($id);
+    $laporan->status = 'dirujuk';
+    $laporan->save();
+
+    return redirect()->route('laporan_proses')->with('success', 'Laporan dirujuk!');
 }
 
 public function proseskan($id)

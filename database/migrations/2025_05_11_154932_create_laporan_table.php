@@ -24,7 +24,7 @@ return new class extends Migration
                 'Lainnya', 
                 'unset'
             ])->default('unset');
-            $table->enum('status', ['dikirim', 'diterima', 'diproses', 'selesai'])->default('dikirim');
+            $table->enum('status', ['dikirim', 'diterima', 'diproses', 'dirujuk', 'selesai'])->default('dikirim');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             
