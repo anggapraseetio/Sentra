@@ -4427,7 +4427,8 @@ a.close.disabled {
 
 .modal-title {
   margin-bottom: 0;
-  line-height: 1.5; }
+  line-height: 1.5;
+  color: #EEEEEE; }
 
 .modal-body {
   position: relative;
@@ -15995,6 +15996,24 @@ button {
 
 .progress-bar-pink {
   background-color: #e83e8c; }
+
+.progress-bar-fisik {
+  background-color: #28a745; }
+
+.progress-bar-psikis {
+  background-color: #007bff; }
+
+.progress-bar-seksual {
+  background-color: #ffc107; }
+
+.progress-bar-penelantaran {
+  background-color: #dc3545; }
+
+.progress-bar-eksploitasi {
+  background-color: #9966ff; }
+
+.progress-bar-tppo {
+  background-color: #ff6600; }
 
 .progress {
   height: 6px;

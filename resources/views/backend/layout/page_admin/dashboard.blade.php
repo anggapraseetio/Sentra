@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-success" style="width: {{ $persen_kekerasan_fisik }}%"
+                            <div class="progress-bar progress-bar-fisik" style="width: {{ $persen_kekerasan_fisik }}%"
                                 role="progressbar" aria-valuenow="{{ $persen_kekerasan_fisik }}" aria-valuemin="0"
                                 aria-valuemax="100"></div>
                         </div>
@@ -65,7 +65,7 @@
                             <div class="stat-digit"> <i class="fa fa-file-text-o"></i> {{ $kekerasan_psikis }}</div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-primary" style="width: {{ $persen_kekerasan_psikis }}%"
+                            <div class="progress-bar progress-bar-psikis" style="width: {{ $persen_kekerasan_psikis }}%"
                                 role="progressbar" aria-valuenow="{{ $persen_kekerasan_psikis }}" aria-valuemin="0"
                                 aria-valuemax="100"></div>
                         </div>
@@ -80,7 +80,7 @@
                             <div class="stat-digit"> <i class="fa fa-file-text-o"></i> {{ $kekerasan_seksual }}</div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-warning" style="width: {{ $persen_kekerasan_seksual }}%"
+                            <div class="progress-bar progress-bar-seksual" style="width: {{ $persen_kekerasan_seksual }}%"
                                 role="progressbar" aria-valuenow="{{ $persen_kekerasan_seksual }}" aria-valuemin="0"
                                 aria-valuemax="100"></div>
                         </div>
@@ -95,7 +95,7 @@
                             <div class="stat-digit"> <i class="fa fa-file-text-o"></i> {{ $penelantaran }}</div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-danger" style="width: {{ $persen_penelantaran }}%"
+                            <div class="progress-bar progress-bar-penelantaran" style="width: {{ $persen_penelantaran }}%"
                                 role="progressbar" aria-valuenow="{{ $persen_penelantaran }}" aria-valuemin="0"
                                 aria-valuemax="100"></div>
                         </div>
@@ -110,7 +110,7 @@
                             <div class="stat-digit"> <i class="fa fa-file-text-o"></i> {{ $eksploitasi }}</div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-info" style="width: {{ $persen_eksploitasi }}%"
+                            <div class="progress-bar progress-bar-eksploitasi" style="width: {{ $persen_eksploitasi }}%"
                                 role="progressbar" aria-valuenow="{{ $persen_eksploitasi }}" aria-valuemin="0"
                                 aria-valuemax="100"></div>
                         </div>
@@ -125,7 +125,7 @@
                             <div class="stat-digit"> <i class="fa fa-file-text-o"></i> {{ $tppo }}</div>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-warning" style="width: {{ $persen_tppo }}%"
+                            <div class="progress-bar progress-bar-tppo" style="width: {{ $persen_tppo }}%"
                                 role="progressbar" aria-valuenow="{{ $persen_tppo }}" aria-valuemin="0"
                                 aria-valuemax="100"></div>
                         </div>

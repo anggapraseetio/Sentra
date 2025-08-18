@@ -44,17 +44,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Laporan
-    Route::controller(LaporanController::class)->group(function () {
-        Route::get('/laporan', 'proses')->name('laporan_proses');
-        Route::get('/laporan_selesai', 'laporan_selesai')->name('selesai');
-        Route::get('/laporan/{id}', 'laporan_show')->name('laporan.show');
-        Route::delete('/laporan/{id}', 'destroy')->name('laporan.destroy');
-        Route::put('/laporan/proseskan/{id}', 'proseskan')->name('laporan.proseskan');
-        Route::put('/laporan/{id}/selesai', 'selesai')->name('laporan.selesai');
-        Route::put('/laporan/{id}/rujuk', 'rujuk')->name('laporan.rujuk');
-        Route::get('/laporan/{id_laporan}/edit', 'edit')->name('laporan.edit');
-        Route::put('/laporan/{id_laporan}', 'update')->name('laporan.update');
-    });
+Route::controller(LaporanController::class)->group(function () {
+    Route::get('/laporan', 'proses')->name('laporan_proses');
+    Route::get('/laporan_selesai', 'laporan_selesai')->name('selesai');
+    Route::get('/laporan/{id}', 'laporan_show')->name('laporan.show');
+    Route::get('/laporan/preview/{id}', 'laporan_preview')->name('laporan.preview');
+    Route::get('/laporan/{id}/edit', 'edit')->name('laporan.edit');
+    Route::put('/laporan/{id}', 'update')->name('laporan.update');
+    Route::delete('/laporan/{id}', 'destroy')->name('laporan.destroy');
+    Route::put('/laporan/proseskan/{id}', 'proseskan')->name('laporan.proseskan');
+    Route::put('/laporan/{id}/selesai', 'selesai')->name('laporan.selesai');
+    Route::put('/laporan/{id}/rujuk', 'rujuk')->name('laporan.rujuk');
+});
 
     // Informasi
     Route::controller(InformasiController::class)->group(function () {
@@ -79,6 +80,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/count', 'getCount')->name('admin.notifikasi.count');
         Route::post('/{id}/read', 'markAsRead')->name('admin.notifikasi.mark-read');
         Route::post('/{id_notif}/terima-laporan/{id_laporan}', 'terimaLaporan')->name('admin.notifikasi.terima-laporan');
+
+        // Route untuk AJAX
+        Route::get('/notifikasi/count', 'getCount')->name('notifikasi.count');
+        Route::get('/notifikasi/get', 'getNotifikasi')->name('notifikasi.get');
     });
 
     // Ganti Password (Dari dalam aplikasi)

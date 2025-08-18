@@ -31,9 +31,9 @@
                 <div class="container">
                     <div class="row">
                         <div
-                            class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+                            class="col-7 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
                             <div class="position-relative bg-gradient-primary h-100 m-1 px-7 border-radius-lg d-flex flex-column justify-content-center"
-                                style="background-image: url('backend/assets/img/illustrations/ilustrasi_sigin.png'); background-size: cover;">
+                                style="background-image: url('backend/assets/img/illustrations/password.png'); background-size: cover; background-position: center;">
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-0">

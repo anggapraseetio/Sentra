@@ -13,7 +13,7 @@
 :root { 
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #040677; /* Color for headings, subheadings and title throughout the website */
+  --heading-color: #52AE77; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #1acc8d; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
@@ -34,6 +34,14 @@
 .light-background {
   --background-color: #f4f5fe;
   --surface-color: #ffffff;
+}
+
+.dark-background2 {
+  --background-color: rgba(5, 150, 82, 0.7);
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  --surface-color: #059652;
+  --contrast-color: #ffffff;
 }
 
 .dark-background {
@@ -1366,3 +1374,568 @@ section,
   display: block;
 }
 
+/* =================================
+   FITUR SECTION STYLES
+================================= */
+
+.fitur-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #f8fcff 0%, #e8f5ff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.fitur-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(5, 150, 82, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* =================================
+   SWIPER CONTAINER
+================================= */
+
+.swiper-container-wrapper {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-swiper-3d {
+  width: 100%;          
+  max-width: 400px;     
+  height: auto;       
+  margin: auto;
+  padding: 20px 0;
+  position: relative;
+}
+
+/* Frame gambar */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.15),
+    0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+}
+.phone-mockup {
+  width: 100%;
+  height: auto;          /* biar proporsional */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-screenshot {
+  width: 100%;           /* isi penuh wrapper */
+  height: auto;          /* jangan dipaksa fixed height */
+  object-fit: contain;   /* agar tidak gepeng */
+}
+
+
+
+/* =================================
+   FEATURE OVERLAY
+================================= */
+
+.feature-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(5, 150, 82, 0.95) 100%);
+  color: white;
+  padding: 25px 20px;
+  transform: translateY(100%);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(10px);
+}
+
+.feature-overlay h4 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.feature-overlay p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.95;
+  line-height: 1.4;
+}
+
+/* Hover effects */
+.swiper-slide-active .image-container {
+  transform: scale(1.05) translateY(-10px);
+  box-shadow: 
+    0 35px 70px rgba(0, 0, 0, 0.2),
+    0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.swiper-slide-active .feature-overlay,
+.image-container:hover .feature-overlay {
+  transform: translateY(0);
+}
+
+/* =================================
+   SWIPER CONTROLS (disesuaikan dengan gambar)
+================================= */
+
+.my-swiper-3d .swiper-button-next,
+.my-swiper-3d .swiper-button-prev {
+  width: 55px;
+  height: 55px;
+  margin-top: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  color: #059652;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.15),
+    0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.my-swiper-3d .swiper-button-next {
+  right: -25px;
+}
+
+.my-swiper-3d .swiper-button-prev {
+  left: -25px;
+}
+
+.my-swiper-3d .swiper-button-next:hover,
+.my-swiper-3d .swiper-button-prev:hover {
+  background: #059652;
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 
+    0 15px 40px rgba(5, 150, 82, 0.3),
+    0 8px 25px rgba(5, 150, 82, 0.2);
+}
+
+.my-swiper-3d .swiper-button-next i,
+.my-swiper-3d .swiper-button-prev i {
+  font-size: 16px;
+}
+
+.my-swiper-3d .swiper-button-next::after,
+.my-swiper-3d .swiper-button-prev::after {
+  display: none;
+}
+
+.my-swiper-3d .swiper-pagination {
+  bottom: 10px;
+}
+
+.my-swiper-3d .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: rgba(5, 150, 82, 0.3);
+  border-radius: 50%;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.my-swiper-3d .swiper-pagination-bullet-active {
+  background: #059652;
+  transform: scale(1.2);
+}
+
+/* =================================
+   FLOATING ELEMENTS
+================================= */
+
+.floating-element {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float 6s ease-in-out infinite;
+}
+
+.element-1 {
+  top: 10%;
+  left: 10%;
+  width: 80px;
+  height: 80px;
+  background: #059652;
+  animation-delay: 0s;
+}
+
+.element-2 {
+  top: 60%;
+  left: 5%;
+  width: 60px;
+  height: 60px;
+  background: #0891b2;
+  animation-delay: 2s;
+}
+
+.element-3 {
+  bottom: 20%;
+  left: 15%;
+  width: 100px;
+  height: 100px;
+  background: #7c3aed;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+/* =================================
+   CONTENT SECTION
+================================= */
+
+.content-wrapper {
+  padding: 0 20px;
+  animation: fadeInUp 1s ease-out;
+}
+
+.section-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #059652, #0891b2);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(5, 150, 82, 0.3);
+}
+
+/* =================================
+   FEATURES LIST
+================================= */
+
+.features-list {
+  margin-bottom: 40px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.feature-item:hover {
+  transform: translateX(10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #059652, #0891b2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.feature-icon i {
+  color: white;
+  font-size: 18px;
+}
+
+.feature-text h4 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.feature-text p {
+  margin: 0;
+  color: #4a5568;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* =================================
+   DOWNLOAD SECTION
+================================= */
+
+.download-section {
+  margin-bottom: 40px;
+}
+
+.download-text {
+  font-size: 1.1rem;
+  color: #4a5568;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.download-btn {
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.download-btn:hover {
+  transform: scale(1.05);
+  text-decoration: none;
+}
+
+.playstore-img {
+  height: 60px;
+  width: auto;
+  border-radius: 5px;
+  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.2));
+}
+
+.btn-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #059652, #0891b2);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  opacity: 0;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.btn-overlay i {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.download-btn:hover .btn-overlay {
+  opacity: 1;
+}
+
+/* =================================
+   STATS SECTION
+================================= */
+
+.stats-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.stat-item {
+  text-align: center;
+  flex: 1;
+}
+
+.stat-item h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  background: linear-gradient(135deg, #059652, #0891b2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-item p {
+  margin: 0;
+  color: #4a5568;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* =================================
+   ANIMATIONS
+================================= */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 991px) {
+  .fitur-section {
+    padding: 60px 0;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+  }
+  
+  .my-swiper-3d {
+    max-width: 320px;
+    height: 550px;
+  }
+  
+  .image-container {
+    width: 240px;
+    height: 420px;
+  }
+  
+  .my-swiper-3d .swiper-button-next {
+    right: -20px;
+  }
+  
+  .my-swiper-3d .swiper-button-prev {
+    left: -20px;
+  }
+  
+  .content-wrapper {
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  .stats-section {
+    justify-content: center;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .my-swiper-3d {
+    max-width: 280px;
+    height: 480px;
+  }
+  
+  .image-container {
+    width: 200px;
+    height: 350px;
+  }
+  
+  .my-swiper-3d .swiper-button-next,
+  .my-swiper-3d .swiper-button-prev {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .my-swiper-3d .swiper-button-next {
+    right: -15px;
+  }
+  
+  .my-swiper-3d .swiper-button-prev {
+    left: -15px;
+  }
+  
+  .feature-item {
+    padding: 15px;
+  }
+  
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .stats-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+/* Custom CSS (di bawah Bootstrap) */
+.section-title {
+    margin-bottom: 3rem;
+    padding: 0 15px;
+    text-align: center;
+    max-width: 100%;
+}
+
+/* Judul Utama dengan spesifisitas lebih tinggi */
+.section-title .section-main-title {
+    font-size: 2.5rem !important; 
+    font-weight: 900 !important; 
+    color: #059652 !important;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 2rem;
+    display: block;
+    line-height: 1.2;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); 
+    word-break: break-word;
+    max-width: 100%;
+}
+
+/* Hilangkan garis dekoratif bawaan */
+.section-title .section-main-title::after,
+.section-title .section-main-title::before {
+    content: none !important;
+}
+
+/* Deskripsi */
+.section-title .section-description {
+    font-size: 1.1rem;
+    color: #6c757d;
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0 auto 2rem auto;
+    max-width: 800px;
+    text-align: center;
+    padding: 0 10px;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .section-title .section-main-title {
+        font-size: 2rem;
+        letter-spacing: 1px;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-title .section-description {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title .section-main-title {
+        font-size: 1.6rem;
+        word-break: break-word;
+        margin-bottom: 1rem;
+    }
+
+    .section-title .section-description {
+        font-size: 0.95rem;
+    }
+
+    .section-title {
+        margin-bottom: 2rem;
+    }
+}

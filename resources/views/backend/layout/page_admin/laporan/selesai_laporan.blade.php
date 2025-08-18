@@ -65,16 +65,16 @@
                                                     <span class="badge badge-success">SELESAI</span>
                                                 @elseif ($data->status == 'dirujuk')
                                                     <span class="badge badge-primary">DIRUJUK</span>
-                                                @endif 
+                                                @endif
                                             </td>
                                             <td>{{ $data->kategori }}</td>
                                             <td>{{ $data->created_at->format('d-m-Y') }}</td>
                                             <td>
                                                 <!-- Tombol Preview -->
-                                                <a href="{{ route('laporan.show', $data->id_laporan) }}"
-                                                    class="btn btn-hijau btn-sm" title="Preview">
+                                                <button type="button" class="btn btn-hijau btn-sm" title="Preview"
+                                                    onclick="showPreview('{{ $data->id_laporan }}')">
                                                     Preview
-                                                </a>
+                                                </button>
 
                                                 <form id="delete-form-{{ $data->id_laporan }}"
                                                     action="{{ route('laporan.destroy', $data->id_laporan) }}"
@@ -98,9 +98,70 @@
 
         </div>
     </div>
+
+    {{-- Modal Preview Laporan --}}
+    <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-ijo">
+                    <h4 class="modal-title text-white" id="previewModalLabel">PREVIEW LAPORAN</h4>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalContent">
+                    {{-- Content akan dimuat via AJAX --}}
+                    <div class="text-center">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <p>Memuat data laporan...</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @push('scripts')
     @include('backend.components.style-confirm')
+    {{-- JavaScript untuk Modal --}}
+    <script>
+        function showPreview(laporanId) {
+            // Tampilkan modal
+            $('#previewModal').modal('show');
+
+            // Reset content dengan loading
+            $('#modalContent').html(`
+        <div class="text-center">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <p>Memuat data laporan...</p>
+        </div>
+    `);
+
+            // Load content via AJAX
+            $.ajax({
+                url: '/laporan/preview/' + laporanId,
+                type: 'GET',
+                success: function(response) {
+                    $('#modalContent').html(response);
+                },
+                error: function(xhr, status, error) {
+                    $('#modalContent').html(`
+                <div class="alert alert-danger">
+                    <h5>Error!</h5>
+                    <p>Gagal memuat data laporan. Silakan coba lagi.</p>
+                </div>
+            `);
+                }
+            });
+        }
+    </script>
     <script>
         function confirmDelete(id, nama = 'data ini') {
             Swal.fire({

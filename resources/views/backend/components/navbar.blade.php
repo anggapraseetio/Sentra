@@ -21,25 +21,30 @@
                         <div class="header-left"></div>
                         <ul class="navbar-nav header-right">
                             <li class="nav-item dropdown notification_dropdown">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown"
+                                    aria-expanded="false">
                                     <i class="mdi mdi-bell mdi-24px"></i>
-                                    @php
-                                        $count = \App\Models\Notifikasi::where('id_akun', Auth::id())
-                                            ->where('tipe', 'admin')
-                                            ->where('status', 'terkirim')
-                                            ->count();
-                                    @endphp
-
-                                    @if ($count > 0)
-                                        <div class="pulse-css"></div>
-                                        <span class="badge badge-danger badge-pill">{{ $count }}</span>
-                                    @endif
+                                    <span id="notification-badge" class="badge badge-danger"
+                                        style="display: none;"></span>
+                                    <div id="notification-pulse" class="pulse-css" style="display: none;"></div>
                                 </a>
-
-                                @include('backend.components.notifikasi_dropdown', [
-                                    'notifikasi' => \App\Models\Notifikasi::where('id_akun', Auth::id())->where('tipe', 'admin')->where('status', 'terkirim')->orderBy('created_at', 'desc')->limit(5)->get(),
-                                    'count' => $count,
-                                ])
+                                <div class="dropdown-menu dropdown-menu-right p-0"
+                                    style="width: 100%; max-width: 350px;">
+                                    <div id="notification-header" class="bg-ijo text-white text-center py-2 px-3">
+                                        <strong>Notifikasi</strong>
+                                        <span id="notification-count-header" class="badge badge-danger ml-2"
+                                            style="display: none;"></span>
+                                    </div>
+                                    <div id="notification-list" class="notification-list"
+                                        style="max-height: 300px; overflow-y: auto;">
+                                        <!-- Isi akan diisi oleh AJAX -->
+                                    </div>
+                                    <div id="notification-footer" class="text-center p-2 border-top"
+                                        style="display: none;">
+                                        <a href="#" data-toggle="modal" data-target="#allNotificationsModal"
+                                            class="small">Lihat Semua Notifikasi</a>
+                                    </div>
+                                </div>
                             </li>
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link d-flex align-items-center" href="#" role="button"
